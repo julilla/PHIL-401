@@ -1,0 +1,334 @@
+# -*- text -*-
+#
+# To generate the calendar: ./schedule.py > schedule.shtml
+#
+# This file follows a mostly self-documenting format for describing
+# calendar data.  Any line that begins with # is a comment.  A line of
+# the form "== Name ==" begins a new layer in the calendar.
+#
+# A line containing a date expression or a hyphen-separated date rate
+# moves forward to the next date (or date range) that satisfies that
+# expression.  Dates can be given in absolute form as "<Abbreviated
+# month> <day>, <year>", in relative form as the name of a weekday, as
+# the name of a layer (which represents all dates used by that layer)
+# or as a named date definition.  These can be combined with "and",
+# "or", "not", and parens in the expected way.  A line of the form
+# "NAME = DATE-EXPR" defines a named date definition.
+
+# A line that begins with "- " and any indented lines that follow it
+# add items to the current date:
+#
+# - Holiday[: text]
+# - Special[: text]
+# - Lec: <text>
+# - Rec: <text>
+# - Tut: <text>
+# - Prep [sections]: <text>
+# - Due: <text>
+# - Text [CSS class]: <text>
+#
+# <text> in any of these may be arbitrary HTML text, with the added
+# convenience that the form "[href text...]" is converted to a
+# hyperlink.
+#
+# Finally, {{raw}} directly emits raw html, after finishing the
+# current calendary week (if there is one).
+
+{{
+<style>
+table.calendar {
+    font-family: arial, helvetica;
+    font-size: 10pt;
+    empty-cells: show;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+table.calendar tr td {
+    border: 1px solid #aaaaaa;
+}
+table.calendar tr {
+    vertical-align: top;
+    height: 6em;
+    background: #eeeeee;
+}
+table.calendar thead tr {
+    text-align: center;
+    background: #444444;
+    color: #ffffff;
+    height: auto;
+    font-weight: bold;
+}
+.lecture {
+    background: #ffffaa;
+}
+.recitation {
+    background: #cccc99;
+}
+.tutorial {
+    background: #dddd55;
+}
+.quiz {
+    background: #ff9900;
+}
+.holiday {
+    background: #ccffcc;
+}
+.special {
+    background: #aaaaff;
+}
+.important {
+    background: #ffaaaa;
+}
+.reading {
+    color: #3333ff;
+}
+.deadline {
+    color: #ff0000;
+}
+.assignment {
+    color: #0aa00a;
+}
+.date {
+    color: #444444;
+}
+.due {
+    background: #ffaaaa;
+}
+</style>
+
+<p>As this is a new course, we will update the notes as the course progresses.
+If you are particularly interested in some topic not covered here,
+send mail to the course staff.
+
+<p>While the notes published here may help you remember the material discussed,
+they are not a replacement for attending class.
+
+
+<p>
+<table class="calendar" cellspacing="0" cellpadding="6" width="100%">
+ <thead>
+  <tr>
+   <td width="26%">Monday</td><td width="16%">Tuesday</td>
+   <td width="26%">Wednesday</td><td width="16%">Thursday</td>
+   <td width="16%">Friday</td>
+  </tr>
+ </thead>
+}}
+
+##################################################################
+# Calendar data
+#
+
+== Holidays ==
+
+Oct 14, 2019
+- Holiday: Indigenous Peoples' Day
+#TUELEC = .
+
+Nov 27, 2019 - Dec 1, 2019
+- Holiday: Thanksgiving Recess
+
+== Special ==
+
+Sep 4, 2019
+- Special: First day of classes
+
+#TUELEC
+#- Special: Monday schedule
+
+Oct 1, 2019
+- Special: ADD DATE
+
+Oct 18, 2019
+- Special: <b class="deadline">DROP DATE</b>
+
+Dec 12, 2019
+- Special: Last day of classes
+
+#May 23, 2019
+#- Special: <b>Final exam:</b> Emphasis on lectures 11-22 and labs 3-4
+#- Text: <b>Reference:</b> [quiz.html Past quizzes, solutions]
+#- Text: <b>Materials:</b> Open laptop, no Internet
+#- Text: <b>Time and Location:</b> 9am-11am, 10-250
+
+
+##################################################################
+
+== Lectures ==
+
+LEC = (Mon or Wed) and not Holidays
+
+# Skip reg day
+#Wed
+
+LEC
+- Lec: [lec/l01-intro.txt Introduction]
+
+# LEC
+# - Rec: [https://www.youtube.com/watch?v=8-eB-2YlXC8 Lab 1 Buffer overflow exploits] ([readings/lab1notes.txt 2014 notes]) ([lec/r01-example.zip code])
+
+# LEC
+# - Lec: [lec/l03-brop.txt Buffer overflow exploits and defenses] ([https://www.youtube.com/watch?v=pDzgwrqWNvY 2014 video])
+# - Prep brop: Read [readings/brop.pdf Hacking blind] (2014)
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+# SOSP
+LEC
+- Holiday: No class, hack on final projects
+
+# SOSP
+LEC
+- Holiday: No class, hack on final projects
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec:
+
+LEC
+- Lec students: [labs/presentation-schedule.txt Project presentations] ([https://www.youtube.com/watch?v=mHAZzeioKwA 2014 video])
+- Due: Final project presentation
+
+##################################################################
+
+#== Labs ==
+#
+#Wed
+#- Assign: [labs/lab1.html Lab 1: Buffer overflows]
+#
+#Fri
+#
+#Fri
+#- Due: Lab 1 parts 1+2
+#
+#Wed
+#- Assign: [labs/lab2.html Lab 2: Privilege separation]
+#
+#Fri
+#- Due: Lab 1 all parts
+#
+#Fri
+#- Due: Lab 2 part 1
+#
+#Fri
+#- Due: Lab 2 parts 2+3
+#
+#Wed
+#- Assign: [labs/lab3.html Lab 3: Symbolic execution]
+#
+#Fri
+#- Due: Lab 2 all parts
+#
+#Wed
+#- Assign: [labs/lab5.html Lab 5: Final project]
+#
+#Fri
+#- Due: Final project proposal (if you are not doing the default project)
+#
+#Fri
+## Spring break
+#
+#Fri
+#- Due: Lab 3 part 1
+#
+#Wed
+#- Assign: [labs/lab4.html Lab 4: Browser security]
+#
+#Fri
+#- Due: Lab 3 all parts
+#
+#Mon
+#
+#Fri
+#- Due: Lab 4 part 1 and 2
+#
+#Thr
+#
+#Fri
+#- Due: Lab 4 all parts
+#
+#Fri
+#
+Fri
+- Due: Final project writeup and code
+
+##################################################################
+
+{{
+</table>
+
+<script type="text/javascript">
+var d = new Date();
+for (var fwd = 0; fwd < 3; fwd++) {
+  var i = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  var e = document.getElementById(i);
+  if (e) { e.style.border = '2px solid blue'; break; }
+  d.setTime(d.getTime() + 24*60*60*1000);
+}
+</script>
+
+<p></p>
+}}
