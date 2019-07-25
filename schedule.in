@@ -156,7 +156,7 @@ Dec 12, 2019
 
 == Lectures ==
 
-LEC = (Mon or Wed) and not Holidays
+LEC = (Wed) and not Holidays
 
 # Skip reg day
 #Wed
@@ -249,7 +249,7 @@ LEC
 - Lec:
 
 LEC
-- Lec students: [labs/presentation-schedule.txt Project presentations] ([https://www.youtube.com/watch?v=mHAZzeioKwA 2014 video])
+- Lec students: Project presentations
 - Due: Final project presentation
 
 ##################################################################
@@ -319,6 +319,7 @@ Fri
 
 {{
 </table>
+</div>
 
 <script type="text/javascript">
 var d = new Date();
