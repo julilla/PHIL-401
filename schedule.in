@@ -104,8 +104,8 @@ send mail to the course staff.
 they are not a replacement for attending class.
 
 
-<p>
-<table class="calendar" cellspacing="0" cellpadding="6" width="100%">
+<div class="table-responsive">
+<table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
  <thead>
   <tr>
    <td width="26%">Monday</td><td width="16%">Tuesday</td>
