@@ -1,6 +1,6 @@
 .navbar-dark {
   background-color: #4e3629;
-  font-size: 1.1em;
+  font-size: 1em;
   padding: 0;
 }
 
@@ -12,6 +12,10 @@
 
 .navbar-dark .active {
   background-color: #3e2619;
+}
+
+.navbar-dark .nav-item {
+  padding: 0.2rem;
 }
 
 .navbar-dark .navbar-brand:hover,
