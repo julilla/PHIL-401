@@ -247,7 +247,7 @@ class CalWriter(object):
             lecturer = ''
         else:
             lecturer = ' (%s)' % extra
-        self.item("<b>LEC %d%s:</b> %s" % (self.__lec, lecturer, text), "lecture")
+        self.item("<b>MTG %d%s:</b> %s" % (self.__lec, lecturer, text), "lecture")
         self.__lec += 1
 
     def Rec(self, text):
