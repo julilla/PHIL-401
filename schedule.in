@@ -159,10 +159,15 @@ Dec 12, 2019
 LEC = (Wed) and not Holidays
 
 # Skip reg day
-#Wed
+#Tue
 
+# 01
 LEC
 - Lec: [lec/l01-intro.txt Introduction]
+
+# 02
+LEC
+- Lec: Datacenter Infrastructure
 
 # LEC
 # - Rec: [https://www.youtube.com/watch?v=8-eB-2YlXC8 Lab 1 Buffer overflow exploits] ([readings/lab1notes.txt 2014 notes]) ([lec/r01-example.zip code])
@@ -171,111 +176,84 @@ LEC
 # - Lec: [lec/l03-brop.txt Buffer overflow exploits and defenses] ([https://www.youtube.com/watch?v=pDzgwrqWNvY 2014 video])
 # - Prep brop: Read [readings/brop.pdf Hacking blind] (2014)
 
+# 05
+LEC
+- Lec: [ Privacy Legislation]
+- Prep gdpr: Read GDPR
+
+# 04
+LEC
+- Lec: [ Access Control]
+- Prep Zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
+# ???
+- Prep Macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
+
+# 05
+LEC
+- Lec: [ Decentralized Applications]
+
+# 06
+LEC
+- Lec: [ Private Messaging]
+
+# 07 -- halfway point
+LEC
+- Lec: [ Secure Computation]
+
+# 08
+LEC
+- Lec: [ Encrypted Databases]
+
+# 09
+LEC
+- Lec: []
+
+# 10 -- SOSP
+LEC
+- Holiday: No class, hack on projects
+
+# 11
 LEC
 - Lec:
 
+# 12
 LEC
 - Lec:
 
+# 13
 LEC
 - Lec:
 
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-# SOSP
-LEC
-- Holiday: No class, hack on final projects
-
-# SOSP
-LEC
-- Holiday: No class, hack on final projects
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
-LEC
-- Lec:
-
+# 14
 LEC
 - Lec students: Project presentations
 - Due: Final project presentation
 
 ##################################################################
 
-#== Labs ==
-#
+== Labs ==
+
 #Wed
-#- Assign: [labs/lab1.html Lab 1: Buffer overflows]
-#
-#Fri
-#
-#Fri
-#- Due: Lab 1 parts 1+2
-#
-#Wed
-#- Assign: [labs/lab2.html Lab 2: Privilege separation]
-#
-#Fri
-#- Due: Lab 1 all parts
-#
-#Fri
+#- Assign: [labs/lab1.html Lab 1: Web application]
+
+Fri
+
+Fri
+#- Due: Lab 1
+
+Mon
+- Assign: [assign/gdpr.html GDPR case study]
+
+Fri
+- Due: GDPR case study
+
+Fri
 #- Due: Lab 2 part 1
-#
-#Fri
+
+Fri
+- Due: Project proposal
 #- Due: Lab 2 parts 2+3
-#
+
 #Wed
 #- Assign: [labs/lab3.html Lab 3: Symbolic execution]
 #
@@ -285,33 +263,32 @@ LEC
 #Wed
 #- Assign: [labs/lab5.html Lab 5: Final project]
 #
-#Fri
-#- Due: Final project proposal (if you are not doing the default project)
-#
-#Fri
-## Spring break
-#
-#Fri
+Fri
+
+Fri
+
+Fri
 #- Due: Lab 3 part 1
-#
+
 #Wed
 #- Assign: [labs/lab4.html Lab 4: Browser security]
-#
-#Fri
+
+Fri
 #- Due: Lab 3 all parts
-#
+
 #Mon
-#
-#Fri
+
+Fri
 #- Due: Lab 4 part 1 and 2
-#
-#Thr
-#
-#Fri
-#- Due: Lab 4 all parts
-#
-#Fri
-#
+
+Fri
+
+Fri
+
+Fri
+
+Fri
+
 Fri
 - Due: Final project writeup and code
 
