@@ -108,9 +108,9 @@ they are not a replacement for attending class.
 <table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
  <thead>
   <tr>
-   <td width="26%">Monday</td><td width="16%">Tuesday</td>
+   <td width="16%">Monday</td><td width="16%">Tuesday</td>
    <td width="26%">Wednesday</td><td width="16%">Thursday</td>
-   <td width="16%">Friday</td>
+   <td width="26%">Friday</td>
   </tr>
  </thead>
 }}
