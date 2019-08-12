@@ -176,37 +176,38 @@ LEC
 # - Lec: [lec/l03-brop.txt Buffer overflow exploits and defenses] ([https://www.youtube.com/watch?v=pDzgwrqWNvY 2014 video])
 # - Prep brop: Read [readings/brop.pdf Hacking blind] (2014)
 
-# 05
+# 03
 LEC
 - Lec: [ Privacy Legislation]
 - Prep gdpr: Read GDPR
 
 # 04
 LEC
-- Lec: [ Access Control]
-- Prep Zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
-# ???
-- Prep Macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
+- Lec: [ Data Sources]
+- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 # 05
 LEC
-- Lec: [ Decentralized Applications]
+- Lec: [ Access Control]
+- Prep zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
+# ???
+- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
 
 # 06
 LEC
-- Lec: [ Private Messaging]
+- Lec: [ Decentralized Applications]
 
 # 07 -- halfway point
 LEC
-- Lec: [ Secure Computation]
+- Lec: [ Private Messaging]
 
 # 08
 LEC
-- Lec: [ Encrypted Databases]
+- Lec: [ Secure Computation]
 
 # 09
 LEC
-- Lec: []
+- Lec: [ Encrypted Databases]
 
 # 10 -- SOSP
 LEC
