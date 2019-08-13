@@ -189,10 +189,14 @@ LEC
 
 # 05
 LEC
+- Lec: [ GDPR Case Study Presentations]
+
+# 06
+LEC
 - Lec: [ Access Control]
 - Prep zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
 # ???
-- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
+#- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
 
 # 06
 LEC
@@ -211,16 +215,21 @@ LEC
 - Lec: [ Encrypted Databases]
 
 # 10 -- SOSP
-LEC
-- Holiday: No class, hack on projects
+#LEC
+#- Holiday: No class, hack on projects
 
 # 11
 LEC
-- Lec:
+- Lec: [ Information Flow Control]
+- Prep histar: Read [readings/histar.pdf HiStar] (2008)
+# ???
+- Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 # 12
 LEC
-- Lec:
+- Lec: [ Policy Enforcement]
+- Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
+- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 # 13
 LEC
