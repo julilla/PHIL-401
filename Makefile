@@ -1,4 +1,4 @@
-HTML = index.html schedule.html assign/gdpr.html
+HTML = index.html schedule.html projects.html details.html syllabus.html assign/gdpr.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl
 
