@@ -164,11 +164,8 @@ LEC = (Tue or Thr) and not Holidays
 
 # 01
 LEC
-- Lec: [lec/l01-intro.txt Introduction]
-
-# 02
-LEC
-- Lec: Datacenter Infrastructure
+#- Lec: [lec/l01-intro.txt Introduction]
+- Lec: Introduction
 
 # LEC
 # - Rec: [https://www.youtube.com/watch?v=8-eB-2YlXC8 Lab 1 Buffer overflow exploits] ([readings/lab1notes.txt 2014 notes]) ([lec/r01-example.zip code])
@@ -177,57 +174,57 @@ LEC
 # - Lec: [lec/l03-brop.txt Buffer overflow exploits and defenses] ([https://www.youtube.com/watch?v=pDzgwrqWNvY 2014 video])
 # - Prep brop: Read [readings/brop.pdf Hacking blind] (2014)
 
+# 02
+LEC
+- Lec: Privacy Legislation
+- Prep gdpr: Read GDPR
+
 # 03
 LEC
-- Lec: [ Privacy Legislation]
-- Prep gdpr: Read GDPR
+- Lec: Datacenter Infrastructure
 
 # 04
 LEC
-- Lec: [ Data Sources]
+- Lec: Data Sources
 - Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 # 05
 LEC
-- Lec: [ GDPR Case Study Presentations]
+- Lec all: GDPR Presentations
 
 # 06
 LEC
-- Lec: [ Access Control]
+- Lec: Access Control
 - Prep zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
 # ???
 #- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
 
-# 06
+# 07
 LEC
-- Lec: [ Decentralized Applications]
-
-# 07 -- halfway point
-LEC
-- Lec: [ Private Messaging]
+- Lec: Decentralized Applications
 
 # 08
 LEC
-- Lec: [ Secure Computation]
+- Lec: Private Messaging
 
 # 09
 LEC
-- Lec: [ Encrypted Databases]
+- Lec: Secure Computation
 
-# 10 -- SOSP
-#LEC
-#- Holiday: No class, hack on projects
+# 10
+LEC
+- Lec: Encrypted Databases
 
 # 11
 LEC
-- Lec: [ Information Flow Control]
+- Lec: Information Flow Control
 - Prep histar: Read [readings/histar.pdf HiStar] (2008)
 # ???
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 # 12
 LEC
-- Lec: [ Policy Enforcement]
+- Lec: Policy Enforcement
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
@@ -237,7 +234,7 @@ LEC
 
 # 14
 LEC
-- Lec students: Project presentations
+- Lec all: Project presentations
 - Due: Final project presentation
 
 ##################################################################
@@ -247,19 +244,23 @@ LEC
 #Wed
 #- Assign: [labs/lab1.html Lab 1: Web application]
 
-Fri
-
-Fri
-#- Due: Lab 1
-
-Mon
+Tue
 - Assign: [assign/gdpr.html GDPR case study]
 
 Fri
+#- Due Lab 1
+
+Wed
 - Due: GDPR case study
 
+Thr
+- Due: GDPR case study presentation
+
 Fri
-#- Due: Lab 2 part 1
+
+Fri
+
+Fri
 
 Fri
 - Due: Project proposal
@@ -274,8 +275,6 @@ Fri
 #Wed
 #- Assign: [labs/lab5.html Lab 5: Final project]
 #
-Fri
-
 Fri
 
 Fri
