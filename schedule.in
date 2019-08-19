@@ -177,7 +177,7 @@ LEC
 # 02
 LEC
 - Lec: Privacy Legislation
-- Prep gdpr: Read GDPR
+- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (TODO sections)
 
 # 03
 LEC
@@ -201,36 +201,38 @@ LEC
 
 # 07
 LEC
-- Lec: Decentralized Applications
-
-# 08
-LEC
-- Lec: Private Messaging
-
-# 09
-LEC
-- Lec: Secure Computation
-
-# 10
-LEC
-- Lec: Encrypted Databases
-
-# 11
-LEC
 - Lec: Information Flow Control
 - Prep histar: Read [readings/histar.pdf HiStar] (2008)
 # ???
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
-# 12
+# 08
 LEC
 - Lec: Policy Enforcement
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
+# 09
+LEC
+- Lec: Decentralized Applications
+
+# 10
+LEC
+- Lec: Secure Computation
+
+# 11
+LEC
+- Lec: Encrypted Databases
+
+# 12
+LEC
+- Lec: Private Messaging
+
 # 13
 LEC
-- Lec:
+- Lec: GDPR Compliance
+- Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems]
+- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction]
 
 # 14
 LEC
