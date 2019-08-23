@@ -166,27 +166,24 @@ LEC = (Tue or Thr) and not Holidays
 LEC
 #- Lec: [lec/l01-intro.txt Introduction]
 - Lec: Introduction
+#- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
-# LEC
-# - Rec: [https://www.youtube.com/watch?v=8-eB-2YlXC8 Lab 1 Buffer overflow exploits] ([readings/lab1notes.txt 2014 notes]) ([lec/r01-example.zip code])
-
-# LEC
-# - Lec: [lec/l03-brop.txt Buffer overflow exploits and defenses] ([https://www.youtube.com/watch?v=pDzgwrqWNvY 2014 video])
-# - Prep brop: Read [readings/brop.pdf Hacking blind] (2014)
+# 03
+LEC
+- Lec: Datacenter Infrastructure
 
 # 02
 LEC
 - Lec: Privacy Legislation
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (TODO sections)
 
-# 03
-LEC
-- Lec: Datacenter Infrastructure
-
 # 04
 LEC
-- Lec: Data Sources
-- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
+- Lec: Security Architecture
+- Prep googlesec: Read [https://cloud.google.com/security/infrastructure/design/ Google Security Architecture] (2017)
+# - Prep azuresec: Read [https://docs.microsoft.com/en-us/azure/security/fundamentals/infrastructure Azure infrastructure security]
+- Prep googlegdpr: Read [https://cloud.google.com/security/gdpr/resource-center/pdf/googlecloud_gdpr_whitepaper_618.pdf Google GDPR Whitepaper] (2018)
+# - Prep azuregdpr: Read [https://docs.microsoft.com/en-us/microsoft-365/compliance/gdpr-dsr-azure Azure GDPR subject requests]
 
 # 05
 LEC
@@ -203,38 +200,94 @@ LEC
 LEC
 - Lec: Information Flow Control
 - Prep histar: Read [readings/histar.pdf HiStar] (2008)
-# ???
+
+# 08
+LEC
+- Lec: Applied IFC
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 # 08
 LEC
 - Lec: Policy Enforcement
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
-- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 # 09
 LEC
-- Lec: Decentralized Applications
+- Lec: Policy Enforcement
+- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 # 10
 LEC
-- Lec: Secure Computation
-
-# 11
-LEC
-- Lec: Encrypted Databases
+- Lec: Decentralized Applications
+- Prep blockstack: Read [readings/blockstack.pdf Blockstack] (2019)
 
 # 12
 LEC
-- Lec: Private Messaging
+- Lec: Encrypted Databases
+- Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
+
+# 12
+LEC
+- Lec: Web Services over Encrypted Data
+- Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
+
+# 17
+LEC
+- Lec: Multiverse Databases
+- Prep multiversedb: Read [readings/multiversedb.pdf Multiverse Databases]
 
 # 13
+LEC
+- Lec: Federated Machine Learning
+- Prep federated: Read [readings/federated-learning.pdf Federated Learning] (2016)
+#- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
+#- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
+
+# 16 -- SOSP
+LEC
+
+# 11
+LEC
+- Lec: Secure Computation
+- Prep ryoan: Read [readings/haven.pdf Ryoan] (2016)
+
+# 14
+LEC
+- Lec: Private Messaging
+- Prep vuvuzela: Read [readings/vuvuzela.pdf Vuvuzela] (2015)
+
+LEC
+- Lec: Keybase and KBFS
+
+LEC
+- Lec: Project conference
+
+LEC
+- Lec: Project conference
+
+# 15
 LEC
 - Lec: GDPR Compliance
 - Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems]
 - Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction]
 
-# 14
+LEC
+- Lec: Privacy Policies
+
+LEC
+- Lec: Web tracking
+- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/trackingexcavator.pdf history of web tracking]
+
+LEC
+- Lec: Device Security
+
+LEC
+- Lec: TBD
+
+LEC
+- Lec: TBD
+
+# 18
 LEC
 - Lec all: Project presentations
 - Due: Final project presentation
@@ -245,28 +298,22 @@ LEC
 
 #Wed
 #- Assign: [labs/lab1.html Lab 1: Web application]
+Thr
 
-Tue
+Thr
 - Assign: [assign/gdpr.html GDPR case study]
 
 Fri
 #- Due Lab 1
 
-Wed
+Thr
 - Due: GDPR case study
 
-Thr
-- Due: GDPR case study presentation
-
 Fri
 
 Fri
 
 Fri
-
-Fri
-- Due: Project proposal
-#- Due: Lab 2 parts 2+3
 
 #Wed
 #- Assign: [labs/lab3.html Lab 3: Symbolic execution]
@@ -279,19 +326,18 @@ Fri
 #
 Fri
 
-Fri
-#- Due: Lab 3 part 1
+Thr
+- Due: Project proposal
+#- Due: Lab 2 parts 2+3
 
-#Wed
-#- Assign: [labs/lab4.html Lab 4: Browser security]
+Tue
+- Assign: Final project
 
 Fri
-#- Due: Lab 3 all parts
 
 #Mon
 
 Fri
-#- Due: Lab 4 part 1 and 2
 
 Fri
 
