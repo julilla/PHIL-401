@@ -166,7 +166,6 @@ LEC = (Tue or Thr) and not Holidays
 LEC
 #- Lec: [lec/l01-intro.txt Introduction]
 - Lec: Introduction
-#- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 # 03
 LEC
@@ -273,6 +272,7 @@ LEC
 
 LEC
 - Lec: Privacy Policies
+#- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
 
 LEC
 - Lec: Web tracking
@@ -282,7 +282,8 @@ LEC
 - Lec: Device Security
 
 LEC
-- Lec: TBD
+- Lec: Location Security
+- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 LEC
 - Lec: TBD
