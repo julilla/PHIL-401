@@ -264,8 +264,9 @@ class CalWriter(object):
             preptext += ' %s' % text
         if extra is not None:
             # HACK: self.__lec contains the next lecture number, so subtract 1.
-            preptext += (' (<a href="questions.html?q=q-%s&amp;lec=%d">Question</a>)' %
-                         (extra, self.__lec - 1))
+            #preptext += (' (<a href="questions.html?q=q-%s&amp;lec=%d">Question</a>)' %
+            #             (extra, self.__lec - 1))
+            pass
         self.item('<span class="reading"><b>Preparation:</b> %s</span>' % preptext, 'prep')
 
     def Assign(self, text):

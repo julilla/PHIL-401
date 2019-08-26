@@ -96,7 +96,11 @@ table.calendar thead tr {
 }
 </style>
 
-<p>As this is a new course, we will update the notes as the course progresses.
+<p style="color: red;"><b>UNDER CONSTRUCTION: this schedule is still changing,
+assignments are still missing, and some links point to nowhere! Please be patient
+while we put this new course together.</b></p>
+
+<p>We will update the notes as the course progresses.
 If you are particularly interested in some topic not covered here,
 send mail to the course staff.
 
