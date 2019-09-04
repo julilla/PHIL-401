@@ -173,7 +173,9 @@ LEC
 
 # 03
 LEC
-- Lec: Datacenter Infrastructure
+- Lec ms: Datacenter Infrastructure
+- Prep tao: Read [readings/tao.pdf TAO] (2013)
+- Prep sf: Read [readings/service-fabric.pdf Service Fabric] (2018)
 
 # 02
 LEC
@@ -184,9 +186,9 @@ LEC
 LEC
 - Lec: Security Architecture
 - Prep googlesec: Read [https://cloud.google.com/security/infrastructure/design/ Google Security Architecture] (2017)
-# - Prep azuresec: Read [https://docs.microsoft.com/en-us/azure/security/fundamentals/infrastructure Azure infrastructure security]
-- Prep googlegdpr: Read [https://cloud.google.com/security/gdpr/resource-center/pdf/googlecloud_gdpr_whitepaper_618.pdf Google GDPR Whitepaper] (2018)
-# - Prep azuregdpr: Read [https://docs.microsoft.com/en-us/microsoft-365/compliance/gdpr-dsr-azure Azure GDPR subject requests]
+#- Prep azuresec: Read [https://docs.microsoft.com/en-us/azure/security/fundamentals/infrastructure Azure infrastructure security] ()
+#- Prep googlegdpr: Read [https://cloud.google.com/security/gdpr/resource-center/pdf/googlecloud_gdpr_whitepaper_618.pdf Google GDPR Whitepaper] (2018)
+#- Prep azuregdpr: Read [https://docs.microsoft.com/en-us/microsoft-365/compliance/gdpr-dsr-azure Azure GDPR subject requests]
 
 # 05
 LEC
@@ -310,12 +312,12 @@ Thr
 - Assign: [assign/gdpr.html GDPR case study]
 
 Fri
-#- Due Lab 1
 
-Thr
+Wed
 - Due: GDPR case study
 
 Fri
+- Due: Sign up to present papers
 
 Fri
 
