@@ -168,7 +168,7 @@ LEC = (Tue or Thr) and not Holidays
 
 # 01
 LEC
-#- Lec: [lec/l01-intro.txt Introduction]
+#- Lec ms: [notes/m01-intro.txt Introduction]
 - Lec ms: Introduction
 
 # 03
@@ -234,12 +234,12 @@ LEC
 # 17
 LEC
 - Lec: Multiverse Databases
-- Prep multiversedb: Read [readings/multiversedb.pdf Multiverse Databases]
+- Prep multiversedb: Read [readings/multiversedb.pdf Multiverse Databases] (2019)
 
 # 10
 LEC
 - Lec: Decentralized Applications
-- Prep blockstack: Read [readings/blockstack.pdf Blockstack] (2019)
+- Prep blockstack: Read [https://blockstack.org/whitepaper.pdf Blockstack] (2019)
 
 LEC
 - Lec: DIY hosting
@@ -251,14 +251,14 @@ LEC
 # 13
 LEC
 - Lec: Federated Machine Learning
-- Prep federated: Read [readings/federated-learning.pdf Federated Learning] (2016)
+- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
 # 11
 LEC
 - Lec: Secure Computation
-- Prep ryoan: Read [readings/haven.pdf Ryoan] (2016)
+- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
 # 14
 LEC
