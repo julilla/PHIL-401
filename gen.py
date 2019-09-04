@@ -9,12 +9,18 @@ if len(sys.argv) < 2:
     usage()
     sys.exit(1)
 
-page = sys.argv[1]
+path = sys.argv[1]
+pathbits = path.split('/')
+page = pathbits[0]
+relative_root = ""
+for i in range(len(pathbits) - 1):
+    relative_root += "../"
 
 context = {}
+context['ROOT'] = relative_root
 context['{}_ACTIVE'.format(page)] = 'active';
 context["NAVBAR"] = pystache.render(open("navbar.tmpl").read(), context)
-context["MAIN"] = pystache.render(open("{}.tmpl".format(page)).read())
+context["MAIN"] = pystache.render(open("{}.tmpl".format(path)).read())
 
 template = open("top.tmpl").read()
 print(pystache.render(template, context))
