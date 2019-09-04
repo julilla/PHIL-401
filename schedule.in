@@ -169,7 +169,7 @@ LEC = (Tue or Thr) and not Holidays
 # 01
 LEC
 #- Lec: [lec/l01-intro.txt Introduction]
-- Lec: Introduction
+- Lec ms: Introduction
 
 # 03
 LEC
@@ -178,7 +178,7 @@ LEC
 # 02
 LEC
 - Lec: Privacy Legislation
-- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (TODO sections)
+- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
 # 04
 LEC
