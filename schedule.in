@@ -96,16 +96,13 @@ table.calendar thead tr {
 }
 </style>
 
-<p style="color: red;"><b>UNDER CONSTRUCTION: this schedule is still changing,
-assignments are still missing, and some links point to nowhere! Please be patient
-while we put this new course together.</b></p>
-
-<p>We will update the notes as the course progresses.
+<p>We will update the notes as the course progresses; please assume that the
+material and schedule for future meetings may change..
 If you are particularly interested in some topic not covered here,
-send mail to the course staff.
+send email to <a href="https://cs.brown.edu/people/malte">Malte</a>.</p>
 
 <p>While the notes published here may help you remember the material discussed,
-they are not a replacement for attending class.
+they are not a replacement for attending course meetings.</p>
 
 
 <div class="table-responsive">
@@ -267,6 +264,7 @@ LEC
 
 LEC
 - Lec: Keybase and KBFS
+- Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
 
 LEC
 - Lec: Project conference
@@ -291,6 +289,7 @@ LEC
 
 LEC
 - Lec: Device Security
+- Prep: TBD
 
 LEC
 - Lec: Location Security
