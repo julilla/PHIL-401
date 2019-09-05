@@ -2,4 +2,53 @@ CSCI 2390 2019 Meeting 1: Introduction
 
 CSCI 2390: Privacy-Conscious Computer Systems
 
+What does the course title mean?
+  Realistic systems whose design takes user privacy into account.
+  "Conscious" because this is about adding privacy-awareness to
+  systems that have some other primary purpose.
 
+This is an important area because computers process ever more of our
+sensitive personal information, often remotely and away from devices that
+we directly control ourselves. Legislatures are setting new rules, and
+scrutiny of big web and IT companies has increased.
+
+What's the point?
+
+How might we get there?
+
+What research is there to do?
+
+Course structure
+  https://cs.brown.edu/courses/csci2390/
+  today and Tue: overview lectures
+  further meetings will be paper discussions (not lectures)
+    either about a research paper, or a piece of software/project
+  from meeting 5 onwards, you will present papers
+    each discussion has a leader
+      highlight key ideas and lessons
+      track down hard details (may want to read further related work)
+      raise questions for discussion
+      if possible, try out the program or system
+      don't worry, I'll help
+    sign up via form linked from the schedule page for a paper to lead
+    everyone should read and think about every paper
+      NOT just turn up and wait for the discussion lead to explain!
+      prepare to ask and answer questions
+      critique/support the work
+        on a technical level (correctness, methods, performance?)
+        on a pragmatic level (deployable, practical, flexile?)
+  paper questions
+    set questions about paper
+    space to ask *your* questions
+    submit answers by 11pm on the day before class
+  two assignments
+    first is a GDPR case study & presentation
+    second will be a programming exercise (TBD)
+    due on Weds Sept 18 and Oct 2
+  projects
+    pick a research idea, inspired by the course or related
+    design, build and evaluate solution, check if the idea is good
+    proposal (due Oct 10)
+    project conferences
+    report, final short presentation
+    groups of 2-3 students okay and encouraged, but can work on your own too
