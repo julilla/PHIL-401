@@ -165,8 +165,7 @@ LEC = (Tue or Thr) and not Holidays
 
 # 01
 LEC
-#- Lec ms: [notes/m01-intro.txt Introduction]
-- Lec ms: Introduction
+- Lec ms: [notes/m01-intro.txt Introduction]
 
 # 03
 LEC
