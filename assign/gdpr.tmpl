@@ -43,16 +43,58 @@ group.</p>
 <p>Now investigate the case, and take detailed notes on these questions (and other important aspects of the case you come across):</p>
 
 <ol>
-  <li>Why was a fine imposed? Which articles of the GDPR were violated, and by whom?
-  <li>What went wrong on a technical level?
-  <li>What personal data was exposed/mishandled, and in what way?
-  <li>How could this have been prevented?
+  <li><em>Who</em> was found guilting of violating the GDPR, and <em>who</em> ordered them fined?
+  <li><em>Why</em> was a fine imposed? which <em>articles</em> of the GDPR were violated, and by whom?
+  <li><em>What</em> personal data was exposed/mishandled, and in what way?
+  <li>Who are the <em>data subjects</em>, the <em>data controller</em>, and the <em>data processor</em> in this case? Which of the data controller or data processor was fined?
+  <li>What went wrong on a <em>technical</em> level? (The reports often lack details; you may need to make some assumptions about how the infrastructure involved was structured, and what problems occurred that could have resulted in the violation reported.)
+  <li>How could this violation have been <em>prevented</em>? Pay particular attention to <em>technology</em> (e.g., encrypted storage, least-privilege access, storage structure, etc.) that could have prevented the problem, but also to human factors (e.g., better procedures, more oversight, clear guidelines) that could have prevented it.
+  <li>Who caused <em>action</em> to be taken? Did someone complain, or did a regular take action on their own?
+  <li><em>How rapidly</em> did the regulator act? How much time elapsed between the violation and the fine being imposed?
+  <li><em>How large</em> a fine did the regulator impose?
+  <li>How is the incident or violation <em>explained</em> to lay persons reading about it? How is it explained for a technical audience?
+  <li>What did the violator themselves do to acknowledge the violation, if anything? (Look for press releases from the company concerned, for example.)
+  <li>Was this case purely internal to an EU country, or does it have global significance? Were non-EU citizens affected by the violation? Is the company in question headquartered in the EU, does it have an EU subsidiary, or does it have no relation to the EU other than offering products or services to EU citizens?
+  <li>Has the case concluded? If so, does the final fine paid differ from the fine originally imposed? If not, what is currently happening (appeal, negotiations to reduce the fine, etc.)
 </ol>
+
+<p>Not all cases are equally well documented, and finding answers to some of these questions can be challenging, but I expect you to make a good effort. Using web search engines will get you some of the way, but remember that not all of the web is indexed by search engines. In particular, company press releases, court papers, and data protection agency enforcement action notices are not always easily discoverable through a search engine, and it may be a good idea to dig on their websites directly. For example, many large corporations have a separate press portal that contains press releases and legal notices.</p>
+
+<p><b>Make note of your sources!</b> You will want to cite important ones when you write up your report.</p>
+
+<p>If primary information related to your case is in a language other than English, automated web translation services such as Google Translate often work reasonably well.</p>
 
 <h4>Step 3: Write a report</h4>
 
-<p></p>
+<p>Now write a short report that summarizes your findings. The report should consist of about two pages of text, excluding figures, references and bibliography. Please use the <a href="ihttps://www.usenix.org/conference/osdi18/requirements-authors">OSDI 2018 submission template</a>.</p>
+
+<p>Your report should answer the questions listed above, but in addition should also contain <em>your judgement</em> on the case. This may involve answering questions like these:
+<ul>
+  <li>Do you think the fine imposed is appropriate? Is it too low, too high, or just right? Relate the amount to the number of people affected by the violation. It may help you to consider what &quot;price&quot; the fine (implicitly) puts on the personal data concerned.
+  <li>Did the GDPR enforcement process work well in this case? What could have been handled better?
+  <li>Do you believe violations similar to the one sanctioned here to be commonplace? Will the case cause other companies or entities to change their practices?
+  <li>What should we as researchers and system designers aim to do in order to prevent similar problems in the future? Are there technical solutions that already exist? If not, what would we need to invent in order to make it impossible (or at least very unlikely) for the problem concerned to reoccur?
+</ul>
+</p>
+
+<p>Please treat the report as a piece of academic writing. This means that you must cite sources for your claims, and that copying and pasting information from sources without citation would constitute plagiarism (so don't do it). You will want to structure the report like you would structure a paper: a quick high-level abstract or introduction, followed by a structured discussion of the details, and finally a discussion of the implications. An example structure of section titles might look as follows:
+<ul>
+  <li><b>Abstract/Introduction:</b> overview of the case.
+  <li><b>Background:</b> problem setting (data subjects/controller/processor), infrastructure used, business involved, responsible data protection agency.
+  <li><b>GDPR violation:</b>
+  <ul>
+    <li><b>What happened?</b> Describe the violation, how it was reported, and what action was taken.
+    <li><b>Who/what is responsible?</b> Discuss why the violation occurred, including the technical and human factors responsible.
+    <li><b>What could have prevented this?</b> Discuss what measures the violator could have taken (or taken differently) to avoid the problems.
+  </ul>
+  <li><b>Discussion:</b> your judgement about the handling, importance, and significance of the case.
+</ul>
+</p>
+
+<p>We will publish the finished reports on the course website. If there are any problems with making your report publicly available, please contact Malte to discuss.</p>
 
 <h4>Step 4: In-class presentation</h4>
 
-<p></p>
+<p>On <b>Thursday, September 19</b>, you will present the case you researched in our course meeting. Please prepare a short presentation that summarizes your research and findings. The exact presentation duration is still TBD, but you may assume that you will have no more than 3-4 minutes. Preparing such a short presentation is challenging! Think carefully about the key facts that every should know, and one or two other key points you want to emphasize. It is fine to not cover all aspects that your written report considers.</p>
+
+<p>You may use slides or the whiteboard as you choose. However, to ensure that you stay on time, please plan on having no more than 1-2 slides in total. Rehearse your presentation well, so that you can make your points within the time available. Do not go over your time; we will enforce the time limits.</p>
