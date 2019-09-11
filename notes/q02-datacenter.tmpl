@@ -1,0 +1,211 @@
+<h2>MTG 2 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+> Confused: At the end of page 58, the paper compares Dynamo with TAO. I want to talk about distributed key-value
+> stores (the benefits and costs) and how TAO, by accepting lower write availability than Dynamo is able to avoid
+> “multi-master conflict resolution.
+
+Dynamo is designed for much more write-heavy workloads (e.g., Amazon's shopping cart) than TAO (which targets
+extremely read-heavy workloads). Moreover, the goal with Dynamo is that writes always succeed, even if this yields
+potential inconsistencies (e.g., duplicate items in the shopping cart). Since a master can go down, the only way
+for Dynamo to guarantee that writes always succeed is to have multiple masters that all accept writes. This can
+result in a "split-brain" situation, where different masters accept contradictory changes, necessitating a
+conflict resolution mechanism.
+
+> I want to also compare LinkedIn’s Voldemort that implements distributed key-value stores with TAO and why each
+> service decided to do what they did since they are both social networking platforms.
+
+Voldemort is a distributed hash table with a put/get interface. This is more similar to memcached (which FB used
+prior to TAO, and still use for many purposes; see this paper) in terms of interface. TAO's API adds the ability
+to specify and represent many-to-one association lists (all comments for a post) and arbitrary associations (as
+needed for graph edges). This makes it easier to implement common operation -- consider how you'd implement "get
+all comments for a post" and "edit the 5th comment on this post" with a memcached put/get interface.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> 1- In TAO paper, I am not sure why the updates in slave region cannot be directly written to slaveDB before they
+> are sent to the master region.
+
+Consider what would happen if you allowed this. The write would go to the slave DB, but it needs to be replicated
+to the master DB. What if the master goes down just after you've written to the slave DB? The write will never
+reach it, but it has been acknowledged as successful to the writing client. Now assume the slave DB goes down and
+the old master comes back up; the client will now read the stale, old value.
+
+A worse version of this has two different slave regions accept contradictory writes. How would the master decide
+which one is right? This would require a conflict resolution mechanism, which TAO avoids.
+
+> 2- When we talk about potential privacy concerns in systems, are we only interested in privacy guarantees in the
+> steady state of a system? Or no, even short-term privacy violations (e.g., a few mili-seconds) because of
+> possible low level system issues are also important?
+
+Both matter, and we're interested in both.  In general, concerns with data at rest are more prevalent, but
+short-term violations can be problematic if the leak out. For example, consider how many erroneous or embarrassing
+tweets by celebrities were quickly deleted, but nevertheless seen (and screenshotted) by enough people to make it
+impossible to actually ever fully get rid of them. Here, the tweeting person made a mistake, but a bug or a
+privacy violation could expose private data for an equally short time and yield the same  drastic consequences.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> "The size of the resulting inverted index depends on the specific implementation, but it tends to be on the same
+> order of magnitude as the original repository" (p. 22). Isn't that an absolute explosion in size for each
+> inverted index?
+
+Yes. Inverted indices for web search are huge! Fortunately, they partition well by index term.
+
+> TAO (p. 55) discusses a version numbering system. "Version numbers are not exposed to the TAO clients". Why not?
+> Aren't the clients dependent on whether their data are up to date?
+
+I would guess that TAO's designers did not want to expose a "versioned" API, as that would be more difficult for
+developers to deal with. TAO, and Facebook in general, are relatively relaxed about clients reading stale data,
+especially if the time windows of staleness are very short. TAO does not guarantee linearizability, but the number
+of requests that aren't consistent with a linearizable store is very small (4 in a million); it seems that FB is
+fine with this bit of collateral damage.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> The webpage, https://nlp.stanford.edu/IR-book/html/htmledition/distributed-indexing-1.html , says that most
+> search engines use partition by document instead of partition by term, which provides more efficient reads. What
+> is the design choice here?
+
+If you partition by document, every search query has to go to every machine, which generates a huge fanout, but
+once you find a match in the index, you have the document data available immediately. If you partition by term,
+reads are more efficient as they only go to one or a handful of machines (one per term). However, partitioning by
+term either requires duplicating document details across all machines that manage terms that occur in the document
+(a huge space blowup) or a secondary index partitioned by document, and a second lookup after the primary lookup
+produces document IDs of interest.
+
+Google uses the second approach (two indexes, one partitioned by term and one by document ID) because contacting
+all machines involved in the index is impractical and would lead to high latency if even one machine was slow.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Barroso et al. - Related to Q1. I'm not sure exactly what the difference is between the splitting of the various
+> workloads. I see that the actual processing and steps are different, and some stress low latency over throughput
+> but the partitioning choice itself I do not see why it is different. It looks like all the 4 applications chunk
+> and distribute the data over multiple machines? Maybe I'm missing something?
+
+It's true that data is distributed across machines in all cases, but the way it's split differs. For a video,
+splitting it by time yields faster transcoding (as different machines work on different parts in parallel), while
+partitioning the search index by term yields good load distribution (as client requests for different terms go to
+different machines).
+
+The key concepts are request parallelism for small, but numerous client requests (search, NN inference), and
+parallel batch computing for lower turnaround time (video transcoding, article similarity, NN training).
+
+> Also the article did not say much about how NN inference works, and I would like to know about that, is it just
+> that the model parameters are stored somewhere centrally?
+
+The model and parameters are often replicated across many machines after training (this is called "offline
+training"), so that different clients' inference requests -- which are totally independent -- can be processed in
+parallel.
+
+(In some settings, the model is continuously trained as inference happens. For example, some reinforcement
+learning algorithms can update the model based on their experience, something referred to as "online training". In
+that case, you do need to store the parameters centrally and different inference servers need to send their
+parameter updates periodically. Online training is super common in practice in my impression though.)
+
+> How exactly do Facebook's privacy controls work? And are there any studies or measures on how long their
+> database could be inconsistent, potentially creating a privacy risk?
+
+FB applies privacy controls in their frontend code, post-processing the data obtained from TAO. There is indeed
+such a study! See <a href="https://dl.acm.org/citation.cfm?id=2815426">this paper</a>, which found that ~4
+requests in a million experience consistency violations.  However, not all of those requests will result in
+privacy violations (probably only a small fraction does).
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> For Google’s web search, while I understand that the mapping from search term to documents are used to aggregate
+> the search results, how do google determine which term mapping to keep in cache (since it is impossible to cache
+> all term mappings)?
+
+I believe they do keep all mappings in memory, albeit distributed over many machines.
+
+Bear in mind that terms are text, and the total corpus of terms is large, but not enormous: most languages have a
+few hundred thousand words (see https://en.wikipedia.org/wiki/List_of_dictionaries_by_number_of_words). Add to
+that some non-dictionary words, you'll maybe end up with a million terms per language. That's very manageable if
+you have a few thousand machines.
+
+(Note that multiple words in your search query are handled as separate terms, connected with AND or OR operations
+that result in separate lookups.)
+
+> In addition, how do google return the results so quickly if the mappings are not in cache but in persistent
+> storages (to my knowledge random read performance in persistent storages is pretty slow even for SSD)?
+
+My impression is that very few (if any) queries in web search hit persistent storage. There definitely are terms
+that are "hot" and highly replicated and a long tail of "cold" (rarely queried) terms; the tail is likely stored
+on only a few machines and may use a separate index.
+
+Note that the document content snippets (mapped via the document index) are actually much larger in volume than
+the term index, but they're still small, because they only contain text.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> With a lot of slave regions all communicating with the master region’s leader cache and syncing with its MySQL
+> server, is there not a slowdown or bottleneck in the master region? Sure, the number of writes from a slave
+> region may be low, but if you have a ton of slave regions wouldn’t this start become an issue that could then
+> exacerbate the race condition mentioned above? What is the max number of slave regions the master region can be
+> responsible for?
+
+Absolutely. I believe the total number of regions at Facebook is not enormous though (probably on the order of a
+dozen), and since the workload is very highly skewed towards reads, it works out. Note also that the master region
+is per shard, and different shards of the 64-bit object IDs space may be mastered in different regions, which
+spreads the write load even though there is always just one master region for each shard.
+
+§7 says that TAO processes "millions of writes per second", which would amount to ~100k per region for a dozen
+regions; with 100 shards per region (a reasonable assumption), each MySQL shard has to handle 1000 writes per
+second, which is feasible.
+
+You're right that a DoS attack that causes many writes could exacerbate consistency problems. FB spends a lot of
+resources on detection of and defense against DoS attacks.
+
+> MySQL might provide efficient replication, but surely Facebook could develop a new graph-centric database that
+> has solid replication to use on their database server instead of MySQL. So why are they still using MySQL?
+
+Probably partly for historic reasons: they started with MySQL and have a lot of data and code running that assume
+MySQL, and many engineers they employ come in knowing MySQL already. In practice, they've complemented MySQL with
+several homegrown systems, however (e.g., RocksDB).
+
+Malte.</pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> What technologies and policies are instituted in place for both Facebook and Google to prevent unauthorized
+> personal data usage by engineers at both companies?
+
+We will look at this in detail next Tuesday (Sept 17). In a nutshell, data is encrypted where possible and access
+to plaintext data tightly regulated. It's not completely avoidable that engineers see sensitive personal data
+though (e.g., when debugging a crash).
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> How would some of these system be different if data was to not leave a persons computer (or the client program
+> for these systems). Would the service just break down (I think FB might not work with this model).
+
+It works, but it's not very efficient as the computers participating are distributed across the world (rather than
+in a datacenter). The <a href="https://diasporafoundation.org/">Diaspora</a> social network is a real-world
+example of a decentralized Facebook alternative; users have to sign up with a specific, trusted "pod" there.
+
+> Or can one architecture the application in a different way for example how can one modify how web search works?
+
+Decentralized web search seems difficult; I'm not aware of any implementation. There is research on something
+called "function secret sharing", which allows querying a search index without revealing the query (see e.g., <a
+href="https://www.usenix.org/conference/nsdi17/technical-sessions/presentation/wang-frank">Splinter</a>, NSDI'17),
+but performance is impractical for large-scale search.
+
+Malte.</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> It seems like most solutions to scale up leave us with eventual consistency. Is there a consensus solution for protecting privacy issues due to eventual consistency if you still want performance? Per-query consistency constraints? Or a new data model?
+
+It's tricky. But you could imagine having privacy policies enforced directly at the store, so that no data in violation of certain hard-coded policies can ever be read, even if the store (or cache) temporarily holds it.
+
+This raises more questions though: how do you specify the policy, and how does the system identify data that violates it?
+
+Malte.</pre></div>

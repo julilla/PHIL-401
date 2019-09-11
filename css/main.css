@@ -46,3 +46,14 @@
 .navbar-dark .navbar-right > li > a:focus {
   color: white;
 }
+
+div.responsebox {
+  margin: 1pc 4% 0pc 4%;
+  padding: 0.5pc 0.5pc 0.5pc 0.5pc;
+  background-color: #e0e0ff;
+  border: 1px dashed red;
+}
+
+pre.responsepre {
+  white-space: pre-wrap;
+}
