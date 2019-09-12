@@ -1,0 +1,23 @@
+MTG 02: Datacenter Stack
+
+My notes didn't work, no chance to look at them.
+
+Going around the room at the start was good, but I bungled it by giving
+them two options as to what to say (what you learned, and what questions
+you have; almost everyone went for the questions and repeated their
+submitted question).
+
+Almost all discussion was about TAO, hardly any about the Google WSC book
+chapter. Explaining the TAO architecture and why FB works the way it does
+seemed to go down well, although some people clearly already knew about
+the distributed systems problems addressed here. Others said terms, but did
+not seem to understand their details.
+
+I wasn't working towards a clear problem; the privacy checks in the
+frontend don't seem like that much of an issue perhaps (because I didn't
+have a good case for why association lists need filtering, and because it
+actually avoids huge backend store overheads). But I think they still got
+the point.
+
+Discussion at the end was too short and dimissive on my part. Should have
+let them speculate, or skipped it.

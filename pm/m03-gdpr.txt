@@ -1,0 +1,15 @@
+MTG 3: GDPR
+
+Good discussion in the beginning, but slipped into me asking questions on
+the details of subject access rights, and getting only hesitant responses.
+
+DS, DC, DP discussion was good.
+
+Maybe should have focused less on details of subject requests?
+
+People seemed a bit bored towards the end.
+
+Timing was okay, but I ran out of time towards the end of the subject rights
+and had to skip protection by design & default, security of processing,
+processors, notifcations, and fines. Some key points from those sections
+would have been preferable to details about subject rights.
