@@ -1,0 +1,683 @@
+<h2>MTG 3 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+> The GDPR continually mentions something like the need to delete data under
+> certain circumstances, but when we "delete" data, we don't really "delete"
+> data (i.e. it's not safe to dispose of a hard drive without physically
+> destroying it). What qualifies as "delete"? Were the legislators aware of
+> this issue?
+
+
+The law is vague on this, and does not define "delete" or "erase". I
+suspect it ought to be interpreted in the sense of deleting the bytes
+(through the filesystem and through overwriting), rather than destroying
+the storage medium beyond any chance of recovery, but courts may have to
+interpret the law here.
+
+The GDPR does specify that data controllers shall keep a "record of
+processing activity", which includes "where possible, the envisaged time
+limits for erasure of the different categories of data" (§30(1)f). In
+practice, many companies tell data subjects in their privacy policies that
+complete erasure can take a while (e.g., 180 days at Google), as
+information also has to be removed from tape backups, age out of caches,
+etc.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> How does the right to be forgotten deal with the fact that data collected
+> from users often goes into machine learning models? What does it mean to
+> 'forget' the data of one user once the model has already been learned?
+>
+
+This is an open question! The GDPR has no explicit provision for this,
+although it sets much laxer requirements for processing of data once it is
+no longer associated with an identifiable data subject. You could argue
+that the impact of one subject's data on a model's parameters is so small
+and diluted that the model no longer contains data covered by the right to
+erasure. How to make sure that's the case, though, is an open research
+question...
+
+
+> How does the GDPR deal with sale of data to third party organizations
+> within the Union? Does the controller of the data change?
+>
+
+Yes. Data can have more than one controller, but the controller that
+originally collected and shared the data is responsible for notifying other
+controllers of subject requests. See, e.g., Article 17(2). Third party
+organizations outside the Union are covered by Chapter V (Articles 44 and
+following).
+
+
+> What is the GDPR position on aggregate usage statistics and data? When is
+> data considered to belong to an organization rather than to the individuals
+> making up the organization?
+
+
+As above, once the data is no longer associated with an identifiable data
+subject, many GDPR provisions no longer apply. An aggregation that obscures
+each subject's contribution sufficiently therefore seems to no longer
+belong to the subjects, but to the aggregating controller.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> 1- How does GDPR affect big companies in their business? Does it
+> considerably limit their potentials in terms of data processing,
+> customization, and marketing (or even blocks some aspects altogether)? Or
+> no, they are still able to provide high quality services to the users?
+
+
+Yes, it does. Some companies even decided to stop offering services to
+people in the EU or geoblock all EU users of their website. See the
+"Impact" paragraph on p2 of
+http://www.cs.utexas.edu/~vijay/papers/hotcloud19-gdpr-sins.pdf for some
+examples.
+
+Other companies have tried to adapt their services, but they do have to
+work with new restrictions, and spend significant resources on compliance.
+
+2- Anonymization cannot necessarily protect against privacy attacks.
+> Differential privacy might not be guaranteed by such practices. If such an
+> attack happens, I don't think that GDPR protects the interests of the
+> individuals except the fact that it necessitates the companies to inform
+> the individuals.
+
+
+I believe that is a correct reading. But the GDPR does not aim to make
+privacy breaches impossible; it just imposes hefty reputational and
+financial costs on them, hoping that this will encourage good practices.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Article 5 about principles relating to the processing of personal data
+> states controllers should demonstrate compliance with principles in P1. I
+> am curious about what the form of the demonstration is.
+
+
+The law does not mandate specific compliance demonstrations. In practice,
+this often involves auditors (companies like KPMG and other consultancies),
+who look at a controller's processes and certify them as compliant.
+
+Article 42 talks about EU-wide certification mechanisms and authorities,
+but they seem to be voluntary.
+
+
+> Also, I want to learn more about the importance of personal data
+> integrity: why GDPR also requires data will not be destructed or damaged?
+
+
+I would guess because the GDPR wants to give data subjects reasons to trust
+that their data isn't going to just disappear when they entrust it to a
+controller/processor. In particular, security against hackers who may
+delete the data could be one goal of the requirement for secure storage and
+processing.
+
+Malte
+</div>
+
+<div class="responsebox"><pre class="responsepre">
+> Can a company say use data of all the people died in a certain epidemic?
+> To find root of the epidemic? Or infer other useful bits that might prove
+> useful for the general public as well?
+
+
+Your case is extra tricky because the data subjects are deceased, raising
+questions about whether personal data is protected after death. The GDPR
+does not speak to this, but existing legislation does (with varying
+outcomes depending on purpose).
+
+However, the GDPR does get quite excited about scientific research in the
+public interest; see paragraphs (156)-(162) of the long list at the top of
+the legislation. Article 89 explicitly says that other requirements can be
+"abrogated" (i.e., the requirements of the GDPR suspended) as long as
+certain rules specified in §89(1) are followed.
+
+Articles 17 (Right to Erasure) and 18 (Right to Objection) also have
+special exceptions for scientific research, which in particular leave open
+the option of a "public interest" argument to override explicit
+instructions from the data subject (e.g., Article 18: "Where personal data
+are processed for scientific [...] pursuant to Article 89(1), the data
+subject, on grounds relating to his or her particular situation, shall have
+the right to object to processing of personal data concerning him or her,
+unless the processing is necessary for the performance of a task carried
+out for reasons of public interest.")
+
+Malte
+</div>
+
+<div class="responsebox"><pre class="responsepre">
+> I'd like to learn more about the process for creating GDPR. What was on
+> the minds of the GDPR creators?
+
+
+The process for creating a EU regulation is long and complex;
+https://en.wikipedia.org/wiki/European_Union_legislative_procedure#Ordinary_legislative_procedure
+has an overview. In a nutshell, the European Commission (consisting of
+commissioners nominated by the member states) makes a proposal, which both
+the European Parliament (elected directly by citizens) and the European
+Council (representing the member state governments) decide on. Once
+everybody approves, the regulation is approved and member states' national
+parliaments pass legislation that enforces the regulatio in national law.
+
+I would speculate that better protection of privacy and fundamental rights
+to control over one's data was a major reason that the GDPR came about.
+There had been earlier regulations on this topic (from the 1990s), but they
+were outdated, far less broadly construed, and did not allow for serious
+fines for violations. So the GDPR is partly an effort to update these rules
+given how much the Internet and digital services have changed since the
+1990s.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+>
+> 1. How are fines enforced if a company has no presence in the EU?
+>
+
+Fines are imposed by national "supervisory authorities" (data protection
+agencies, typically). How they are enforced on non-EU companies is a matter
+of international law -- you can sue businesses in other countries, and a
+court will adjudicate the matter. In practical terms, a business that
+failed to pay the fine could also run the risk of having assets and
+proceeds that pass through the EU seized, and possibly senior
+representatives of the company arrested if they travel into the EU.
+
+
+> 2. With regards to Article 20 -- Right to data portability, wouldn't it be
+> extremely difficult to ensure that companies are really providing all the
+> personal data and not withholding/obscuring some?
+>
+
+Absolutely. The law assumes that the risk of someone finding out,
+complaining, and a fine being imposed on the company is sufficient
+deterrent to make the company send all data. In practice, this seems to be
+tricky and requires pushback from data subjects, as e.g., this Spotify case
+illustrates: https://twitter.com/steipete/status/1025024813889478656.
+
+
+> 3. While GDPR is taking a right step towards better data privacy, I would
+> think that this negatively affect existing companies and could potentially
+> even spur companies to just move all operations overseas to avoid all the
+> hassle and costs of being compliant (also because they can't be fined, see
+> question 1). Moreover, it may stifle innovation of some technologies that
+> by nature could not enforce the regulations (e.g. blockchain tech, since
+> everything is visible on the chain). What are some measures that the EU
+> have to alleviate the aforementioned issues?
+
+
+You're right. Some companies decided to stop offering services to people in
+the EU or geoblock all EU users of their website. See the "Impact"
+paragraph on p2 of
+http://www.cs.utexas.edu/~vijay/papers/hotcloud19-gdpr-sins.pdf for some
+examples. This will need to be worked out over time; I suspect compliance
+will just become part of the cost of doing business (like compliance with
+other laws is). Blockchains are an interesting case, since they have a hard
+time satisfying the right to erasure; a GDPR-compliant blockchain might be
+an be an interesting project or research topic!
+
+Malte
+</pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> GDPR sounds nice, but how effective has it been at providing citizens of
+> the EU with privacy and data protection? What sort of metric would we even
+> use to answer this?
+>
+
+It's quite new, so the effectiveness is still unclear. However, a fair
+number of fines have already been imposed (see the links from the GDPR case
+study assignment page). Compared to historic privacy regulation
+enforcement, it seems like the GDPR is being enforced much more
+aggressively. But we don't know what fraction of actual violations the
+enforcements cover, of course.
+
+
+> How do regulatory bodies actually check for GDPR compliance? Do they
+> conduct annual audits of datacenters?
+
+
+They would not typically have the resources to do that. In practice,
+companies often rely on  external auditors (companies like KPMG and other
+business consultancies), who look at a data controller's or data
+processor's technology and processes and certify them as compliant.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> [...]
+> I wonder if there might be a better way for individuals to safeguard
+> ourselves against data privacy violations in a more easily and quickly
+> understandable manner. For example, the Creative Commons licensing
+> framework has made it super simple for the layman to understand the
+> requirements of each license with a short one-page explanation including
+> helpful symbols, for each of their licenses. I was wondering if it could be
+> possible to come up with a similar framework for the general public to
+> easily identify how and why their personal data may be used when collected,
+> which can be easily digested within the first few seconds of reading their
+> privacy policy.
+
+
+This is a great idea, I think!  The Polisis paper that we'll read on
+November 26 (MTG 23) goes some way down this path (
+http://cs.brown.edu/courses/csci2390/readings/polisis.pdf), applying
+automated analysis to classify privacy policies. But we might also want to
+think about what a CC-style taxonomy of privacy policy options should look
+like, and encourage companies to use this taxonomy rather than writing
+complex natural language policies.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> 1.) How does one actually withdraw the right to consent and what is the
+> time period that the request must be honored in? The language surrounding
+> this was quite ambiguous. I am wondering if an individual could request
+> explicitly for a process not to occur on their data while waiting for their
+> data to be deleted. How do you get verification that your data has been
+> deleted or or not otherwise misused?
+>
+
+The GDPR only says "It shall be as easy to withdraw as to give consent"
+(Article 7(3)), but a reasonable interpretation would be that this covers
+withdrawing consent in writing, either by physical letter or electronic
+communication through established channels.
+
+I believe you could object to processing while waiting for deletion, as
+long as the processing is not required for deletion itself.
+
+There is no mandated technical means of verification that the data are
+deleted. You have to trust the company not to break the law.
+
+2.) What does public interest mean and who can justify that something is of
+> public interest? If a certain type of analysis is done on data by a group
+> of researchers claiming that it is in public interest, how do they prove
+> this?
+>
+
+Ultimately, this is adjudicated by courts (i.e., it's in the public
+interest if you can convince a judge that it is). If a controller claims a
+spurious public interest reason and someone complains, the supervisory
+authority will investigate and may fine them. The controller can appeal,
+and ultimately this goes in front of a court.
+
+The GDPR gives some ideas of what might constitute public interest research
+in paragraphs (156)-(162) at the top of the legislation, but remains vague
+as it's impossible to exhaustively enumerate all permitted uses.
+
+
+> 3.) In a scenario where your data is encrypted in such a way that it can
+> later be revealed under some condition but not until then and you want your
+> data to be deleted, how do you do so without violating the privacy
+> guarantees of the system?
+>
+
+It depends on whether there is metadata that identifies the encrypted data
+as yours. If so, the controller can delete them without decrypting and
+satisfy the erasure request. If the identification itself is hidden by
+encryption and the data controller has no access to it, the erasure request
+cannot be satisfied until the identification is revealed to the controller,
+but it would have to immediately be satisfied at that point according to my
+understanding.
+
+In practice, most controllers will make sure that they can identify the
+data associated with a subject, even if it is encrypted.
+
+
+> 4.) Let's say a company releases anonymized data to a different company
+> that contains other data about a set of users. Using their internal data
+> and the anonymized data, they are now able to correlate and de-anonymize
+> the data. Is this in violation of GDPR?
+>
+
+Yes, it is, according to my reading, if the original controller had reason
+to believe that it was still possible, with reasonable costs and effort, to
+deanonymize subjects in their dataset through combination with other
+information. The GDPR differentiates between "pseudonymization" (anonymous,
+but identifiable with extra information) and full "anonymization" (no
+identification possible). Anonymized data are not covered by the GDPR, but
+pseudonymized data are.
+
+Paragraph (26) at the top of the legislation specifies some constraints:
+"To determine whether a natural person is identifiable, account should be
+taken of all the means reasonably likely to be used, such as singling out,
+either by the controller or by another person to identify the natural
+person directly or indirectly. To ascertain whether means are reasonably
+likely to be used to identify the natural person, account should be taken
+of all objective factors, such as the costs of and the amount of time
+required for identification, taking into consideration the available
+technology at the time of the processing and technological developments."
+
+
+> 5.) Article 32 mentions the use of encryption but it is not clear what
+> counts as sufficient and what privacy guarantees are necessary. Someone
+> could use something that is not secure, like the caesar cipher, and claim
+> that they have used encryption. Instead of just saying "encryption", what
+> threats exactly should the data be protected against?
+
+
+The article says that controllers and processors must "[take] into account
+the state of the art, the costs of implementation and the nature, scope,
+context and purposes of processing as well as the risk" and must "implement
+appropriate technical [...] measures". The Caesar cipher or some other form
+of weak encryption is unlikely to pass that bar. Again the specific
+boundaries (is MD5 fine for pseudonymization? Is SHA-1? what's a
+state-of-the-art key management technology?) will need to be sussed out by
+the court precedent.
+
+
+> For the pseudoanonymization part, anonymizing data does not guarantee that
+> information about a user cannot be inferred. Similar to my question above,
+> if there is still enough metadata to map someone's identity to a piece of
+> anonymized data, does this violate GDPR?
+>
+
+Yes, it does; as per above.
+
+
+> 6.) Maybe I missed this but does the controller need to reveal who the
+> processor is at the point of obtaining consent? There also did not seem to
+> be strict stipulations on how data is to be protected in transit between
+> the controller and the processor.
+>
+
+My reading is that there is no requirement to reveal the processor. This
+might be because many companies would consider this sensitive information,
+because it might e.g., expose the processor to attacks or undermine their
+competitive advantage.
+
+As for transit, the general stipulations of data protection by design and
+default (Article 25) and security of processing (Article 32) apply there.
+
+
+> 7.) In general there seem to be a lot of vague terms like "undue delay",
+> "disproportionate effort", or "public interest". I wonder if these terms
+> refer to specific legal definitions that I don't know about or if they are
+> purposefully vague.
+>
+
+They are likely purposefully vague. Legislation always needs to strike a
+balance between being sufficiently specific to be enforceable and
+sufficiently vague to be timeless and cover all cases it is intended to
+cover. We rely on external interpretation (courts, judicial precedents) to
+nail down the details, which may well change over time.
+
+
+> 8.) In article 83 it is not clear what "total worldwide annual turnover of
+> the preceding financial year". In general, it's unclear to me how fines are
+> dictated and how they impact small businesses vs. large multi-national
+> corporations like Facebook.
+
+
+Larger, public companies publish their turnover numbers, so they're easy to
+find. Smaller ones also report them, e.g., for tax purposes, so a
+supervisory authority can find out (or they can just ask someone under
+oath). The GDPR is careful to make fines threatening for both small and
+large companies by specifying the amount as "up to 20 000 000 EUR, or in
+the case of an undertaking, up to 4 % [of turnover], whichever is higher".
+In other words, individuals can be fined up to 20M, and any "undertaking"
+(entity engaged in economic activity, including non-profits, public bodies,
+small enterprises) can be fined max(4% turnover, 20M€).
+
+Malte</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> How does EU actually check if GDPR is being abide by.
+
+
+The EU delegates enforcement to national supervisory authorities  (usually
+national data protection agencies).
+
+Supervisory authorities have oversight, but often delegate it in turn as
+they have limited resources. In practice, companies often rely on external
+auditors (companies like KPMG and other business consultancies), who look
+at a data controller's or data processor's technology and processes and
+certify them as compliant.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I am curious that how GDPR enforces all these rules to all companies as
+> there might be many companies that are not GDPR-compliant.
+
+
+The EU delegates enforcement to national supervisory authorities  (usually
+national data protection agencies).
+
+Supervisory authorities have oversight, but often delegate it in turn as
+they have limited resources. In practice, companies often rely on external
+auditors (companies like KPMG and other business consultancies), who look
+at a data controller's or data processor's technology and processes and
+certify them as compliant.
+
+
+> For example, if a company is not GDPR-compliant but there are no reports
+> of user complaint or security issues (such as user info leak), will this
+> company be fined, or it would only be fined if incidents happen (e.g.,
+> cyberattacks on the website causes user info leak)?
+
+
+The company could be fined even without an incident. For example, someone
+may find out about shady practice or an employee might become a
+whistleblower.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I want to talk more about consent, especially what counts as explicit
+> consent. If a company deliberately makes the terms and conditions hard to
+> read (or not screen reader compatible for visually impaired users), but
+> users have to agree before start using the product (and maybe can't realize
+> or understand the various ways that their data can be collected before
+> using the product), does that counts as giving explicit consent?
+
+
+This is still up in the air, and I imagine we'll see the limits being
+figured out in the courts over the next few years. Paragraph (32) of the
+principles at the top of the legislation says:
+
+"Consent should be given by a clear affirmative act establishing a freely
+given, specific, informed and unambiguous indication of the data subject's
+agreement to the processing of personal data relating to him or her, such
+as by a written statement, including by electronic means, or an oral
+statement. This could include ticking a box when visiting an internet
+website, choosing technical settings for information society services or
+another statement or conduct which clearly indicates in this context the
+data subject's acceptance of the proposed processing of his or her personal
+data. Silence, pre-ticked boxes or inactivity should not therefore
+constitute consent."
+
+This would seem to suggest that long policies that nobody will read in
+practice are considered okay (which is already the case in contract law for
+other purposes, unfortunately). However, Article 7 also says that "the
+request for consent shall be presented in a manner which is clearly
+distinguishable from the other matters, in an intelligible and easily
+accessible form, using clear and plain language", and "accessible" suggests
+that it has to be available to users with impairments or screenreaders.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Will GDPR discourage users to share their data too much to slow down the
+> progress of technology in Europe, i.e., far less data can be used to train
+> machine learning algorithms? Besides, most of the web services change their
+> users by collecting and processing their personal data. Under GDPR, it
+> becomes much harder and users may gave back the control over their data to
+> the web services to avoid getting charged because they are not educated
+> enough to value their personal data, which is definitely not the goal of
+> GDPR.
+
+
+Some companies decided to stop offering services to people in the EU or
+geoblock all EU users of their website. See the "Impact" paragraph on p2 of
+http://www.cs.utexas.edu/~vijay/papers/hotcloud19-gdpr-sins.pdf for some
+examples. This will need to be worked out over time; I suspect compliance
+will just become part of the cost of doing business (like compliance with
+other laws is).
+
+You're right that many users will probably just agree to whatever the
+website asks them to consent to. The law has to walk a fine line between
+giving people the agency to make their own educated (or uneducated)
+decisions and prescribing behavior; in general, the law tends to err on the
+side of assuming educated citizens who are able to make these decisions
+(with some exceptions, such as children, that the GDPR handles explicitly).
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> What did Google do/ didn't do to get fined?
+>
+
+Google got fined, see:
+https://www.nytimes.com/2019/01/21/technology/google-europe-gdpr-fine.html.
+The reason was that they did not inform users sufficiently clearly about
+how their data is processed and combined across different Google services
+(e.g., GMail contents being used in web search).
+
+
+> How does the GDPR account for small companies or start-ups that can't
+> afford the type of data access required? (e.g. Facebook from MZ's desktop
+> wouldn't work with the GDPR in place)
+>
+
+There are some exceptions from parts of the regulation, e.g., a company
+with <250 employees does not need to have a nominated data protection
+officer in the EU. But the basic provisions apply regardless of company
+size.
+
+
+> As an engineer who doesn't usually read legal terminology, is there a
+> handbook for describing the steps to GDPR compliance? How are companies
+> pushing the compliance to their current engineers?
+>
+
+I don't know for sure! There are many companies that offer GDPR compliance
+services and "tools", but the right approaches are still being worked out.
+
+
+> What are examples in which processing can be done under 'Public Interest'?
+>
+
+Ultimately, this will be adjudicated by courts (i.e., it's in the public
+interest if you can convince a judge that it is). If a controller claims a
+spurious public interest reason and someone complains, the supervisory
+authority will investigate and may fine them. The controller can appeal,
+and ultimately this goes in front of a court.
+
+The GDPR gives some ideas of what might constitute public interest for
+scientific research in paragraphs (156)-(162) at the top of the
+legislation, but remains vague as it's impossible to exhaustively enumerate
+all permitted uses.
+
+
+> What are examples in which processing can be done under 'Explicit and
+> Legitimate Purposes'?
+
+
+I believe this term is intended to cover the purposes to which the data
+subject has consented.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> To what extent do the Top 5 companies (Google, Apple, FB, Microsoft) try
+> to adhere to the GDPR rules. Because looking at recent news, although they
+> have been fined multiple times, it doesn't look as if they care about this.
+> Would adhering to the GDPR cause these companies to spend more money than
+> the fines they've incurred.
+
+
+I believe they try to comply! The cost of repeat fines is high, and they
+probably don't want to get fined 4% of their turnover every year.
+
+However, it's slow and expensive to change internal processes, and it will
+likely take a while for companies to become fully compliant. They will also
+watch how aggressively the GDPR is enforced and what precedents courts set
+in terms of what companies must do.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Are there technical ways that can detect GDPR violations? Though the
+> controller is required to provide information about the processing to a
+> data subject in a concise, transparent, intelligible and easily accessible
+> form. But there is actually no proof that the controller/processor is doing
+> what is being claimed, is there any way for companies to give some
+> verifiable proof for their GDPR compliance and thus we can believe in them?
+
+
+The EU delegates enforcement to national supervisory authorities (usually
+national data protection agencies). Supervisory authorities have oversight,
+but often delegate it in turn as they have limited resources. In practice,
+companies often rely on external auditors (companies like KPMG and other
+business consultancies), who look at a data controller's or data
+processor's technology and processes and certify them as compliant.
+
+At the moment, there is no technical way to prove compliance, but this is
+an interesting research direction.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Does Brexit have any effect on GDPR?
+
+
+Yes; the UK could decide to repeal the national legislation that implements
+the GDPR after Brexit. However, this would likely have a detrimental effect
+on their trade relationships with the EU.
+
+
+> When and how long did GDPR come into effect?
+
+
+It came into effect in May 2018.
+
+
+> How many companies (if any) are GDPR compliant? I wonder how long it would
+> take Facebook to become GDPR complaint?
+
+
+Nobody knows for sure how many are compliant or fully compliant! We only
+know how many have been fined for not being compliant. Some estimates
+suggest that 80%+ of companies were not compliant at the time the GDPR took
+effect in May 2018.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> How can GDPR influence system design processes and practices so as to
+> ensure privacy as envisioned by it?
+
+
+One way to think about this is that systems should make the relationship
+between a data subject and its data more explicit, and offer APIs that
+return all data associated with a subject. Right now, this often has to be
+retroactively inferred, causing expensive and manual labor.
+
+
+> Is the GDPR too restrictive or should it be seen as an opportunity by
+> firms to build better, more privacy-conscious systems?
+
+
+I personally see it as an opportunity, and many privacy advocates think it
+isn't yet strict enough. But there is also undeniably a huge burden on
+small companies and websites, who now have to understand and correctly
+apply fairly complex regulations.
+
+Malte</pre></div>
