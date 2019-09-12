@@ -1,6 +1,7 @@
 HTML = index.html schedule.html projects.html details.html syllabus.html \
 			 assign/index.html assign/gdpr.html \
-			 notes/q02-datacenter.html
+			 notes/q02-datacenter.html \
+			 notes/q03-gdpr.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl
 
