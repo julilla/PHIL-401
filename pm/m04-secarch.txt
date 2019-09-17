@@ -1,6 +1,12 @@
 I was underprepared. Idea of red team/blue team worked somewhat, but I still
 had to steer the discussion a lot; I had hoped for more back and forth
-between them.
+between them. Would also have benefitted from a clearer goal (get some
+customer's data? many people's? Podesta emails?) and a more structured
+evaluation of different concerns -- the freedom of the red team to choose
+its attack meant that we ended up with very advanced attacks early on.
+
+Should have discussed why HW/BIOS attacks are particularly insidious (even
+reinstalling machine doesn't get rid of backdoor).
 
 Ran a bit out of steam towards the end (~20 min before end) and felt that
 I just rambled along some random points in an unstructured way. Not much
