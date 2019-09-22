@@ -167,13 +167,13 @@ LEC = (Tue or Thr) and not Holidays
 LEC
 - Lec ms: [notes/m01-intro.txt Introduction]
 
-# 03
+# 02
 LEC
 - Lec: Datacenter Infrastructure ([https://docs.google.com/forms/d/e/1FAIpQLScuoKi6hp6dQNn0g9_fq6jlfG--rFb3P2rSqD5h0Uf59xUKZQ/viewform Questions], [notes/q02-datacenter.html Answers])
 - Prep wsc: Read [https://www.morganclaypool.com/doi/pdf/10.2200/S00874ED3V01Y201809CAC046 Datacenter Stack] (§2.2-2.6; p18-40)
 - Prep tao: Read [readings/tao.pdf TAO] (2013)
 
-# 02
+# 03
 LEC
 - Lec: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
@@ -207,17 +207,17 @@ LEC
 - Lec: Applied IFC
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
-# 08
+# 09
 LEC
 - Lec: Policy Enforcement
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 
-# 09
+# 10
 LEC
 - Lec: Policy Enforcement
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
-# 12
+# 11
 LEC
 - Lec: Encrypted Databases
 - Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
@@ -227,76 +227,84 @@ LEC
 - Lec: Web Services over Encrypted Data
 - Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
 
-# 17
+# 13
 LEC
 - Lec: Multiverse Databases
 - Prep multiversedb: Read [readings/multiversedb.pdf Multiverse Databases] (2019)
 
-# 10
+# 14
+LEC
+- Lec: GDPR Compliance
+- Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems] (2019)
+- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
+
+# 15
 LEC
 - Lec: Decentralized Applications
 - Prep blockstack: Read [https://blockstack.org/whitepaper.pdf Blockstack] (2019)
 
+# (16) -- SOSP
+LEC
+
+# 16
 LEC
 - Lec: DIY hosting
 - Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
 
-# 16 -- SOSP
-LEC
-
-# 13
+# 17
 LEC
 - Lec: Federated Machine Learning
 - Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
-# 11
+# 18
 LEC
 - Lec: Secure Computation
 - Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
-# 14
+# 19
+LEC
+- Lec: Differential Privacy
+- Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
+- Prep dp: Read [readings/pinq.pdf PINQ] (2009)
+
+# 20
 LEC
 - Lec: Private Messaging
 - Prep vuvuzela: Read [readings/vuvuzela.pdf Vuvuzela] (2015)
 
+# 21
+LEC
+- Lec: Project conference
+
+# 22
 LEC
 - Lec: Keybase and KBFS
 - Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
 
-LEC
-- Lec: Project conference
-
-LEC
-- Lec: Differential Privacy
-- Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
-- Prep dp: Read [readings/pinq.pdf PINQ]
-
-# 15
-LEC
-- Lec: GDPR Compliance
-- Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems]
-- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction]
-
+# 23
 LEC
 - Lec: Privacy Policies
 - Prep pp1: Read [readings/polisis.pdf Polisis] (2018)
 #- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
 
+# 24
 LEC
 - Lec: Web tracking
-- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/trackingexcavator.pdf history of web tracking]
+- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/trackingexcavator.pdf history of web tracking] (2016)
 
+# 25
 LEC
 - Lec: Device Security
 - Prep: TBD
 
+# 26
 LEC
 - Lec: Location Security
 - Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
-# 18
+# 27
 LEC
 - Lec all: Project presentations
 - Due: Final project presentation
