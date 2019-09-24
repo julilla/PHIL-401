@@ -1,0 +1,358 @@
+<h2>MTG 5 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+> It’s noted, “We choose to use an opaque cookie instead of the actual
+> timestamp to discourage our clients from choosing arbitrary timestamps…” yet
+> they also note that “shard ID is determined solely by the object ID”. This
+> strikes me as odd because it seems like there should not be some direct
+> disconnect for security purposes. Am I right to assume this?
+
+"Determining" the shard ID involves either applying a hash function to the
+object ID (to hash-partition across shards), or looking up the shard ID via an
+index of range partitions. In practice, Google uses the latter, maintained via
+another system (Slicer).
+
+Is your concern that the shard ID being derivable from the object ID might pose
+a security problem? I think Google does not consider the shard mapping (or
+indeed shard placement) secret information.
+
+The motivation for opaque zookies is also unrelated to security: they merely
+want an API that doesn't encourage overeager application programmers generating
+specific timestamps (e.g., from absolute date/time strings). This would be
+potentially costly because the system would have to map these arbitrary times
+to the closest times at which actual ACL updates happened; by returning the
+timestamp via an opaque zookie encoding, the client does not get mislead into
+thinking that this is a value it can modify or choose arbitrarily.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> What is an opaque cookie? How does this prevent discouraging clients from
+> choosing arbitrary timestamps?
+
+An "opaque" zookie is just a zookie value encoded as a non-human-readable
+sequence of bytes (e.g., a hash of some actual absolute time).
+
+The motivation for opaque zookies is to have an API that doesn't encourage
+overeager application programmers to generate specific timestamps (e.g., from
+absolute date/time strings). This would be potentially costly because the
+system would have to map these arbitrary times to the closest times at which
+actual ACL updates happened; by returning the timestamp via an opaque zookie
+encoding, the client does not get mislead into thinking that this is a value it
+can modify or choose arbitrarily. An opaque zookie is hard to generate from
+scratch on the client side, so Google assumes no client will bother to.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Given that checks are far more frequent than writes, is there a technique to
+> make checks more efficient while slowing down writes?
+
+This is what the "denormalized" entries in the Leopard index (§3.2.4) and the
+caching discussed in §3.2.5 are about. Consider what Leopard does: it serves
+precomputed check results for long chains of nested group memberships, making
+reads fast, but this comes at the cost of extra work on ACL changes (writes)
+that cause updates to the Leopard index (see the "incremental layer" discussion
+in §3.2.4).
+
+This is quite similar to what Noria does, incidentally: you can think of the
+Leopard index as a materialized view over the ACL tuples.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> What is an out-of-zone read, how does it impact latency, and is there any
+> optimization to reduce its probability?
+
+Out-of-zone reads refer to Spanner reads that involve a different Spanner
+cluster (= "zone"). The Spanner paper says this about zones:
+
+"Spanner is organized as a set of zones, where each zone is the rough analog of
+a deployment of Bigtable servers [Chang et al. 2008]. Zones are the unit of
+administrative deployment. The set of zones is also the set of locations across
+which data can be replicated. Zones can be added to or removed from a running
+system as new datacenters are brought into service and old ones are turned off,
+respectively. Zones are also the unit of physical isolation: there may be one
+or more zones in a datacenter, for example, if different applications’ data
+must be partitioned across different sets of servers in the same datacenter."
+
+Out-of-zone reads incur higher latencies (as they may involve a different
+datacenter), so they're bound to be slow, and this will slow down the Zanzibar
+request. This might be necessary because the ACL tuple may be stored in a
+different Spanner zone, and a change at the chosen timestamp may not yet have
+been replicated to the local Spanner instance. In addition to Spanner
+replication, Zanzibar has several  caching mechanisms (see §3.2.4-3.2.5) to
+avoid these expensive requests for remote data, but since these caches take
+time to update after an ACL change, they cannot be used if a request chooses a
+very aggressive (i.e., recent) timestamp for evaluation, as the caches may not
+yet be up to date. Allowing a read to be served at an older (i.e., potentially
+more stale) timestamp makes it more likely that the read can be served locally
+or from cache as Spanner has already replicated that timestamp's data across
+zones.
+
+Note that this only matters to requests that do not supply an explicit zookie
+(which encodes a timestamp). For those requests, Zanzibar needs to choose a
+timestamp, and the out-of-zone read frequency tracking helps the system choose
+a good value automatically.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> The consistency model strongly relies on timestamps. How do they unify the
+> times between servers and will the consistency be delayed to secure
+> correctness?
+
+In short: yes. Zanzibar inherits part of its consistency model from Spanner,
+and Spanner relies on a mechanism called TrueTime to synchronize times between
+servers. TrueTime uses atomic clocks and GPS receivers to minimize clock drifts
+across datacenters, but there remains some variance, so each TrueTime timestamp
+is a range of a lower and upper bound on the "global" time when the timestamped
+event could have occurred.
+
+Spanner is designed to "wait out" possible inconsistencies. In other words, if
+the TrueTime timestamp intervals fo two events (say, two writes) overlap and
+Spanner isn't sure about their global ordering, Spanner will wait until one
+interval's upper bound is definitely in the past (i.e., TrueTime says that the
+event time has necessarily passed on all servers) before processing the other
+event, and thus impose an ordering.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I am still not quite clear how Spanner stores the ACL and do the
+> authorization checking. When checking whether a user A can view a document B,
+> does the Spanner gets all the users(that is , the userset) that has a viewer
+> relations with document B, and then check whether A is in this set? This does
+> not sound like a efficient algorithm, or am I missing something? I see the
+> paper says "The primary keys required to identify a relation tuple are
+> namespace, object id, relation, and user", does it mean that if we know the
+> "namespace, object B, relation view, userA', then we can directly know
+> whether this tuple exist and thus the time complexity is actually O(1)?
+
+Yes, my understanding is that Zanzibar's primary keys are chosen such that
+lookups for a specific combination of ACL and user can be handled efficiently.
+Ignoring caching, this happens via a point query to Spanner (selection by
+primary key). For indirect policies, such as those via groups, Zanzibar needs
+to check if the user is a member of the expanded user set (e.g., group
+members), but even this can be handled as a chain of point lookups (e.g., first
+check if the user is a viewer on the video [check(youtube:video1234#comment@10,
+timestamp)], then check if subscribers of the video's channel can comment
+[check(youtube:video1234#comment@youtube:channel89#subscriber] and check if the
+user is a subscriber of the channel [check(youtube:channel89#subscriber@10,
+timestamp)]). There is no need to check the full userset, since we are only
+interested in one particular user (say, 10). The Leopard index further helps
+reduce lookup cost by caching the expanded results of following a chain of
+lookups (turning the two reads for the channel check into one, for example).
+
+The paper says that some situations require expanding the full user set (e.g.,
+via the Expand() API call), and those requests are presumably more expensive.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> It does not seem to be mentioned in the paper or the internet but does
+> zanzibar handle cycles? or is cycle management left to the clients?  For
+> example Group B is a member of some Group A, Group C is a member of Group B,
+> Group A is a member of group C. This will lead to a cycle when expanding.
+
+I believe Zanzibar only allows acyclic ACLs, although the paper does not
+explicitly say so. (Cyclic ACLs in general aren't meaningful.)
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> I am still confused on how the idea of the zookies work, I would love some
+> elaboration of the idea. Perhaps you can refer me some other systems who use
+> similar consistency mechanisms?
+
+A zookie is just a token representing a timestamp, but in a non-human-readable
+form. This concept is a standard optimistic concurrency control (OCC) idea used
+in many systems, with the aim of tying a write back to subsequent reads (or
+vice versa), but such that the application cannot mess with the timestamp
+relationship.
+
+Another example of this idea is the ETag mechanism in HTTP forms
+(https://en.wikipedia.org/wiki/HTTP_ETag), and several databases also use
+opaque tokens for OCC (see the list on
+https://en.wikipedia.org/wiki/Optimistic_concurrency_control).
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> * What is “optimizing computations on deeply nested sets with limited
+> denormalization”?
+
+The Zanzibar designers want to store ACL data in normalized (= tuple) form, so
+that they only need to write one place (the tuple) when an ACL changes. But
+caching nested group memberships for efficient lookup requires computing a
+derived (= denormalized) representation over multiple tuples. The goal is to
+make that efficient lookup possible, but without scattering the ACL all over
+the place.
+
+> * How can it promise all 3 of the CAP theorem? Or does scalability !=
+> partition tolerance
+
+The CAP theorem, due to its vague and overlapping terms, is not a great way to
+think about all distributed systems in my opinion. Scalability and partition
+tolerance are indeed not the same thing (although scaling from 1 to 2 computers
+will bring in the need to think about partitions). That said, Spanner's
+externally-consistent transactions require interaction with a single leader, so
+they are not available in the presence of partitions. Spanner's snapshot reads
+can be served from any replica, so they are available under partitions, but by
+definition don't need to reflect the latest version (so are not "consistent" as
+per CAP, although they are consistent according to the chosen consistency
+level, namely snapshot isolation).
+
+> * What happens when a zookie is the fresher than what is in the database?
+> Since it is just a “change cookie”, does that mean it just takes the stale
+> ACL and reapplies the zookie? Or does it wait for the database to update?
+> EDIT: I found the answer on a deeper read: "When a zookie timestamp is higher
+> than that of the most recent data replicated to the region, the storage reads
+> require cross-region round trips to the leader replica to retrieve fresher
+> data" -- This implies high latency in this scenario?
+
+Correct.
+
+> * What is an example use case of a 'watcher'?
+
+You are a system that computes derived data over the ACLs (e.g., the Leopard
+indexer, or a cache), and you need to invalidate or update entries once they've
+changed, so you put a watch on those entries.
+
+> * What is the downside to use of a zookie over just timestamps? Is it time,
+> or bandwidth, or storage?
+
+The main difference is that Zookies are opaque, so the application cannot
+modify them (unlike explicit integer or string timestamps). That's both an
+upside and a downside. I suspect the encoding makes little difference to
+computation, bandwidth, or storage space, though binary zookies might
+conceivably be smaller than timestamps.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> The paper mentioned that Zanzibar uses zookie as the timestamp and further
+> more, zookie is based on Spanner's TrueTime abstraction. What is the benefit
+> of using such TrueTime abstraction (which is an interval of time [earliest,
+> latest] instead of a single time point `now`) rather than the simple vector
+> clock? If Zanzibar wants to respect causal ordering, then vector clock seems
+> more natural to me.
+
+I suspect the main reason is that Google already had Spanner (and with it,
+TrueTime) and found it convenient to build on this abstraction, rather than to
+design a new protocol based on vector clocks.
+
+Vector clocks are also designed for a more distributed use case, where multiple
+processes send and receive messages, and only provide a partial order.
+TrueTime, if Spanner waits out any uncertainty, provides a total order.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> When requested by a user, would Google delete a user's information from not
+> only its services but also from Zanzibar? I think that without thoroughly
+> deleting the user data from Zanzibar, it is possible to identify some users
+> based on for example edit or view permissions and other things that they
+> might have received from other people. One might easily infer that record X
+> in Zanzibar belongs to Bob (who is deleted from Google) and he has worked on
+> a project at time T.
+
+Good question. I suspect that data in Zanzibar would be considered as
+associated with data subject Bob, so it would have to be deleted. Google might
+make a case that opaque integer identifiers for deleted users cannot be mapped
+to their identity, but as you argued, they can in practice. An interesting
+technical aspect here is how you locate all ACLs for a given user (say, 10) --
+as far as we can tell, there is no index that provides easy access to them (as
+the primary key requires a tuple to be specified). You could imagine a batch
+job cleaning up dangling entries, or a recursive removal as content is deleted,
+however.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I am a bit curious and confused on how the TrueTime service could ensure the
+> external consistency?
+
+The Spanner paper (https://dl.acm.org/citation.cfm?id=2491245) explains this in
+detail. Roughly, TrueTime uses atomic clocks and GPS receivers to minimize
+clock drifts across datacenters, but there remains some variance, so each
+TrueTime timestamp is a range of a lower and upper bound on the "global" time
+when the timestamped event could have occurred. Spanner is designed to "wait
+out" possible inconsistencies. In other words, if the TrueTime timestamp
+intervals fo two events (say, two writes) overlap and Spanner isn't sure about
+their global ordering, Spanner will wait until one interval's upper bound is
+definitely in the past (i.e., TrueTime says that the event time has necessarily
+passed on all servers) before processing the other event, and thus impose an
+ordering.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+> How do updates to an ACL propagate throughout this planet-scale system?
+
+Zanzibar relies on the replication implemented in the underlying Spanner
+database. The Spanner paper (https://dl.acm.org/citation.cfm?id=2491245)
+explain Spanner's replication mechanism in detail; it relies on the Paxos
+consensus algorithm at its core.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> 1. What exactly is the difference between external consistency and strong
+> consistency/linearizability? Is the snapshot reads with bounded staleness
+> somehow similar to eventual consistency?
+
+Snapshot reads refer to a consistency level called "Snapshot Isolation" (SI),
+where you read from a consistent database "snapshot" at a point in time. This
+consistency level is in between strong consistency (where you always see the
+latest updates, and all updates are consistent) and eventual consistency (where
+you may see any arbitrary subset of updates). SI guarantees that all updates up
+to and including the timestamp of the snapshot have been fully applied and are
+consistent. Newer changes, which haven't reached consistency (e.g., because
+they're still replicating) aren't visible in the snapshot.
+
+> 2. How does TrueTime work? How does it manage to keep track of all the
+> requests coming in for the same object in causal order?
+
+The Spanner paper (https://dl.acm.org/citation.cfm?id=2491245) explains this in
+detail. Roughly, TrueTime uses atomic clocks and GPS receivers to minimize
+clock drifts across datacenters, but there remains some variance, so each
+TrueTime timestamp is a range of a lower and upper bound on the "global" time
+when the timestamped event could have occurred. Spanner is designed to "wait
+out" possible inconsistencies. In other words, if the TrueTime timestamp
+intervals fo two events (say, two writes) overlap and Spanner isn't sure about
+their global ordering, Spanner will wait until one interval's upper bound is
+definitely in the past (i.e., TrueTime says that the event time has necessarily
+passed on all servers) before processing the other event, and thus impose an
+ordering.
+
+> 3. What role do the voters play in storage? Does consensus help to resolve
+> conflicts? What are the details of this protocol and what is leader
+> re-election?
+
+This is all part of Spanner, rather than Zanzibar, though Zanzibar's
+consistency relies on mechanisms offered by Spanner. In a nutshell, Spanner
+elects a long-lived leader for each partition of the data using the Paxos
+consensus algorithm, and that leader then runs two-phase commit for
+replication. Since there's a unique leader, no two conflicting writes can both
+commit. (The details are a bit more complex, as Spanner permits transactions
+across partitions, but this is the essence.)
+
+> 4. Section 3.2.1 about staleness was confusing - how exactly is staleness
+> value being updated?
+
+For requests that don't specify a zookie, Zanzibar needs to choose a timestamp,
+and the machinery described in §3.2.1, including out-of-zone read frequency
+tracking etc., helps the system choose a good value automatically. A good value
+is one that balances the staleness of ACL evaluation (i.e., the chance the ACL
+has changed) is balanced against the cost of doing expensive remote reads
+required for fresher timestamps (more likely to reflect the latest ACL).
+Zanzibar attempts to automatically pick a good tradeoff, but doesn't guarantee
+consistent ACL reads in this case. If a consistent ACL is needed, the
+application has to supply and explicit zookie.
+
+Malte </pre></div>
