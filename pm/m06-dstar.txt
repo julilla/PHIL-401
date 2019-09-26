@@ -1,0 +1,12 @@
+This went well! First did Zanzibar zookie examples, and I think everyone got
+it mostly this time around.
+
+Presentation was strong and very interactive. I helped out a bit when
+slow-stepping was needed. Anktia ran out of time because I had consumed half
+an hour for my Zanzibar examples.
+
+Would probably do HiStar next time; DStar's distributed components add even
+more complexity. We actually spent most of the time doing HiStar examples,
+and the ideas there came across clearly.
+
+First class I was satisfied with at the end.

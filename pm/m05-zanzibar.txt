@@ -1,0 +1,17 @@
+Spent first half on more GDPR presentations.
+
+Zanzibar
+
+Presentation was okay, but not great. Amir basically carbon-copied the ATC
+talk with his own slide design, and it's not 100% clear he knew what was
+going on.
+
+I took control of the discussion when it wasn't really getting going and
+Amir said some things that were wrong. My explanation of Zookies (with
+student involvement) ended up being unstructured and wonky.
+
+Lots of context on Spanner and TrueTime needed to understand the system.
+Perhaps it's not a good paper to start with, as it's not super clearly
+written.
+
+Did a clearer zookie example at the start of next meeting.
