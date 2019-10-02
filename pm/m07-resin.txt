@@ -1,0 +1,10 @@
+I felt well-prepared, though only answered two questions.
+
+Presentation was unfortunately not good -- too much material just
+paraphrasing the paper. Some students left early.
+
+I think I did a decent job explaining the attacks and intuition behind
+Resin (big runtime box, with all "doors" checked by filter objects, and
+data objects have attached policy objects).
+
+Will start talking to the presenters prior to their presentations.
