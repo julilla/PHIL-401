@@ -1,0 +1,56 @@
+<h2>MTG 7 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+> I have 2 questions
+> 1. In the paper, the authors mentioned "program chair", what/who is it?
+
+The PC chair is the person who runs the conference program committee. They can see all papers, all reviews,
+and can override conflicts of interest and deanonymize authors and reviewers. You can think of them as a
+sysadmin or "root" user for the HotCRP system.
+
+> 2. Lets say I have the following PHP form file with all the proper policy objects attached in its extended
+> attributes.
+> <?php eval($_POST["badcode"]); ?> To my understanding, I would still be able to dump the database (by
+> providing malicious php code that queries the database directly) without triggering the filters, correct?
+
+I believe this would be addressed by the CodeApproval scheme in §5.2. The string passed in as
+$_POST["badcode"] (or, technically, each of its characters) lacks the CodeApproval policy object, and thus the
+filter object invoked when the PHP interpreter runs eval() will fail its dataflow assertion.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> * Does Resin do anything to protect against malicious front-end code like the on-submit button listener
+> found in that GDPR case? I wouldn’t think so because the listener just copied data that it had all rights to
+> access
+
+Correct. Since the listener runs in client-side JS, a Resin-enabled PHP or Python interpreter on the server
+side cannot prevent this attack.
+
+> * “RESIN’s default filter objects serialize policy objects to persistent files and database storage when
+> data is written out, and de-serializes the policy objects when data is read back into the runtime.” What
+> does this mean? Next paragraph it says that the policy is added to the file’s extended attributes. Does this
+> mean that the OS is responsible for enforcing read/write privileges? I don’t think so, but that would infer
+> that any user on the server with permissions equal to or greater than the application could change these
+> extended attributes? Does that matter?
+
+The extended attributes essentially store arbitrary (key, value) with a file. Resin serializes (i.e., encodes)
+the policy objects associated with a data item into one of these (key, value) pairs. For database storage, it
+stores the serialized policy objects in an additional column (cf. Figure 4).
+
+You're right that someone with shell access to the server and filesystem write permissions could change the
+extended attributes. Resin does not attempt to defend against this attack, which unfolds entirely outside the
+PHP/Python runtime. Resin can only protect interactions that go through the runtime.
+
+> * The later part of the paper notes performance (speed) but doesn’t talk about space. Wouldn’t granular,
+> byte-level policies cause a huge increase in space? I don’t think this would be noticeable for small
+> companies with little data, but I could imagine a scenario where a company with already massive data like
+> Google wouldn’t be able to implement this? I.e. does this scale well in respect to space complexity?
+
+You're right; this is a concern especially for small data. Note that byte-level policies are tracked using
+ranges though, so in practice you won't have a policy object for every byte (unless every byte has a different
+policy associated!). I'd guess that the overhead is likely quite high for small strings or short database rows
+(factors of two or more), while it diminishes with objects that hold more actual data (e.g., the full 1000+
+word text of a paper review).
+
+Malte </pre></div>
