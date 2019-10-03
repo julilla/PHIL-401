@@ -1,0 +1,227 @@
+<h2>MTG 8 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+> 1. In section 2.3 it says Jacqueline always attempts to show objects unless policies require otherwise.
+> Isn't it safer design to have the default not to show objects unless policies require it?
+
+In short: yes. In long: like Resin, Jacqueline's policies default to showing information unless restricted.
+This is likely premised on an assumption that most information in an application is public, and only a small
+set of fields on the ORM's objects are sensitive. So it is a trade-off between programmer convenience and
+security, and Jacqueline chooses programmer convenience in this case.
+
+> 2. Are both RESIN and Jacqueline in the same threat model? Can RESIN handle untrusted users?
+
+At a high level, they have the same threat model: the application developer is assumed to not be malicious,
+but end-users of the web application might be (e.g., they might try to exploit application bugs to extract
+sensitive data). Jacqueline and Resin both attempt to protect against genuine mistakes by developers (a
+forgotten check or sanitiziation function call).
+
+> 3. What are hand-coded policies?
+
+In the context of this paper, the prior approach, where the application developer was responsible for putting
+access control checks in all the right places in the code. Specifically, this refers to Django with the
+original, in-line policy enforcement (Figure 8).
+
+> 4. What is termination-insensitive non-interference?
+
+Confusing formal methods lingo. Non-interference is a concept from the IFC literature that essentially proves
+that sensitive data (labeled secret) cannot ever reach (= interfere with) parts of the program that aren't
+labeled as such. "Termination-insensitive" just means that the guarantees also hold in non-terminating
+programs (I think), so they don't rely on an assumption (or need to prove) that all programs terminate (which
+is clearly not true in Python).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> “The FORM can use the standard sorting procedure without leaking information because the secret values are
+> stored in different rows from the public values” (635).  Would you elaborate on this? If I read this
+> correctly, this is only true for joined tables. In the case of a single table, isn’t an evil-doer still able
+> to gather some context from the information from an ordered query because the content is ordered?
+
+I believe the story here is that even in a single table, "masked" values will be stored for facets that have
+one of their booleans in the jvars column set to False. If you then query over that table and filter the
+results according to the jvars booleans, the masked values (e.g., "***") will all be ordered in the same
+position, and not according to their true value in that column. The rows with the true values will be filtered
+out in the ORM, so their position is never revealed.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> If the jacqueline_get_public_name method is not defined, what will be returned if the viewer does not have
+> permissions?
+
+Jacqueline's policies default to showing information unless restricted, so therefore the true name will be
+revealed. This is likely premised on an assumption that most information in an application is public, and only
+a small set of fields on the ORM's objects are sensitive, so defaulting to revealing the information makes
+sense.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I am not sure if I followed most of the discussion around the formal methods in the papers, I would like to
+> rectify that so would it be possible to discuss it for someone who has a weak background in formal methods?
+
+The formal methods part of the paper isn't very important to understanding how the system works and how it is
+different from, e.g., Resin and DStar. You can safely ignore that part; some of it is due to the fact that
+this paper was published in a programming language conference (PLDI), where formal semantics and detailed
+evaluation/typing rules are a normal and expected part of each paper.
+
+The formal methods content in §4 ultimately aims to prove that within the semantics of the \lambda_{JDB}
+language it's impossible for the "secret" variants of faceted values to ever be disclosed in violation of the
+policy. Proving this for all cases requires well-defined language semantics.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I don't quite understand the effect of "The FORM stores the faceted value <k? "Carol's surprise party":
+> "Private event"> as two rows in the event table with the same jid of 1. I was wondering whether this may
+> cause performance issues. It seems the optimization of combining values that are same to a single view would
+> help, but I don't quite get that part and would love to know more of the optimization techniques for solving
+> the expensive storage issue.
+
+I think the "jid" column is required because the "id" column is assumed to be a primary key (which must be
+unique for each row), though this assumption is unstated. "jid" represents the actual ID from the application
+perspective, while the "id" column contains unique IDs that may be used, e.g., to delete a specific row.
+
+I believe the only space-saving optimization present in the system is to avoid storing duplicates of values in
+different facets. The paper doesn't make it 100% clear how this works, but I imagine it may involve storing
+multiple sets of jvars with the rows that are shared.
+
+Overall, a fair amount of duplication will likely still occur, especially when there are many policies over a
+row (which each result in a facet, and thus in a boolean that's added into jvars). This happens, for example,
+in policy (2) from the Paymaxx question. Jacqueline seems to bank on the fact that there won't usually be too
+many policies over a single object.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Can we query aggregated data like "count *" and "count distinct" with Jacqueline? How do you write a policy
+> like "students can see the total number of enrollment in the course but not the actual individual student;
+> teachers can see everyone's name"?
+
+Good question! The paper briefly touches upon this in §3.1.1: you can't compute aggregations in the database
+(which contains all facets, i.e., multiple variants of each row). Instead, the aggregation would have to be
+computed on the application side, within the ORM, where the concrete variants of facets are chosen.
+Alternatively, the application could compute aggregates and store the result, such as the number of enrolled
+students, in the database as a faceted row (though with both variants holding the same number). The individual
+student rows would then be stored such that the "jvars" only allow teachers to see them; everybody else would
+see zero rows, but would still be able to query the stored aggregate value. This plan requires updating that
+value every time it changes (this is the "precomputed aggregates" plan the paper alludes to).
+
+The multiverse databases paper, which we'll read in two weeks, has a clearer solution for aggregates.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Seems like Jacqueline's policy is using booleans as labels and use the composition of the booleans to
+> represent multiple categories. But is it possible to encode the implication between labels and detect
+> whether a policy is even satisfiable in the first place? This might be helpful to help eliminate some
+> programming errors if the programmer is writing a wrong policy.
+
+I don't think Jacqueline, as described, can express that implication. Each label corresponds to the return of
+a jacqueline_restrict_<field> method in a schema element in the ORM, but there is nothing relating these
+methods to each other: there's no way to express that if one returns True, another also will.
+
+This is a good idea though! You could perhaps imagine analyzing the source code in these methods: for example,
+if the source code amounts to a boolean logic formula (as it does in many of the examples in the paper), you
+could imagine translating that into an SMT formulation and checking if it's possible to jointly satisfy
+combined sets of restrictions. You could then warn the programmer if their restrictions are unsat, or check
+assertions that the programmer provides about the joint satisfiability of their policies.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> The paper briefly explains why existing database implementations to aggregate rows in the database without
+> performing a policy check on all rows, which in turns requires fetching of all rows to the application or
+> framework before returning an accurate aggregate that does not expose confidential data, which makes such
+> aggregations expensive to perform even though they were relatively cheap without the use of Jacqueline.
+> [...]
+> Alternatively, if all facets could be evaluated and then passed to the relevant SQL query, we could
+> still make use of database abstractions to perform aggregations in a performant way. Since facets are just
+> boolean flags, they could simply be separate columns in the database, appending additional WHERE clauses
+> would help to filter out confidential rows. [...]
+
+Yes, that is correct. The ORM would have to generate queries that include the right facet booleans in the
+WHERE clause. This may be tricky for data-dependent policies that must see the results before they can
+evaluate the facet booleans.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> Are DStar and Resin also policy agnostic? The paper emphasizes that keyword a lot but I think the previous
+> systems also offer the same because there is no need for programmers to explicitly do the checks within the
+> application.
+
+They are not. Recall that in Resin, programmers have to invoke policy_add() to attach policies to data, and
+filter_{read,write,func}() to set up the filter objects. These are small changes, but they need to happen
+inline in the program source code. The Jacqueline authors, modify only the ORM schema file.
+
+DStar requires even more programmer awareness: adding labels to messages, declassifying data, and delegating
+labels to other processes are all operations that the program must explicitly invoke (the paper doesn't
+discuss concrete APIs, but if you think about it, it cannot happen without programmer involvement: how would
+the system automatically choose which one of five different available labels to use?).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> It looks that both Jacqueline and Resin are the extensions to a language runtime and Jacqueline enforce the
+> policy whenever accessing the data, but Resin only checks the policy when the data flows accross the runtime
+> boundaries. How should we compare these two approaches and what would be the cases that we will favor one
+> over the other?
+
+Jacqueline only checks the policy when the faceted data reaches a "computation sink" (e.g., the print
+function, as per §2.3). Until then, the runtime always evaluates both sides of the facet, and combines facets
+to build derived faceted data. You can think of those computation sinks as similar to the "gates" in and out
+of the runtime in Resin (print makes data leave the runtime).
+
+Jacqueline has a somewhat narrower focus than Resin, so Jacqueline takes particular interest in printing back
+to the user's browser and in the interaction with the database, but you could imagine extending it to also
+evaluate the policy e.g., when writing to files on disk (write() would be a "computation sink").
+
+One big difference between the approaches is that Resin requires dataflow assertions inline with the program
+code, while Jacqueline tries to keep policy out of it. Recall that in Resin, programmers have to invoke
+policy_add() to attach policies to data, and filter_{read,write,func}() to set up the filter objects. These
+are small changes, but they need to happen inline in the program source code. The Jacqueline authors, modify
+only the ORM schema file.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> How does Jacqueline handle writing? For example, how does Jacqueline handles a SQL injection attack?
+
+All writes in Jacqueline go through an ORM, i.e., Jacqueline assumes that code does not directly interact with
+the database. ORMs already prevent SQL injection attacks, as the query string gets generated by the ORM, which
+-- if implemented correctly -- does not concatenate random user input into the queries without sanitization.
+The ORM is part of the TCB in Jaqueline, so it's trusted to be correct.
+
+There are some more details about how Jaqueline writes out faceted values to the database in §3.1.2.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I'm still confused about how the early pruning works. In table 5, how would it hit the memory limits?
+
+Without early pruning, Jacqueline will compute over all faceted values retrieved from the DB. In other words,
+it will compute any possible result that it might show to *any* user. With many courses and many possible user
+viewing (some of whom are instructors for some courses, while others are not), Jacqueline has to compute any
+possible page that could result. The number of instructor-course combinations explodes exponentially with the
+number of courses, and thus uses a huge amount of memory and computation.
+
+Early pruning instead filters the faceted values by the logged-in viewer early on (i.e., when retrieved from
+the DB, rather than when they reach a computation sink) and therefore avoids the explosion as the instructor
+view of facets is only retained for those courses where the viewer is actually an instructor.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+> I am curious about information flow control related to hardware. What would/could this look like (if
+> anything)? DStar got pretty low-level but it’s not as low as I am curious about. For example, perhaps a PKI
+> card or access to cryptographic keys stored in a TPM could allow for policy verification/validation or
+> permit data to flow through a certain boundary for a limited amount of time.
+
+The IFC community has looked at hardware. See for example this paper:
+https://dl.acm.org/citation.cfm?id=3037739. I believe there are other examples also, e.g., for flight control
+systems. AIUI, they're usually focused on verifying (formally) that different parts of the hardware cannot
+communicate/interfere with each other.
+
+Malte </pre></div>
