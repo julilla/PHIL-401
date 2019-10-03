@@ -1,0 +1,9 @@
+Presentation went well, Archer was well prepared and made it quite interactive.
+
+I bungled a few explanations of computing on faceted values and specifically why it's
+okay to do faceted computation over private data, but not okay to do normal computation
+over that date. Picked some poor ad-hoc examples (data dependent policies, why can't
+prune early always); would have been good to have thought about them beforehand.
+
+Nevertheless I feel that they largely got the gist of the paper, and can compare and
+contrast with other solutions (Resin, DStar).
