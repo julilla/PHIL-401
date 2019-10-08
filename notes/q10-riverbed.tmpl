@@ -1,0 +1,150 @@
+<h2>MTG 10 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Oct 7, 2019 at 9:05 PM, Anonymous wrote:
+> Question 2: “Riverbed does need to pay special attention to wildcarded network sinks… Riverbed to enumerate
+> the concrete hostnames that are covered by the wildcard.”
+
+> 1.      Isn’t using an easily-traversable directory structure slightly dangerous?
+
+Yes, in the sense that it may expose information about the backend implementation. However, you can run "dig"
+on a DNS record and recursively get all registered subdomains and hosts below the domain even today; that's
+not that far removed from such a directory.
+
+> 2.      Why would it be necessary to use wildcarded network sinks anyway?
+
+Consider a service "x.com" deployed on AWS, which grows and shrinks its set of VMs in response to load. These
+VMs will have hostnames such as {frontend1.x.com, frontend2.x.com, ...}. Since the precise number of VMs is
+not known when the Riverbed policy is written, the policy refers to frontend*.x.com or just *.x.com.
+Similarly, the company may not be happy to expose its service's inner DNS structure, necessitating a wildcard
+in the policy.
+
+> 3.      Wouldn’t it be safer (though a slight hassle) to explicitly name each domain?
+
+Yes, but the (distributed, client-side) policy would need updating every time the service adds a new host or
+subdomain, which may be problematic.  Malte
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 7, 2019 at 9:17 PM Anonymous wrote:
+> What would the system lose if a server-side solution was used instead of browser-side user policies?
+
+I assume you're thinking of a server that runs the Riverbed proxy and performs the remote attestation on
+behalf of a client. This works, but raises the question of whether you can trust that server (and how you know
+that you can). Whose authority does that server run under? It can't be the web service operator's authority,
+since they could be tempted to modify the policies that requests ask for. So it would have to be either under
+the end-user's authority (like client devices) or it'd have to be run by a trusted third party, like the EFF.
+
+So: you'd lose the simple trust story for the part of the system that applies policies to data.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 7, 2019 at 9:09 PM Anonymous wrote:
+> 1. What are all the types of constraints can users write in Riverbed? How expressive can constraints be?
+
+I believe the examples shown in the paper (Figure 2, and §4.2) describe the complete set of constraints
+(AGGREGATION, PERSISTENT-STORAGE, ALLOW-TO-NETWORK). The first two (AGGREGATION and PERSISTENT-STORAGE) are
+binary constraints, and only ALLOW-TO-NETWORK has scope for customization: users can define what domains
+they're happy for their data to be shared across.  In other words, you can express policies that blanket allow
+or deny aggregation and/or storage, and configure individual domains that these policies extend towards if the
+backend wants to send data there for external processing (AWS, or a sentiment analysis web API, or remote
+backup storage, etc.).
+
+> 2. Who writes the child policies in Riverbed? How is it checked that they do not violate any of the
+> constraints of either universe?
+
+This doesn't become clear in the paper, but I think the child policies have to be part of the user-specified
+policy because they're "inlined" with an ALLOW-TO-NETWORK record. In the authors' view of the world, you could
+imagine organizations like the EFF or the Consumer Protection Bureau to provided recommended policies for
+specific domains via a web service.
+
+> 3. How difficult is it for users to update their policies in Riverbed? Are they entirely dependent on the
+>server to implement changes for their applications to stop erroring out?
+
+Users can easily update their policies individually, and (in principle) the server side can respond to this by
+moving the user to a different universe (or creating a new universe if necessary). But you're quite right that
+users may no longer be able to use the service if the policy change conflicts with something the application
+code does (e.g., sharing data with x.com).  It's also challenging to update many users' policies at the same
+time (e.g., to roll out a new policy) as policies are client-side and updates require the client to
+proactively deploy a new policy. 4. How exactly is tainting of bytes implemented?
+
+I imagine Riverbed relies on a similar runtime instrumentation to Resin. Specifically, the authors likely
+modified the PyPy runtime to associate an extra boolean with the runtime representation of every primitive and
+object type.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Oct 7, 2019 at 9:18 PM Anonymous wrote:
+> I am a little confused about the USER-ID field in policies.
+>
+> In the paper, it states that "Riverbed’s server-side reverse proxy must know who owns the policy that is
+> associated with each user request, so that the proxy can forward the request to the appropriate universe",
+>
+> does this mean that every USER-ID is mapped to only 1 universe (implicitly meaning only 1 policy)? What
+> happens if 2 requests are sent to the service with the same USER-ID but different policies?
+
+Yes, that is correct. My understanding is that each user can only be in one universe, and all of their
+requests need to carry the same policy, except in the case of a (long-term) policy migration (§4.6, "Taint
+relabeling").
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Oct 7, 2019 at 9:33 PM Anonymous wrote:
+> It seems language runtime is important for many system designs including previous papers and the current
+> one. I always feels curious of what exactly is runtime and why so many designs choose to focus on runtime.
+
+These designs focus on the runtime because it provides a "behind-the-scenes" way of tracking the flow of data
+through the program. For example, Resin attaches policies to data (e.g., integers) managed by the runtime, and
+Riverbed attaches taints (~= a label) to data. The runtime already has data structures that track each
+primitive and object type in the program (e.g., for garbage collection to decide if the memory can be freed),
+and these systems reuse those structures for IFC.
+
+> What does it mean that "Our Riverbed prototype instantiates each universe component inside of a Docker
+> instance that contains a taint-tracking runtime", how could Riverbed suddenly uses a Docker? I am not quite
+> able to visualize this process.
+
+It's not entirely clear to me either what, if any, security benefit the Docker container adds. It's mostly
+there to provide the ability to clone the backend when creating a new universe. You can imagine the Docker
+container as a lightweight virtual machine (outer box), the PyRB runtime as a process running inside it (inner
+box), and the web application's program code as code running inside that runtime (innermost box).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Oct 7, 2019 at 10:18 PM Anonymous wrote:
+> As the benchmark suggested in Fig. 6, the raytracing workload also has a 1.19x overhead on RiverBed, and the
+> fractal generation workload has a 1.18x overhead on RiverBed. The authors think this results from that PyRB
+> is slower in CPU intensive tasks. But why is this the case, because in the benchmark, no data was tainted so
+> the overhead definitely didn't come from the taint tracking. Isn't PyPy capable of realizing the added
+> taint-tracking code in the PyRB was never executed and optimizing them out?
+
+I suspect that the taint-tracking infrastructure has costs even when nothing is tainted (e.g., extra fields on
+data structures, extra branches in the code, larger data structure size and thus larger cache footprint,
+etc.). Since these are modifications of the runtime code and data structure, they're not optimized out. That
+said, without deeper analysis, we don't know exactly where the overhead for compute-intensive tasks comes
+from.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 7, 2019 at 10:37 PM Anonymous wrote:
+> In 4.6 taint relabeling section uses the case of Bob to explain the challenges of the user changing their
+> policy. It says that "Riverbed has no easy way to cleanly splice a user’s data out of one universe and into
+> another." At first I thought Riverbed uses USER-ID to track who owns the policy, and we can just search for
+> and extract any data that's associated with Bob's previous policy. But then I got confused about what's
+> actually stored in a universe: user, data or policy? What happens when a user wants different policies for
+> different parts of their data?
+
+My understanding is that the universe stores data with associated (true/false) taint bits, which indicate if
+the data is sensitive (restricted by policy) or not. The PyRB runtime receives a copy of the policy, and then
+prevents tainted (sensitive) data from interacting with untainted sinks (e.g., hosts in domains not covered by
+ALLOW-TO-NETWORK). The USER-ID field seems to only be used for request routing (i.e., to look up the universe
+for a user in a map at the reverse proxy on the server side), and my understanding is that it's not stored or
+processed inside the universe.
+
+I don't think Riverbed's model allows different policies to be applied to different parts of user data, beyond
+marking data as not covered by the policy at all (this is of course an option for the client-side proxy -- it
+can let some requests that aren't sensitive through without annotations).
+
+Malte </pre></div>
