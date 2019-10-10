@@ -169,18 +169,18 @@ LEC
 
 # 02
 LEC
-- Lec: Datacenter Infrastructure ([https://docs.google.com/forms/d/e/1FAIpQLScuoKi6hp6dQNn0g9_fq6jlfG--rFb3P2rSqD5h0Uf59xUKZQ/viewform Questions], [notes/q02-datacenter.html Answers])
+- Lec ms: Datacenter Infrastructure ([https://docs.google.com/forms/d/e/1FAIpQLScuoKi6hp6dQNn0g9_fq6jlfG--rFb3P2rSqD5h0Uf59xUKZQ/viewform Questions], [notes/q02-datacenter.html Answers])
 - Prep wsc: Read [https://www.morganclaypool.com/doi/pdf/10.2200/S00874ED3V01Y201809CAC046 Datacenter Stack] (§2.2-2.6; p18-40)
 - Prep tao: Read [readings/tao.pdf TAO] (2013)
 
 # 03
 LEC
-- Lec: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
+- Lec ms: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
 # 04
 LEC
-- Lec: Security Architecture ([https://forms.gle/jNQGeFHBYavhx61Q9 Questions])
+- Lec ms: Security Architecture ([https://forms.gle/jNQGeFHBYavhx61Q9 Questions])
 - Prep googlesec: Read [https://cloud.google.com/security/infrastructure/design/ Google Security Architecture] (2017)
 #- Prep azuresec: Read [https://docs.microsoft.com/en-us/azure/security/fundamentals/infrastructure Azure infrastructure security] ()
 #- Prep googlegdpr: Read [https://cloud.google.com/security/gdpr/resource-center/pdf/googlecloud_gdpr_whitepaper_618.pdf Google GDPR Whitepaper] (2018)
@@ -192,34 +192,34 @@ LEC
 
 # 06
 LEC
-- Lec: [notes/s05-zanzibar.pdf Access Control] ([https://forms.gle/YdMWSCFmDLmV5ntB9 Questions], [notes/q05-zanzibar.html Answers])
+- Lec ilkhechi: [notes/s05-zanzibar.pdf Access Control] ([https://forms.gle/YdMWSCFmDLmV5ntB9 Questions], [notes/q05-zanzibar.html Answers])
 - Prep zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
 # ???
 #- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
 
 # 07
 LEC
-- Lec: [notes/s06-dstar.pdf Information Flow Control] ([https://forms.gle/rVR8Nj7hgL55X3ro7 Questions])
+- Lec asharma7: [notes/s06-dstar.pdf Information Flow Control] ([https://forms.gle/rVR8Nj7hgL55X3ro7 Questions])
 - Prep histar: Read [readings/dstar.pdf DStar] (2008)
 
 # 08
 LEC
-- Lec: [notes/s07-resin.pdf Applied IFC (1)] ([https://forms.gle/TMCgYy6omd56YtoE6 Questions], [notes/q07-resin.html Answers])
+- Lec zfeng9: [notes/s07-resin.pdf Applied IFC (1)] ([https://forms.gle/TMCgYy6omd56YtoE6 Questions], [notes/q07-resin.html Answers])
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 # 09
 LEC
-- Lec: [notes/s08-jacqueline.pdf Applied IFC (2)] ([https://forms.gle/gX9zvPvEWqYupjD38 Questions], [notes/q08-jacqueline.html Answers])
+- Lec awheele9: [notes/s08-jacqueline.pdf Applied IFC (2)] ([https://forms.gle/gX9zvPvEWqYupjD38 Questions], [notes/q08-jacqueline.html Answers])
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 
 # 10
 LEC
-- Lec: Policy Enforcement ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q10-riverbed.html Answers])
+- Lec ja43: [notes/s10-riverbed.pdf Policy Enforcement] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q10-riverbed.html Answers])
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 # 11
 LEC
-- Lec: Encrypted Databases
+- Lec cluckett: Encrypted Databases ([http://csci2390-submit.cs.brown.edu/ Questions])
 - Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
 
 # 12
