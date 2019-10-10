@@ -1,0 +1,16 @@
+I felt this was chaotic, and many people left still not completely
+understanding the paper. This came partly because the paper had more
+crypto than prior papers, partly because Connor's presentation was
+somewhat scatter-brained, and partly because some of my interventions
+were intended to be helpful but drove us into tangents or didn't jive
+well with a point Connor was trying to make.
+
+About 2/3 through, it became clear that some basic understanding was
+still missing, so I walked through an example on the whiteboard. This
+helped, but my board planning was poor and the text likely very hard
+to read, so I'm not sure all points got through. Should have a better
+planned example next time.
+
+We also didn't get to discussing the fine-grained thread 2 scenario
+at all, and there remained confusion about when onion layers are added
+and removed.

@@ -1,0 +1,10 @@
+Jearson's presentation was good, and he took my advice to heart.
+
+This was perhaps the best session in terms of discussion so far. Riverbed
+lent itself to this because it is fairly easy to grasp, and has some fairly
+obvious problems.
+
+I feel that I jumped in at the right places and generally improved
+understanding. For example, the TPM explanation from first principles
+seemed helpful, and my points about good/bad applications and about the
+memory overhead landed well.
