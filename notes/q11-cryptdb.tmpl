@@ -148,3 +148,66 @@ concatenated plaintext and store an encrypted version of it (but it must update 
 changes, and there is additional space overhead).
 
 Malte</pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:42 PM Anonymous wrote:
+> How does CryptDB rewrite queries?
+
+The "Read Query" execution paragraph in §3.3 has a specific example of the rewriting required. Operationally,
+this likely happens by changing the abstract syntax tree (AST) of the SQL query the proxy receives.
+
+> How much does the rewrite slow down performance when the query involves multiple operations in figure 12?
+
+I suspect the rewriting itself is very fast (it's just a tree transform), but the consequences of the rewrite
+can make the query slower to execute.
+
+It's hard to tell the effects in Figure 12, as it shows only the time for the "predominant" operation in each
+query. This presumably means the most expensive operation as determined by profiling. Looking at the "Proxy*"
+column and, e.g., the "Update inc" row, which involves HOM, suggests that this particular rewrite has a ~250x
+overhead without caching, much of which seems to be due to the 9.7ms for the HOM integer encryption (Figure
+13, penultimate row).
+
+Malte</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:48 PM Anonymous wrote:
+> Is CryptDB effective on highly shared data? It claims that it will protect the data of a user if they are
+> offline. However, in many modern applications (say a database of student information shared among many
+> professors), it can be the case that it is very likely that at each given time frame there is at least one
+> online user.
+
+Correct, in this situation CryptDB doesn't offers much benefit, as there is always a key in the proxy that can
+decrypt all data.
+
+However, you might argue that there is still scope for containing the compromise here: online students don't
+expose much data, as they can only see their own information. Online professors have broader access, but if
+each professor's access is restricted to the students in their classes, only the data of students of an online
+professor gets compromised, rather than the data of all students at the university.
+
+Malte</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:55 PM Anonymous wrote:
+> If we assume the minimal threat model of a compromised DBMS server and server-side decryption of `RND` is
+> performed, that would allow any adversary that has access to the compromised server to perform Eq and Ord
+> comparisons against several values, which may not be suitable for certain types of data (e.g. credit card
+> numbers).
+
+While you're right that lowering to onion level of a column at the server side does leak data (e.g., how many
+equal values there are), it's not quite this simple for two reasons:The attacker on the compromised DBMS
+server cannot do equality checks with a chosen plaintext (e.g., a name or credit card number whose existence
+they want to check) because the attacker doesn't have the key necessary to encrypt their chosen plaintext for
+comparison.The CryptDB threat model assumes a passive attacker on the DBMS server, i.e., someone who may copy
+the data and separately try to figure out what's going on, but not someone who actively injects queries into
+the system.
+
+> If all decryption is performed at the proxy, this poses a glaring performance problem which is not
+> discussed. Sending the entire result set from the DBMS server to the proxy where all data is still in `RND`,
+> would be at best costly if the proxy pulls everything before local decryption, or worst still inconsistent
+> because now encrypted data has to replicate to all proxy instances.
+
+Correct, and that's why CryptDB does the onion level lowering -- so that the computation can happen in the
+DBMS, rather than at the proxy. 
+
+Malte</pre></div>
