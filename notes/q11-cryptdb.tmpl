@@ -1,6 +1,7 @@
-<h2>MTG 10 student questions</h2>
+<h2>MTG 11 student questions</h2>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 8:12 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 8:12 PM Anonymous wrote:
 > "Note that onion decryption is performed entirely by the DBMS server".
 >
 > The proxy already handles the keys. Why is it not a good idea to send the data (still encrypted) to the
@@ -12,7 +13,8 @@ decryption is something that the DBMS server will learn anyway.
 
 Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:26 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 9:26 PM Anonymous wrote:
 > So one of the standard flaws and/or critiques of this kind of encrypted database is that it can leak a ton
 > of meta data information to an attacker who runs a bunch of queries. Even if the data remains encrypted, an
 > attacker could get all of the privacy information they need. This is especially true if you have some
@@ -35,7 +37,8 @@ functionality).
 
 Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:51 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 9:51 PM Anonymous wrote:
 > Would it be straightforward to add key rotation to CryptDB?
 >
 > I assume you're referring to a scheme where the contents of the database are regularly re-encrypted under
@@ -61,7 +64,8 @@ problem it solves and what's great about its contributions.
 
 Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:57 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 9:57 PM Anonymous wrote:
 > As one new to the research area in computer science, I am curious about the general strategy of reading
 > research papers, especially as to how to deal with the concepts/technical details one is not familiar with,
 > such as cryptography; how to use energy/time wisely to capture the important information versus the less
@@ -86,25 +90,8 @@ https://www.usenix.org/conference/osdi12/guidelines-authors
 
 Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:23 PM Anonymous wrote:
-> I am not very clear on how PRINCTYPEs are used and declared.  1. it seems to me that PRINCTYPE main purpose
-> is to provide a mapping between ENC_FOR and SPEAKS_FOR, are there any other purposes or am I understanding
-> this wrongly?
-
-That is correct according to my understanding. This mapping is important in order for CryptDB to know what key
-chains to build and what keys to store in the "access_keys" table (see §4.2). 2. Consequently, if the above
-understanding is correct, if I only have ENC_FOR annotations but no SPEAKS_FOR annotation, then PRINCTYPE is
-technically redundant?
-
-ENC_FOR needs to specify a principal for whom to encode the field. If you didn't have SPEAKS_FOR annotations,
-the only principal type available would be external users, so you could imagine skipping the "PRINCTYPE
-physical_user EXTERNAL" annotation. On the other hand, once you have any SPEAKS_FOR annotations, you will need
-it in order to indicate where the chain terminates, so having the redundant declaration in your simple case
-makes for a more general system design.
-
-Malte </pre></div>
-
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:04 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:04 PM Anonymous wrote:
 > I am still confused about how each encryption function could preserve the expected function, such as
 > equality check, order check, pattern matching and add operation in normal SQL.
 
@@ -123,7 +110,27 @@ compromised.
 
 Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:25 PM Anonymous wrote:
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:23 PM Anonymous wrote:
+> I am not very clear on how PRINCTYPEs are used and declared.  1. it seems to me that PRINCTYPE main purpose
+> is to provide a mapping between ENC_FOR and SPEAKS_FOR, are there any other purposes or am I understanding
+> this wrongly?
+
+That is correct according to my understanding. This mapping is important in order for CryptDB to know what key
+chains to build and what keys to store in the "access_keys" table (see §4.2). 2. Consequently, if the above
+understanding is correct, if I only have ENC_FOR annotations but no SPEAKS_FOR annotation, then PRINCTYPE is
+technically redundant?
+
+ENC_FOR needs to specify a principal for whom to encode the field. If you didn't have SPEAKS_FOR annotations,
+the only principal type available would be external users, so you could imagine skipping the "PRINCTYPE
+physical_user EXTERNAL" annotation. On the other hand, once you have any SPEAKS_FOR annotations, you will need
+it in order to indicate where the chain terminates, so having the redundant declaration in your simple case
+makes for a more general system design.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Wed, Oct 9, 2019 at 10:25 PM Anonymous wrote:
 > If the user wants to use some operations not mentioned in the paper, for instance: string concatenation, is
 > SEARCH enough for that? Or will that require other kinds of homomorphic encryption schemes?
 
