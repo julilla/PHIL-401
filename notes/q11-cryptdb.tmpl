@@ -49,15 +49,20 @@ You could do this by having the proxy read, decrypt, and reencrypt all data in t
 However, this would have a substantial performance cost and the database would probably have to be down during
 this transformation. It's also not clear how such a system would defend against "threat 2" style attacks,
 where the attacker has compromised the proxy. At the point of re-encryption, the attacker would now
-potentially see all data in the database.  There may be more subtle schemes that involve incremental key
-rotation, etc., but those aren't "straightforward" extensions of CryptDB, but probably new research. Also,
-what are the goals of systems papers and how do they fit into the "system" of global IT advancement? I'm
-having trouble figuring out what makes a paper good. For example, would a paper that undersells a great design
-idea be bad?    The goal of a systems paper is, generally, to describe one or more intellectual insight(s)
-that solve an important challenge by enabling a new practical system design. A good paper attacks a concrete,
-relevant problem, contributes one or more new ideas, and involves a practical realization of these ideas
-(usually through a prototype). At the same time, a good paper must be scientifically rigorous in terms of
-citing related work, running the right experiments and reporting their results accurately, and clearly stating
+potentially see all data in the database.
+
+There may be more subtle schemes that involve incremental keyrotation, etc., but those aren't
+"straightforward" extensions of CryptDB, but probably new research.
+
+> Also, what are the goals of systems papers and how do they fit into the "system" of global IT advancement?
+> I'm having trouble figuring out what makes a paper good. For example, would a paper that undersells a great
+> design idea be bad?
+
+The goal of a systems paper is, generally, to describe one or more intellectual insight(s) that solve an
+important challenge by enabling a new practical system design. A good paper attacks a concrete, relevant
+problem, contributes one or more new ideas, and involves a practical realization of these ideas (usually
+through a prototype). At the same time, a good paper must be scientifically rigorous in terms of citing
+related work, running the right experiments and reporting their results accurately, and clearly stating
 the ideas' and prototype's limitations. So a good paper definitely should not oversell; underselling is less
 problematic, as the reader can presumably still recognize a good idea, but a good paper will make clear what
 problem it solves and what's great about its contributions.
