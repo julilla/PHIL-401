@@ -1,0 +1,138 @@
+<h2>MTG 10 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 8:12 PM Anonymous wrote:
+> "Note that onion decryption is performed entirely by the DBMS server".
+>
+> The proxy already handles the keys. Why is it not a good idea to send the data (still encrypted) to the
+> proxy for encryption/decryption? Is the point here that it would be too much risk?
+
+There is no security gain from sending the data to the proxy for onion decryption, as the decrypted inner
+onion layer is then sent back to the DBMS server for storage anyway. So anything that the proxy learns during
+decryption is something that the DBMS server will learn anyway.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:26 PM Anonymous wrote:
+> So one of the standard flaws and/or critiques of this kind of encrypted database is that it can leak a ton
+> of meta data information to an attacker who runs a bunch of queries. Even if the data remains encrypted, an
+> attacker could get all of the privacy information they need. This is especially true if you have some
+> outside information.
+>
+> For instance maybe you can query and sort tax information of employees by first name and date of birth. You
+> then group by poor credit. The names and info is still encrypted. But, if you now try comparing them to real
+> names and dates of birth you got of say linkedIn you can get some matches.
+
+In principle, you're right -- since CryptDB leaks some information in order to be able to efficiently execute
+queries, that information in combination with other auxiliary information can expose private data.  I'm not
+sure I follow your example though: who is the attacker here? Someone who issues queries to the encrypted
+database, or the database server administrator? The first, active mode of attack (repeated queries) is not
+something CryptDB defends against, while the latter (the DBMS admin observing what happens on the server, but
+not issuing queries themselves) is part of its passive attacker model.  There is a big discussion in the
+security community about different modes of searchable encryption and their relative merits (speed) and
+problems (leakage). See this survey paper for some other approaches: https://arxiv.org/pdf/1703.02014.pdf
+(including Arx, a follow-up paper to CryptDB that makes stronger guarantees at the cost of some speed and
+functionality).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:51 PM Anonymous wrote:
+> Would it be straightforward to add key rotation to CryptDB?
+>
+> I assume you're referring to a scheme where the contents of the database are regularly re-encrypted under
+> new keys, in order to prevent against key compromise and to ensure that perhaps leaked information from
+> encryption under one key is no longer valid under another.
+
+You could do this by having the proxy read, decrypt, and reencrypt all data in the database periodically.
+However, this would have a substantial performance cost and the database would probably have to be down during
+this transformation. It's also not clear how such a system would defend against "threat 2" style attacks,
+where the attacker has compromised the proxy. At the point of re-encryption, the attacker would now
+potentially see all data in the database.  There may be more subtle schemes that involve incremental key
+rotation, etc., but those aren't "straightforward" extensions of CryptDB, but probably new research. Also,
+what are the goals of systems papers and how do they fit into the "system" of global IT advancement? I'm
+having trouble figuring out what makes a paper good. For example, would a paper that undersells a great design
+idea be bad?    The goal of a systems paper is, generally, to describe one or more intellectual insight(s)
+that solve an important challenge by enabling a new practical system design. A good paper attacks a concrete,
+relevant problem, contributes one or more new ideas, and involves a practical realization of these ideas
+(usually through a prototype). At the same time, a good paper must be scientifically rigorous in terms of
+citing related work, running the right experiments and reporting their results accurately, and clearly stating
+the ideas' and prototype's limitations. So a good paper definitely should not oversell; underselling is less
+problematic, as the reader can presumably still recognize a good idea, but a good paper will make clear what
+problem it solves and what's great about its contributions.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 9:57 PM Anonymous wrote:
+> As one new to the research area in computer science, I am curious about the general strategy of reading
+> research papers, especially as to how to deal with the concepts/technical details one is not familiar with,
+> such as cryptography; how to use energy/time wisely to capture the important information versus the less
+> important details, and how to distinguish between the two.
+
+This requires practice -- you definitely don't want to get bogged down in the details on a first read, but
+instead try to extract the key idea from the paper. Here's some advice on paper reading from the notes of our
+first class meeting (http://cs.brown.edu/courses/csci2390/notes/m01-intro.txt):
+
+Paper reading research papers dense and can be tough reads allow at least 1-2 hours per paper you'll get
+better/quicker at this over time technique first pass, 5-10 minutes: get general idea read title, abstract,
+intro, perhaps conclusions second pass, 1 hour+: understand the details what is the problem?  what is the
+solution/approach proposed?  how does it compare with previous work?  how well does it work?  now, make a
+judgement do you like the paper?  do you think its technique works for the application(s) it targets?  do you
+think the system/technique is realistic for practical use?  what issues do you see with the design described?
+what takeaways/ideas are important to remember?  if you are the presenter/lead for a paper, you will want to
+answer the above questions ("second pass") in your presentation, and ensure the judgement questions get
+discussed for more, see for example "How to read a paper" by S. Keshav
+http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf for more on what makes a good
+paper, see "How (and How Not) to Write a Good Systems Paper" by Levin and Redell
+https://www.usenix.org/conference/osdi12/guidelines-authors
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:23 PM Anonymous wrote:
+> I am not very clear on how PRINCTYPEs are used and declared.  1. it seems to me that PRINCTYPE main purpose
+> is to provide a mapping between ENC_FOR and SPEAKS_FOR, are there any other purposes or am I understanding
+> this wrongly?
+
+That is correct according to my understanding. This mapping is important in order for CryptDB to know what key
+chains to build and what keys to store in the "access_keys" table (see §4.2). 2. Consequently, if the above
+understanding is correct, if I only have ENC_FOR annotations but no SPEAKS_FOR annotation, then PRINCTYPE is
+technically redundant?
+
+ENC_FOR needs to specify a principal for whom to encode the field. If you didn't have SPEAKS_FOR annotations,
+the only principal type available would be external users, so you could imagine skipping the "PRINCTYPE
+physical_user EXTERNAL" annotation. On the other hand, once you have any SPEAKS_FOR annotations, you will need
+it in order to indicate where the chain terminates, so having the redundant declaration in your simple case
+makes for a more general system design.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:04 PM Anonymous wrote:
+> I am still confused about how each encryption function could preserve the expected function, such as
+> equality check, order check, pattern matching and add operation in normal SQL.
+
+This is a property of the encryption function used. Consider this example (not an encryption function, but
+illustrates the point): you pass a plaintext string "secret" through a cryptographically-secure, but
+deterministic hash function (such as SHA-256), and get something like "b37e50c...". Any column with a value of
+"secret" will yield "b37e50c...", so you can use the hashes for equality comparison without revealing the
+actual data. There are encryption functions that have similar properties, but also preserve the actual data
+(which a hash does not).
+
+> And would the proxy become a bottleneck on performance?
+
+With many clients, it could be, but you could easily run multiple proxies and load-balance user sessions
+across them. In fact, such a plan would improve security against "threat 2" if only a subset of the proxies is
+compromised.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 9, 2019 at 10:25 PM Anonymous wrote:
+> If the user wants to use some operations not mentioned in the paper, for instance: string concatenation, is
+> SEARCH enough for that? Or will that require other kinds of homomorphic encryption schemes?
+
+The paper briefly talks about this in §6 and §8.2: some of these functionalities can be supported by storing
+encrypted versions of substrings or parts of the column data, while others would require precomputing
+additional ciphertexts, and yet others would require additional homomorphic encryption schemes. From what I
+can tell, string concatenation isn't something CryptDB can support, except if you're concatenating two
+predefined columns or a predefined column and a constant, in which case CryptDB can precompute the
+concatenated plaintext and store an encrypted version of it (but it must update it when any column involved
+changes, and there is additional space overhead).
+
+Malte</pre></div>
