@@ -6,7 +6,8 @@ HTML = index.html schedule.html projects.html details.html syllabus.html \
 			 notes/q07-resin.html \
 			 notes/q08-jacqueline.html \
 			 notes/q10-riverbed.html \
-			 notes/q11-cryptdb.html
+			 notes/q11-cryptdb.html \
+			 notes/q12-mylar.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl
 

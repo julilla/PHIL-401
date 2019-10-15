@@ -1,0 +1,149 @@
+<h2>MTG 12 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 14, 2019 at 10:43 PM Anonymous wrote:
+> On page 158, it says "We also evaluated the performance of Mylar on three of the applications above. For
+> example, for kChat, our results show that Mylar incurs modest overheads: a 17% throughput reduction and a 50
+> msec latency increase for the most common operation (sending a message).", and then it says "These results
+> suggest that Mylar is a good fit for multi-user web applications with data sharing."
+
+> I am curious as here it only reports the measure for one example (kChat), without mentioning the results for
+> the other two. I was wondering whether just by listing this one example can sufficiently show "These results
+> suggest that Mylar is a good fit for multi-user web applications with data sharing"? I am curious of the
+> performance of the other two examples.
+
+The performance numbers for the other examples are in the evaluation section, and while they show somewhat
+higher overheads, they're also smaller-scale applications than kChat, and the numbers could arguably still be
+characterized as "reasonable" (1-2 seconds, not minutes, in the worst case). So the claim seems fine: it
+signposts that the kChat numbers are an example, it uses the largest-scale and most realistic benchmark's
+headline results, and it indicates that other results exist and will be discussed, and that they're in support
+of the thesis ("[T]hat Mylar is a good fit ..."). Of course there is some interpretative ambiguity, and the
+reader still needs to make a judgement as to whether they agree :-)
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 12:02 AM Anonymous wrote:
+> Any example of a certification graph? It seems there is a relationship built with the chatroom name and user
+> principal. What does the certification chain look like?
+
+The purpose of certification is to ensure *integrity* of the wrapped keys (i.e., server-supplied encrypted
+keys for principals other than end-users). A certificate makes one principal "vouch" that a key supplied for
+another principal is indeed tied to that principal.
+
+In the example, if Alice creates the "party" chat room, she creates a room principal, say P. She encrypts P's
+private key using her public key, creating a wrapped key for Alice (wK_A). When she invites Bob to the chat
+room, Alice's *client* code retrieves P's private key from her wrapped key, and encrypts it using Bob's public
+key, creating another wrapped key for Bob (wK_B). Bob can download that wrapped key from the server, decrypt
+(unwrap) it using his private key, and thus obtain the private key for P, the "party" chatroom.
+
+What are possible attacks here?
+1. A malicious server may supply wK_EVIL instead of wK_B when Bob asks for his wrapped key.
+2. A malicious server may supply Alice with an evil public key instead of Bob's public key, so that what
+Alice believes to be wK_B is actually wK_EVIL.
+
+The certification graph protects against these attacks. First, a certificate signed by Bob attests to what his
+actual public key is, preventing attack 2. Second, Alice generates and signs with her private key a
+certificate when creating wK_B, stating that "I, Alice (public key ...), certify that wK_B is the wrapped key
+for Bob's public key, which is ...". Now, when the server supplies wK_EVIL instead of wK_B in attack 1, Bob
+can check the certificate and see that he's being tricked.
+
+So the certification graph's edges here are:
+Alice's public key certificate -> Alice's principal
+Bob's public key certificate -> Bob's principal
+Alice principal -> wK_B certificate for "party" chatroom, P
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 12:10 AM Anonymous wrote:
+> Can we go over how the auth-set annotation is used with an example?
+
+Of course! There's also an example on the fourth line of Figure 6. auth_set() ties data to the principal whose
+key it will be encrypted with.
+
+> I wonder whether having users choose the certification path is a desired user experience?
+
+I think the idea here is not that the user specifies the whole path, but rather than Mylar presents the path
+and the user verifies that it looks sound. This is the same concept as how HTTPS certificates work: if you
+click on the lock icon in your browser and view the certificate details ("Certificate" -> "Details" ->
+"Certificate Hierarchy" in Chrome), you see the certification chain for the website and can check if you trust
+each entity in that chain. Mylar proposes to do the same for page content.
+
+> Can we go over what constitutes an arbitrary server compromise?
+
+The idea here is that the adversary is in full control of the server, i.e., they have root on the server and
+can change anything they like. This is a very strong threat model, though note that Mylar cannot (and does not
+aim to) protect against the adversary simply deleting all data or rolling it back to an old version.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 12:15 AM Anonymous wrote:
+> The authors seems to be really keen on supporting search but not other operations like joins, counting,
+> aggregation etc.
+>
+> I'm curious as too whether the reason is more likely because they don't know how to support it or do not
+> want to?
+
+A bit of both, I suspect!
+
+The Meteor application model already does these operations on the client side (because Meteor assumes NoSQL
+databases, which often don't support traditional joins), so a Mylar built on Meteor doesn't need to handle
+them on the server side.
+
+On the other hand, it seems quite difficult to do a join across data encrypted with different keys, so
+technical limitations also play a role.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 12:18 AM Anonymous wrote:
+> 1. How common is the Meteor-style architecture for web applications?
+
+Not as ubiquitous by now as the authors perhaps anticipated, but some websites and web frameworks have adopted
+similar approaches. For example, AngularJS and React also run much application logic in client-side
+JavaScript.
+
+> 2. In the access graph, why is the access transitive? If B has access to C and A has access to B why would A
+> need access to C? Is this an artifact of how the underlying crypto works? Or the other way around?
+
+I believe this is a consequence of the design of storing encrypted keys. If A can decrypt B's key in order to
+access shared content, A can also decrypt any key that B can decrypt, thus reaching content shared between B
+and C.
+
+> 3. It would have been nice to have more details about the storage overhead for Mylar with kChat.
+
+According to §9, the space overhead for kChat is 4x when storing 1,000 messages. I agree it would be nice to
+know how that overhead changes as the number of messages changes, though -- hopefully it's a constant overhead
+per message!
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 10:11 AM Anonymous wrote:
+> The paper mentions keyword search as the only supported operation. Is there something I am missing or the
+> operations supported by Mylar is much more restricted than CryptDB?
+
+You're right, it is much more restricted than CryptDB's set of operations. The reason is that data for
+different principals is encrypted with *different* keys; doing server-side operations over data encrypted with
+different keys is challenging, especially with arbitrary server compromises being allowed by Mylar's threat
+model. Hence, Mylar moves a lot of application logic to the client side and only runs otherwise ridiculously
+expensive keyword search on the server side.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Oct 15, 2019 at 12:31 AM Anonymous wrote:
+> From what I gather from the paper, the site owner is detached from the actual affairs of the web application
+> -- all they do is provide assurance that the application code is correct. However, in practice, the site
+> owner may be a participant/member in their own application, yet I believe the paper doesn't explore this
+> idea.
+>
+> Would any complications arise if the site owner were also a user that actively participates in the system?
+
+The "site owner" notion is very much tied to Mylar's code certification, which prevents an evil server from
+substituting compromised JS code for the real application code. So the owner is really the person who writes
+the application code and deploys the application files (including the top-level HTML); independently, the
+server *operator* (say, AWS) may be evil or the server may get compromised.  There are no problems with the
+site owner being a participant in the application -- by being an application principal, the site owner does
+not gain any ability to modify the already-certified code served, and by certifying the code, the site owner
+does not gain any ability to access or modify encrypted data.  Of course, if the site owner maliciously serves
+code that's deliberately broken and e.g., sends the client-side plaintext data to another site or sends it to
+the server without encryption, all bets are off; but this attack is already possible as the site owner can
+certify any code they like.
+
+Malte</pre></div>
