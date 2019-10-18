@@ -1,0 +1,227 @@
+<h2>MTG 13 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 9:19 PM Anonymous wrote:
+> I may have missed this, but how does this system handle data aggregation? For example, let’s say that Piazza
+> wanted to show users the grade distribution of some homework. Then how would it jump from the per-user
+> universe to the base universe while maintaining anonymity? Would it just default to computation in the base
+> universe? If so, how does it know to default there? And how does it know what is potentially malicious
+> aggregated data? For example, I as a student query asking for the grade distribution for HW1 for all
+> student’s named ‘James’ know that (in this imaginary case) there is only 1 other James in the class; then I
+> can infer the other James’s grades since I know mine.
+
+Great question! You could compute this aggregation in two ways:
+  1. In each user universe, over the records they can see (i.e., records that individually pass the policy).
+     This should not leak anything, since if you're allowed to see the individual records by the privacy
+     policy, you're allowed to see the aggregation, as you can just compute the aggregation manually at the
+     client.
+  2. In the global universe, over all records. This requires the aggregation results to pass a policy check
+     when they flow into a user universe, and what the end-user gets to see depends on that policy check.
+
+Which of these happens is down to the policies provided to the system, and to how the query planner decides to
+lay out the query. An aggregation policy (case 2) would certainly need to differentiate between permissible
+queries (e.g., grade histogram for the entire class) and possibly problematic ones (the histogram over the two
+James's).
+
+How to express and consistently enforce aggregation policies (i.e., such that an aggregation result cannot
+contradict the individual records visible in a universe) is an open research question. The current
+MultiverseDB prototype does not have support for aggregation policies yet. 
+
+> — I think what I am trying to ask is ‘How does the system decide when to create new data flows for a query
+> VS just use existing data flows and return results restricted to only a particular universe?
+
+In the current prototype, the system shares any identical prefix of queries' dataflows. This means that it's
+important to push universe-specific operators down as far as possible. For every query, the system adds at
+least one operator (the materialized view). One current research direction is to figure out how to avoid
+adding extra views when two users share the same policies (albeit with possibly different data-dependent
+outcomes), and to instead of have a single view whose read results are restricted by policy (as you suggest).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 9:48 PM Anonymous wrote:
+> I still fail to see how sharing computation still more secure. The point of staying within the multiverse
+> was the security benefits. Of course, sharing computation is done for performance, but isn't placing those
+> results in a shared store a vulnerable technique?
+
+The shared computation still logically maintains different universes. Remember that users can *only* ready
+from materialized views at the bottom of the dataflow, which are unique to them, not from anywhere in the
+graph. If a lazily-evaluated read cascades up the graph and out of a user universe, then the response will
+flow through the policy-enforcing dataflow nodes and customize the data for the user's personalized view.
+
+> I do not understand how there are substantial performance gains from sharing data flow. Why is this if we
+> "can only query its user universe"? If I have 100 entries in a database, with 1 row for each user, then my
+> total computation will be 100 if everyone wants there data at once. If only a few people want their data at
+> once (realistic), I'm asking the database to compute results for a small number of users. Is the overhead
+> that substantial to need to share dataflow?
+
+The gain comes from avoiding repeated computation over the same record. Consider if we branched into 1000
+universes right below the base tables, and each universe computed an identical copy of a complex query with 5
+joins. Now a write to one of those 5 tables results in an incremental update that needs to be sent to 1000
+universes, which each compute 5 joins, yielding 5000 joins' worth of computation. If we share the join between
+all universes and branch into different universes later (therefore applying the privacy policy later), we only
+need to compute 5 joins (1000x less computation).
+
+You are right though that there are is no overhead if all users request strictly disjoint data.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 9:49 PM Anonymous wrote:
+> In the paper, Universe peepholes were briefly discussed, and a potential solution was given by creating a
+> temporary “extension universe” to Alice’s universe and applying a privacy policy that blinds the tokens at
+> that boundary.
+
+> However, wouldnt blinding defeat the purposes of having the peephole in the first place? or maybe if I'm
+> interpreting this wrongly, may I know what blinding means in this context?
+
+The idea here is that it's okay for Bob to impersonate Alice for the purpose of testing out a view of a
+profile or page, but that there is certain sensitive information of Alice's that Bob should not able to view
+that way (such as the access tokens). You could do this by taking Alice's universe and extending it with a
+universe that depends on Alice's universe (thus enforcing all of Alice's policies) and then enforces an extra
+policy of rewriting tokens to "xxx" (= blinding) on the results.
+
+Another interesting idea (suggested by another 2390 student) is to enforce Bob's policies on top of Alice's
+universe. In Facebook, a "View Bob's profile as Alice" feature should always show *less* information than Bob
+himself can see, never more. In particular, this approach would enforce the policy that Bob can only see his
+own access tokens, though it could get confusing if he sees them while he believes to be seeing what Alice
+sees!
+
+> Also, is the prototype implementation open-source? May I get a link to the repo?
+
+Of course! It's part of the Noria code base (https://github.com/mit-pdos/noria);
+noria-benchmarks/securecrp and noria-benchmarks/piazza have the example applications.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 10:07 PM Anonymous wrote:
+> I am curious about the principles on lazy computing, I guess the application developer can decide which
+> dataflow operators to compute when writing happens, and which will not be computed unless a read query
+> occurs?
+
+Correct, at least for the current prototype. The developer can specify a "materialization frontier", which is
+a line through the dataflow below which all computation is lazy (on read) and nothing is stored in memory, but
+above which normal Noria rules (partial state, some operators have full state) apply. Ultimately, you would
+want this choice to be automated, however -- it seems unlikely that application developers will be in a good
+place to judge what operators should be processed eagerly and which should be processed lazily.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 10:49 PM Anonymous wrote:
+> In the subsection "Sharing between queries." of section 4.2, the paper marks that "In this example, a
+> privacy policy (which depends only on data in the group columns preserved by the sum)". Is the proposed
+> mechanism of sharing between query restricted to privacy policy that are based on fields preserved at
+> preceding operators?
+
+In most cases, yes. Sharing an operator often means that it needs to be ordered before the policy-enforcement
+operators in the dataflow. But it's important that the shared operator does not eliminate information in the
+records that a later policy enforcement operator needs. For example, if a shared projection operator dropped a
+column that the privacy policy considers in deciding whether to filter a row, it would no longer be possible
+to apply the policy. In the example, the crucial part is that the policy depends on the *group by* column,
+which the aggregation operator preserves, rather than on the column that the SUM operator computes on. For
+example, a policy that anonymizes all salaries below $100k cannot be applied after an operator that computes
+the average salary by ZIP code, as that operator's output lacks the individual salary information.
+
+An exception to this is if you are able to share the policy-enforcing operators themselves between universes
+(e.g., because they are subject to the same policy). Subsequent operators can be shared in that case.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 17, 2019 at 1:01 AM Anonymous wrote:
+> 1. For partial materialization, is the database given preprogrammed query statistics or is it possible to
+> think of it learning patterns given the workload?
+
+It's currently preprogrammed in the prototype, but that would be a plausible and interesting extension!
+
+> 2. How does the system decide where to draw the universe boundaries i.e. how far down it can be pushed?
+
+In principle, it should try to rewrite queries such that the specialization (= boundaries) can happen as late
+as possible. In the prototype, this merely involves some simple heuristics that decide whether a
+policy-enforcing operator can be pushed past another operator. We're currently rewriting that query planning
+code from the ground up to better cover complex cases! Some rules include that you cannot push a
+policy-enforcing operator (~= universe boundary) past an operator that eliminates data that the policy needs,
+and that widely-shared policies can profitably be applied early (as much downstream computation can still be
+shared), but highly-specific policies (e.g., filters dependent on user ID) should happen late. 
+
+> 3. Which of the extensions is currently being worked on?
+
+We're currently working actively on write policy support, but in principle I want to do all of the extensions
+eventually :-)
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 17, 2019 at 5:34 AM Anonymous wrote:
+> The concept of universe peepholes, or "impersonation", is very interesting to me. Since the idea behind
+> Facebook's "View As" feature is so that Bob can view his profile from the point of view of Alice, would it
+> not make sense to just add an additional enforcement node that applies Alice's policy on Bob's existing
+> universe? i.e. filter out records or columns from Bob's universe that Alice is not allowed to view. This
+> way, Bob has no access to Alice's universe at all since he doesn't need it.
+
+This is a clever idea! It works because in Facebook, a "View Bob's profile as Alice" feature should always
+show *less* information than Bob himself can see, never more. In particular, this approach would enforce the
+policy that Bob can only see his own access tokens, and then enforce the policy that Alice can only see *her*
+own access tokens on top of that, yielding no visible access tokens.
+
+With less hierarchical viewing semantics, this would work less well -- for example, if Alice saw some
+(non-sensitive) data that Bob doesn't normally see (e.g., how long she's been friends with Bob being a field
+on her view of Bob's profile). But I like your thinking!
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 17, 2019 at 12:30 PM Anonymous wrote:
+> According to the end of Section 4, it states  "If the system receives  a query for the first  time, it
+> dynamically extend the user universe's dataflow with the required subgraph. Once a query is  installed, its
+> vertices remain in the dataflow..."
+
+> How does the prototype discern differences between queries (which I assume is the basis for how it decides
+> whether or not to spawn a universe)? Does it look at only the structure of the query directly (i.e. check if
+> the strings query1 == query2 (which I'm pretty sure isn't the case))
+
+It's indeed not just string equality. The prototype generates an intermediate representation from the SQL
+query AST. This IR is a DAG of operators, and the prototype then performs a pairwise comparison of the IR
+representations of different queries, trying to identify maximum overlapping prefixes (with some heuristics
+for operators to cover others, e.g., less more more specific filters). There's certainly potential to improve
+on this, since the current only captures queries that have identical dataflows, and does not consider
+rewriting the queries to make them more similar.
+
+> or does it somehow take the query along with the policy of the universe it's heading towards and then
+> perform some analysis of the two together to determine what columns the query is operating on as well as
+> what columns would be marked as sensitive/the presence of in the query, and then from there decide if
+> another universe should be created or not?
+
+This is good thinking -- figuring out if a universe that satisfies the required set of policies already exists
+is a good approach, as we could reuse an existing query in that universe. As it stands, the prototype isn't
+quite that sophisticated: queries are always added into the active user's universe, but share any matching
+prefix within that universe (with other queries by the same user) or across universes (e.g., shared base
+universe operators and group universe dataflow paths).
+
+> tl;dr : I guess my general question is: given a policy and a query, how does  the prototype know when to
+> make a universe?
+
+It always makes one when a user logs in! But we've come to conclude that this isn't a good design, and that we
+should instead reason about policy equivalence classes and only have one universe per policy equivalence
+class. 
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 17, 2019 at 10:31 AM Anonymous wrote:
+> In what use cases is user data isolation important enough to justify the space and time overhead?
+
+When the consequences of a frontend bug are sufficiently terrible to make it worthwhile ;-)
+
+In practice, the multiverse approach likely works well for:
+  1) applications with relatively little user-specific data and policies (so most data can be shared across
+   universes, with small but important exceptions);
+  2) applications where the data for different users is completely disjoint (so universes don't overlap and
+     there's no redundant data/work); and
+  3) applications that already need to do user-specific caching (e.g., social networks).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 16, 2019 at 10:59 PM Anonymous wrote:
+> I am still a little confused about how to determine which nodes can be shared among universes? For the
+> previous question, is it actually ok to share the "group by" node?
+
+Yes, sharing the "count" node (which is also the group by, as count is a grouping operation) is fine in this
+case. This is because the policy just anonymizes posts, but rather than hiding them. As the query does not
+expose the authors of the posts and both anonymous and public posts contribute to the count, this query can be
+shared in its entirety.
+
+Malte </pre></div>
