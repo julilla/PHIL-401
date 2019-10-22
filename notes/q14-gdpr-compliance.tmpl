@@ -1,0 +1,101 @@
+<h2>MTG 14 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 1:51 PM Anonymous wrote:
+> Both papers did not discuss how access control, one of the GDPR requirements, can be achieved, though CbyC
+> did mention the ramifications of using user shards as being equivalent to access control boundaries. In any
+> case, I feel that using other IFC frameworks that we discussed would be a sensible complement to be composed
+> with either GDPR compliant storage backend. For example, using Jacqueline and specifying access control
+> policies at the model layer (as well as storing and fetching faceted results in the storage backend) could
+> help to provide provable enforcement of access control policies.
+
+Yes, this is a sensible idea! CbyC can only enforce policies on the processing of data within its dataflow;
+extending it into other systems that consume the data is an open problem that solutions like Resin's or
+Jacqueline's may help with. The same applies to the GDPR-compliant Redis in the other paper, with the added
+restriction that Redis itself cannot do much computation on the data at all.  Malte  </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 1:52 PM Anonymous wrote:
+> "Dataflow computations can be sharded, ... making the architecture suitable scaling to large web service".
+> I'd like to discuss what tools will be needed to make sharding practical for large web services.
+
+That sentence refers to sharding subgraphs of the dataflow by key, which allows for data-parallel processing
+(which scales with the data, assuming it's uniformly distributed over keys/users).
+
+> Rendering all of those views still seems like too much work.  Any ongoing efforts to solve that or approach
+> it differently?
+
+In the proposal, not all views need to be maintained in full at all times, as partially-stateful dataflow
+allows lazy computation of rarely accessed data on demand. This is similar to the caching hierarchy of today's
+web services, where e.g., memcached stores derived computations over database contents to satisfy common
+requests, while rare requests are evaluated as much more expensive database queries. The memcached/TAO
+deployments at companies like Facebook are highly sharded today already, which gives some hope that a solution
+amenable to sharding will work well.
+
+Malte  </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 4:30 PM Anonymous wrote:
+> What the schema would be like for database mentioned in "GDPR Compliance by Construction"?
+
+User shards would each have a schema that's perhaps similar, or different, to the database schema we'd use
+today. Over the user shards, the system can compute views that correspond to the normalized tables in today's
+schema, or more application-specific materialized views.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 5:20 PM Anonymous wrote:
+> I am not too familiar with what model serving infrastructure is.
+
+In short: systems for deploying a pre-trained model and running inference (e.g., image classification, text
+prediction, etc.) through that model.
+
+> Is there current work being done/ how far are we in coming to a consensus on a common data description
+> standard for user shard schemas?
+
+No such consensus exists! Right now, companies provide the data in a format of their choosing.
+
+> What is pervasive multiversioning with regards to supporting stronger consistency?
+
+This refers to multiversion concurrency control (MVCC), where multiple versions of a record might exist. For
+example, the count of votes for story A might have been 100 at version 6, but 101 at version 7, and 99 at
+version 10. Each new version corresponds to an update. If the system allows looking up old versions, it can
+compute consistent results even if parts of the system (here, the dataflow) have already advanced to a new
+version.
+
+> Not super familiar with “standing queries” and how they are used in practice.
+
+This is terminology from stream processing; it refers to incrementally-maintained materialized views, i.e.,
+long-term results for a query that are incrementally updated as the underlying data changes.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 8:16 PM Anonymous wrote:
+> As "Analyzing the Impact of GDPR on Storage Systems" points out, the overhead of logging everything that
+> happened (even a read) in both the control plane and data plane seems too large and will penalize the
+> performance badly. However, since this is required by GDPR, does that simply implies that it will be a huge
+> pain to be Fully GDPR compliant since every operation must be persisted onto the disk for future audits? It
+> seems not very feasible for me to become fully GDPR compliant for large internet companies.
+
+This depends on how strict the logging has to be in the face of failures -- something that hasn't been tested
+(in court) with regards to the GDPR yet. Some high-risk, regulated processes (e.g., financial transactions)
+are already subject to stronger legal requirements for persistent logging, even at the cost of performance.
+However, it seems possible to assume that batched logging (i.e., flushing to disk only occasionally) might be
+deemed compliant for most situations.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 8:44 PM Anonymous wrote:
+> Q. If GDPR compliance had to be divided into broad segments, what would be the other components other than
+> storage?
+
+At a guess: consent by the data subject, security of processing and data transfer, and implementation/fines.
+
+> Q. Does the GDPR have any mandate on the ownership of shared data? Have there been 'GDPR property disputes',
+> for lack of a better term?
+
+The GDPR lacks a strict specification of what constitutes "ownership", presumably leaving this to be worked
+out through examples adjudicated in the courts. I found this example related to different interpretations of
+what "information associated with a data subject" should be taken to mean:
+https://www.technologylawdispatch.com/2019/04/in-the-courts/how-not-to-restrict-gdpr-access-requests-in-employment-proceedings-german-court-establishes-high-threshold/.
+Anecdotally, Spotify also appears to have a narrow interpretation that some users have challenged
+successfully: https://twitter.com/steipete/status/1025024813889478656?lang=en.
+
+Malte </pre></div>
