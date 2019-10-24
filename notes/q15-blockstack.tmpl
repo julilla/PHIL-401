@@ -1,39 +1,350 @@
 <h2>MTG 15 student questions</h2>
 
-<div class="responsebox"><pre class="responsepre">
-On Wed, Oct 23, 2019 at 7:31 PM <connor_luckett@brown.edu> wrote:
-> The FAQ says "Users choose a data storage provider when they create an identity".
-> I don't recall having that option, but it sounds as if S3, Google Cloud, etc. are all valid storage systems, and Gaia just runs on top of them and uses them for storing the encrypted data.
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 7:31 PM Anonymous wrote:
+> The FAQ says "Users choose a data storage provider when they create an identity".  I don't recall having
+> that option, but it sounds as if S3, Google Cloud, etc. are all valid storage systems, and Gaia just runs on
+> top of them and uses them for storing the encrypted data.
 
-You can choose a provider under "settings" -> "storage providers" in the Blockstack account (https://browser.blockstack.org/account/storage). This <a href="https://docs.blockstack.org/storage/overview.html#user-control-or-how-is-gaia-decentralized">description</a> suggests that operating a hub involves running both an active component (e.g., a VM) and using a passive storage service on a cloud provider (confirmed for EC2 <a href="https://docs.blockstack.org/storage/amazon-s3-deploy.html">here</a>).
+You can choose a provider under "settings" -> "storage providers" in the Blockstack account
+(https://browser.blockstack.org/account/storage). This <a
+href="https://docs.blockstack.org/storage/overview.html#user-control-or-how-is-gaia-decentralized">description</a>
+suggests that operating a hub involves running both an active component (e.g., a VM) and using a passive
+storage service on a cloud provider (confirmed for EC2 <a
+href="https://docs.blockstack.org/storage/amazon-s3-deploy.html">here</a>).
 
-> One thing that really surprised me about Blockstack was its decision to be built on top of existing Internet protocols. That makes sense. Coming up with new protocols is a lot of work. What surprised me specifically was that this decision would allow ANY web browser to access Blockstack. The closest parallel I can think of would be something like the Tor Browser. In fact, I honestly expected a required USER-END layer to keep security. Would this have added anything?
+> One thing that really surprised me about Blockstack was its decision to be built on top of existing Internet
+> protocols. That makes sense. Coming up with new protocols is a lot of work. What surprised me specifically
+> was that this decision would allow ANY web browser to access Blockstack. The closest parallel I can think of
+> would be something like the Tor Browser. In fact, I honestly expected a required USER-END layer to keep
+> security. Would this have added anything?
 
-There is a client-side story, which involves the private key being stored within client browser (see <a href="https://forum.blockstack.org/t/obtaining-identity-keys-from-the-browser/4663">here</a>), and a JS library referred to in the documentation as the "blockstack browser". This client library accesses the private key and generates from it per-application keys that are then used to encrypt/decrypt the application data. This client-side library is trusted (though it's open source, so you can in theory audit it).
+There is a client-side story, which involves the private key being stored within client browser (see <a
+href="https://forum.blockstack.org/t/obtaining-identity-keys-from-the-browser/4663">here</a>), and a JS
+library referred to in the documentation as the "blockstack browser". This client library accesses the private
+key and generates from it per-application keys that are then used to encrypt/decrypt the application data.
+This client-side library is trusted (though it's open source, so you can in theory audit it).
 
-If your concern is that your browser vendor (e.g., Google) may be trying to attack you, Blockstack indeed does not prevent such an attack, as the browser has access to the plaintext data displayed. That seems hard to avoid though!
+If your concern is that your browser vendor (e.g., Google) may be trying to attack you, Blockstack indeed does
+not prevent such an attack, as the browser has access to the plaintext data displayed. That seems hard to
+avoid though!
 
-> I don't know much about the specifics of blockchain, but isn't using a blockchain-based anything an extreme energy burner? Would the security benefits outweigh the battery drain on our devices or the increased power bill for my desktop?
+> I don't know much about the specifics of blockchain, but isn't using a blockchain-based anything an extreme
+> energy burner? Would the security benefits outweigh the battery drain on our devices or the increased power
+> bill for my desktop?
 
-The energy is not necessarily burned on your device. Bitcoin burns a lot of energy at the "miners" (peers who add blocks to the chain and get paid in bitcoin in return), but not at the clients who submit transactions. However, you do have to pay for transactions to be added to the Bitcoin block chain, so Blockstack is presumably paying a small amount every time they add a name registration.
+The energy is not necessarily burned on your device. Bitcoin burns a lot of energy at the "miners" (peers who
+add blocks to the chain and get paid in bitcoin in return), but not at the clients who submit transactions.
+However, you do have to pay for transactions to be added to the Bitcoin block chain, so Blockstack is
+presumably paying a small amount every time they add a name registration.
 
-> "Blockchains require consensus among large numbers of people, so they can be slow."
-> No kidding. How does this affect video streaming applications (e.g., YouTube)?
+> "Blockchains require consensus among large numbers of people, so they can be slow." No kidding. How does
+> this affect video streaming applications (e.g., YouTube)?
 
-Remember that the blockchain in Blockstack is only required for ID/name registration (which is a rare event). Name registration writes a transaction to the blockchain that contains both a hash of the user's public key and a hash of their zone file, which points to the user profile stored on Gaia. See the example of my Blockstack ID <a href="https://registrar.blockstack.org/v1/names/malteschwarzkopf.id.blockstack">here</a>. This ties a particular user's key pair to a zone file, and thus to a Blockstack ID. The user's public key is stored unencrypted in Gaia, so that it's easily accessible -- in fact, it's part of the profile data (see <a href="https://gaia.blockstack.org/hub/18KqXwkQNEVDacN834YQVWZoCdiFVSa57D/profile.json">here</a> for mine).
+Remember that the blockchain in Blockstack is only required for ID/name registration (which is a rare event).
+Name registration writes a transaction to the blockchain that contains both a hash of the user's public key
+and a hash of their zone file, which points to the user profile stored on Gaia. See the example of my
+Blockstack ID <a href="https://registrar.blockstack.org/v1/names/malteschwarzkopf.id.blockstack">here</a>.
+This ties a particular user's key pair to a zone file, and thus to a Blockstack ID. The user's public key is
+stored unencrypted in Gaia, so that it's easily accessible -- in fact, it's part of the profile data (see <a
+href="https://gaia.blockstack.org/hub/18KqXwkQNEVDacN834YQVWZoCdiFVSa57D/profile.json">here</a> for mine).
 
-Raw application data is only stored in Gaia, and the process of accessing it is explained <a href="https://docs.blockstack.org/storage/overview.html#user-control-or-how-is-gaia-decentralized">here</a> (scroll to below the picture). Users choose where to host their Gaia data (the default is on gaia.blockstack.org, but you can run your own Gaia hub if you're paranoid, or use S3, or Google Cloud, etc.), and the zonefile contains a pointer to the user's profile.json file. That file contains profile information, including where the data for different applications is stored (e.g., in my profile, there are entries for three applications, all pointing to URLs under gaia.blockstack.org/hub).
+Raw application data is only stored in Gaia, and the process of accessing it is explained <a
+href="https://docs.blockstack.org/storage/overview.html#user-control-or-how-is-gaia-decentralized">here</a>
+(scroll to below the picture). Users choose where to host their Gaia data (the default is on
+gaia.blockstack.org, but you can run your own Gaia hub if you're paranoid, or use S3, or Google Cloud, etc.),
+and the zonefile contains a pointer to the user's profile.json file. That file contains profile information,
+including where the data for different applications is stored (e.g., in my profile, there are entries for
+three applications, all pointing to URLs under gaia.blockstack.org/hub).
 
-So for an application like YouTube, the blockchain would not be involved beyond account registration, and certainly not in the actual video streaming.
+So for an application like YouTube, the blockchain would not be involved beyond account registration, and
+certainly not in the actual video streaming.
 
-Malte
-</pre></div>
+Malte </pre></div>
 
-<div class="responsebox"><pre class="responsepre">
-On Wed, Oct 23, 2019 at 8:02 PM <luke_zhu@brown.edu> wrote:
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 8:02 PM Anonymous wrote:
 > Is there a technical reason why the initial load of  https://browser.blockstack.org is so slow?
 
-I'm not 100% sure this is the reason, but the page seems to download a lot of JavaScript. blockstack.js, the main client library, is 1.2 MB in minified form, so one guess would be that the browser needs to JIT-compile a large amount of JS code.
+I'm not 100% sure this is the reason, but the page seems to download a lot of JavaScript. blockstack.js, the
+main client library, is 1.2 MB in minified form, so one guess would be that the browser needs to JIT-compile a
+large amount of JS code.
 
-Malte
-</pre></div>
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 10:32 PM Anonymous wrote:
+> 1. What exactly is the control plane? How does it bootstrap trust?
+
+The blockchain and the Atlas P2P store are considered the control plane of Blockstack. Together, these two
+components bootstrap trust by tying your public key to a specific Blockstack ID and zone file (which contains
+a pointer to where your profile data is in Gaia). This allows other blockstack users to refer to your user ID
+and to know that they will actually access the right data.
+
+Of course you can only completely trust this setup if you manually check that what's written to the Bitcoin
+blockchain is indeed a hash of your public key and your zone file! You can do that, but most people probably
+won't.
+
+> 2. I got a recovery code email after registering, and noticed that I need to enter this code, my email, and
+> my password when I logged in on a different browser. Is this part of the features of decentralizing? Is it
+> just a worse/lazy version of 2FA?
+
+Good observation! The recovery code is actually a seed from which Blockstack deterministically derives your
+private key (in combination with the password). The private key is stored in the browser's local storage, so
+if you switch to a new browser, Blockstack needs to derive that key again.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 10:49 PM Anonymous wrote:
+> * Does every action / change a user makes in an application need resolution in a Blockchain? Can multiple
+> different user actions be tracked in a single block? Figure 7 in the paper makes me wonder if this is the
+> case.
+
+The paper is vague about this, but the documentation has some more detail. In particular, only BNS operations
+like name registrations, transfers, or deletions actually add transactions to a blockchain. Application-level
+operations just modify data in Gaia, including modifying the user profile that's also stored in Gaia. But the
+security of these operations hinges on the user-keypair mapping being nailed down in the blockchain and one
+file. 
+
+> * Is Blockstack GDPR compliant? I would imagine no, because your data can't be destroyed but it is encrypted
+> so ...
+
+It's certainly hard to see how blockchains are compliant with the right to erasure! Even Blockstack, which
+only stores minimal metadata on the blockchain, cannot erase the fact that we've had accounts on Blockstack in
+the past. 
+
+> * Is the application code stored locally? If so, how does that scale? What if I want to belong to a ton of
+> applications?
+
+The JavaScript code is downloaded into the browser and then stored locally. The trust model here isn't
+entirely clear -- in principle, you can audit the JS code that runs in your browser prior to execution, but I
+doubt most people would do that in practice.
+
+> * How would Blockstack revoke someone's group access? Would it take a lot of time for a change like that to
+> propagate?
+
+What kind of group are you thinking of? The group membership in the Blockslack chat is just an
+application-level association, which is quick to remove in Gaia. If you're thinking of some lower-level notion
+of group membership that would involve BNS, the Atlas P2P store and the blockchain, it would indeed take a
+while to remove. But to my knowledge there are no notions of group membership at that level.  Malte * What's
+the incentive for someone to host a Blockstack server?  </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 11:05 PM Anonymous wrote:
+> I am unclear as to when the underlying blockchain(e.g. bitcoin) gets transactions added and what data is
+> actually in the blockchain.
+>
+> 1. From my understanding, the underlying blockchain only stores opcode and hashes of BNS records, is this
+> accurate?
+
+Yes, that is my understanding.
+
+> 2. Consequently, underlying blockchain transactions will only take place when there are new BNS
+> registrations?
+
+Or when BNS records are deleted, or BNS names are transferred, or when public keys for a BNS name change.
+Roughly, whenever BNS data mappings change.
+
+> 3. The authors of the paper mentioned paying 40 bitcoin to register their .id namespace, who is on the
+> receiving end of this 40 bitcoin?
+
+That remained mysterious to me as well. I thought that this maybe was the transaction fee ("to the network")
+they had to pay to have the namespace creation logged on the Bitcoin blockchain, but that seems like a very
+high price for that. It's also confusing because it's clearly possible today to register an ID under that .id
+namespace for free, even though presumably transactions are still happening on the Bitcoint blockchain to
+store those registrations.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 10:51 PM Anonymous wrote:
+> There are similar ideas like ZeroNet or IPFS which also involve p2p networks. I think one of the problems
+> with P2P networks for individuals is that most people's home network configuaration uses NAT and this will
+> pose problem like NAT hole punching. People will end up using "frontpage for ZeroNet" which has a public IP,
+> which in my opinion, essentially brings Google back and make the network centralized (to some extent, as
+> people are having a well-known entry to the network). This is rather a philosophical concern than a
+> technical one, but can we really build a decentralized network?
+
+Your argument is persuasive as far as these P2P services are concerned. Blockstack, however, does not use P2P
+in the main application data plane, so you could see it as an attempt to work around these problems. In
+Blockstack, the P2P network is only used to serve zone files that map names to Gaia storage location (attested
+by public key hash and zone file hash on a blockchain). Most application-level interactions happen just with
+Gaia storage and do not require writing to the P2P network or the blockchain.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Oct 23, 2019 at 11:10 PM Anonymous wrote:
+> Is GDPR compliance easily achievable using Blockstack? If so, why do we bother designing so many policies
+> and mechanisms to support that requirement instead of using Blockstack?
+
+It's certainly hard to see how the blockchain part of Blockstack can be compliant with the GDPR's right to
+erasure! Even though Blockstack only stores minimal metadata on the blockchain, cannot erase the fact that
+someone has had an account on Blockstack in the past.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 24, 2019 at 12:28 AM Anonymous wrote:
+> 1. When I filed a request to join the group I saw this message in the console - Could not update watchlist
+> for feeds from malteschwarzkopf.id.blockstack (not published) - after failed gets and 404 errors. What does
+> this mean? Will the blockslack requests ever time out? The error kept coming up constantly.
+
+I think this is a bug in the Blockslack application.
+
+> 2. Does blockstack envision that the costs of running the blockchain will be borne by the apps? Or who will
+> be the participants in the blockchain itself?
+
+This seems unclear as of now. However, the only operation that involves blockchain transactions in Blockstack
+is the registration of names. You could imagine Blockstack charging to reserve a name, just like domain
+registrars do on the internet today. This way, application developers (who want to reserve a name for their
+application) and users (who want to reserve a username) would pay the cost of the Blockchain transactions.
+
+> 3. Are virtualchains useful because they provide a way to capture the valid state of the blockchain and
+> hence it can be migrated to another blockchain to start from the preserved state? Why do they call it a
+> 'state machine'?
+
+The virtualchain discussion in the paper seems like a distraction to me. However, you're right that it is
+intended to allow "piggy-backing" on established blockchains and for portability across blockchains. The
+"state machine" part refers to something else: it refers to BNS state transitions (e.g., name registered, name
+deleted, name ownership transferred) that are encoded in blockchain transactions.
+
+> 4. When they talk about users preregistering names (3.1) they say they have a preregister phase so attackers
+> can't race users in the register phase. Wouldn't that just shift the race issues to the preregister phase?
+
+I had the same question. I don't know how a race in the preregistration phase is prevented!
+
+> 5. What exactly is the file that is being fetched and written when we access Blockslack? Is this the same as
+> my zone file?
+
+A user's zone file is only written when they register new names or when they change their Gaia storage
+locations (which the zone file points to).
+
+> 6. How would a user of Blockslack have access to the profile.json to change the GaiaHub?
+
+You can choose a provider under "settings" -> "storage providers" in the Blockstack account
+(https://browser.blockstack.org/account/storage). This description suggests that operating a hub involves
+running both an active component (e.g., a VM) and using a passive storage service on a cloud provider
+(confirmed for EC2 here).
+
+> 7. How many users does Blockstack have? Is it becoming popular? How big would their system be if they had to
+>support the Internet as it is today?
+
+It's not entirely clear -- the 2017 paper claims 70k registered "domains" (most of which are likely user IDs),
+which seems modest. https://blockstack.org/about claims 270 applications and "8,000+ active developers", so
+maybe there has been some growth.
+
+Supporting the internet as it is today would require (based on googling some statistics) Blockstack to handle
+~393 million domains for websites/applications, plus IDs for each user (~2+ billion or so).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 24, 2019 at 12:33 AM Anonymous wrote:
+> When does the zone file get created?
+
+When you sign up for a blockstack ID.
+
+> In the debugger, I see that it r.getFile() get's called, is this corresponding to the zone file? It seems
+> like r.getFile() is called whenever an update is made to the feed in the group chat app. I guess this is
+> since the zone file contains the information for where to read from and write to storage. But this
+> information does not change...?
+
+There are some getFile calls that return 404 errors, which I think are due to bugs in Blockslack.
+
+Looking at the network resources Blockslack accesses when loading and when sending messages, I see requests
+for the zone files of all users who are part of the group chat, and subsequent requests to their profile.json
+files. This is presumably how Blockslack finds the storage locations for different users' message feeds.
+Remember that these locations could have changed while the application is running! (Checking on every message,
+on the other hand, also seems problematic, as you point out.)
+
+> I think I am getting confused with blockstack id and blockchain id. Are these the same thing?
+
+The only operation that involves blockchain transactions in Blockstack is the registration of names (=
+"Blockstack IDs"). There is no "blockchain ID", although registration of a Blockstack ID involves a
+transaction on the blockchain that stores a hash of the user's public key and a hash of their zone file as
+metadata.
+
+> If a zone file corresponds to a blockstack id (and personal data and storage are built around this id), does
+> the zone file contain potentially *all* of the routing information if I were to specify different/my own
+> gaia hubs for separate applications? The paper mentions that zone files are small, but I could imagine they
+> could get very large...
+
+The zone file does not contain this information directly, but it does contain the storage location of your
+Blockstack profile (profile.json). In the profile.json file (which is stored on a Gaia hub somewhere), all
+applications and their storage locations are listed (see "apps").
+
+> How does the profile.json get updated with new services? Does the app that I've joined update my
+> profile.json?
+
+The app invokes a Blockstack API call that authenticates you and displays that "do you want to give
+application X access to ..." dialog box. Once you approve, the blockstack code JS code allocates new storage
+space on your chosen Gaia hab, modifies your profile.json to point to the new application's storage space on
+Gaia, and signs the new profile.json. The application can then read that location from profile.json.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 24, 2019 at 12:41 AM Anonymous wrote:
+> [another student] and I tried out the chat app for a few hours last night, and the least I can say is that
+> it is frustrating. It crashed on me once. Our messages would appear out-of-order. There was noticeable lag
+> while typing and while waiting for your message to appear on the screen (sometimes on the order of multiple
+> seconds).  Correct me if I am wrong, but the blockchain(s) are stored locally. They try to manage their
+> scalability aspirations by having the chains reference off-chain storage (Gaia) via zone files. It seems to
+> me that even without storing all of the actual data, just the size of the metadata etc. will add up. Would
+> you say they overpromise scalability?
+
+The blockchain (and its full history) must be stored locally at any node that wishes to check the legitimacy
+of claimed name mappings returned by Blockstack. Most users (like you and me) will not have a full copy of the
+underlying blockchain (in practice, that's Bitcoin, whose full history comes to hundreds of GB), though we
+could look at websites that publish the chain history to check that the mappings are indeed there.
+
+So: if you're paranoid, you'll indeed have to deal with a lot of metadata.
+
+> Who is paying for the cloud services that store all my data? Sure, maybe the privacy conscious would be
+> willing to shell out the money to protect their data, but the average person is probably OK with Google
+> taking their data in return for free email services and some cloud storage space.
+
+Currently, Blockstack run their own Gaia hub, which they presumably pay for. This is the default storage
+location. If you wanted to migrate to your own Gaia hub on a dedicated machine or on Google Cloud/AWS, you'd
+have to pay for the resources. Most people would probably still use a trusted provider rather than setting
+this all up themselves, but the storage provider (both underlying Google/AWS and the "front" that sells the
+Gaia hub access as a service) don't see any unencrypted data, nor can they serve fake data to you or to other
+on your behalf (due to signatures).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 24, 2019 at 12:59 AM Anonymous wrote:
+> It turns out that users have every hash value in the control plane. Data in the discovery layer and storage
+> layer can't be trusted and everything needs to be checked in the control plane. How can that possibly work?
+
+The control plane associates a user ID with a public key and with a storage location. Once you've checked that
+the public key indeed corresponds to the user ID in question, you can use that public key to decrypt data
+storage in Gaia and trust that it actually comes from the user tied to the Blockstack ID in question. Control
+plane hashes are only needed to tie the zone file (which points to the profile.json file on Gaia) to a public
+key via a blockchain transaction.
+
+> The read/write total order is good but what's that for? Does the order matter that much in blockchain?
+
+It matters, according to the paper, to avoid an attacker stealing a name by later inserting a transaction that
+maps their name to their public key and zone file. If transactions could be reordered, then this attack would
+be possible for recently registered names.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Oct 24, 2019 at 1:42 AM Anonymous wrote:
+> The application doesn't seem to change after entering your name. I tried logging in through chrome (I was
+> using firefox), but it brought me through a complicated reset operations that appeared to log me in to the
+> same account but without my registered ID name. Then blockslack told me I couldn't log in without a name.
+> ¯\_(ツ)_/¯ Maybe I'll try again tomorrow morning.
+
+There seems to be a bug with joining groups. I added you manually, so if you check Blockslack again, you
+should see the CSCI 2390 group.
+
+> They're trying to do a lot of things here and they're claims get lost in the process. On one level the
+> decentralized DNS services seems "good enough" to be an important tool on its own. However, then they go on
+> to build virtual chains  and storage things and a whole "new internet" ( ). They claim "comparable
+> performance to traditional internet services", but...... I think they only back that claim up when they talk
+> about using S3  / dropbox etc as storage.
+
+> I guess my question is I'd like to know how separable / useful using something like a replacement for DNS is
+> vs building a whole new internet. They seem to be kind of jumping the gun and not really backing up some
+> huge claims.
+
+The paper's argument appears to be that trusted naming and resolution of storage locations under user control
+are the essentials needed to build a new kind of decentralized application. I would think of this less as DNS
+itself (which they still need at a lower layer), but rather as application-level data storage and user
+identity mappings.
+
+Malte </pre></div>
