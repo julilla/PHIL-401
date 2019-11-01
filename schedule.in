@@ -253,8 +253,9 @@ LEC
 
 # 17
 LEC
-- Lec: Federated Machine Learning
-- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
+- Lec lzhu7: Federated Machine Learning ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Pref federated: Read [https://arxiv.org/pdf/1902.01046.pdf Federated Learning] (2019)
+#- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
