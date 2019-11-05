@@ -1,0 +1,71 @@
+CSCI 2390 2019 Meeting 16: DIY Hosting
+
+Why are we reading this paper?
+  another take on who controls the code that processes our personal data
+  contrast with other ideas we looked at
+    current state of the art: companies run applications & store data
+    decentralized world (e.g., Blockstack): trust only your browser
+  this paper: pay a little, but get full control
+    with same availability/scaling/backups that cloud services offer
+
+current state of the affairs: Google, etc. control server-side infrastructure
+  store your data on their servers
+    no need to worry about backups, always available => convenient
+    provides nice service, but you have no control over what happens
+      once the data has left your device
+    e.g., Google also runs targeted advertising algorithms
+Blockstack: decentralized, trust only your browser
+  but questions of practicality
+  who pays? if you want control, need to pay for Gaia VM + storage
+
+key ingredient: "serverless" functions
+  offered through Amazon (Lambda), Azure (serverless functions), Google Cloud
+    as a way of filling short-term spare capacity on servers
+    function starts, executes, exits
+    thus, no need to preempt VMs when more resources needed: just wait for
+      some serverless functions to complete and then accept no more
+  developer must write function in supported language
+    ex: Java, Go, C#, JavaScript, Python
+    Q: what do these have in common?
+    A: all runtime-based languages, which allows restrictions
+      + no arbitrary memory access
+  HTTP/HTTPS "trigger" launches serverless function on request
+    configured ahead of time
+  persistent data and function state need to be written out to storage
+    ex: use S3, DynamoDB, etc.
+  why is this a good/bad design?
+
+DIY hosting
+  idea: use serverless functions to run applications in event-driven way
+  observation: many application (e.g., email server, group chat) are idle
+    most of the time
+  cuts the cost, as aggregate cost of invoking serverless functions is low
+    sub-$1 for most examples in paper
+    though depends on frequency of events
+  user data (e.g., emails, chat msgs) stored encryptedly in cloud storage
+    key held in cloud key management server (e.g., Amazon KMS)
+      trusted, but assumed to be robust and audited
+      contrast w/ Blockstack, where key never leaves the client browser
+  application flow:
+    1. developer writes application as a set of serverless functions
+    2. clients invoke these functions via HTTP requests or network RPCs
+       when relevant events occur
+    3. function starts up, handles request, optionally stores data, dies
+    consequence: pay nothing while nothing is happening!
+      cf. electricity & "computation as a utility" vision
+
+Upsides
+  only need to trust cloud services as utility providers
+  cheap compared to doing everything yourself (as in Blockstack)
+  perhaps better privacy than existing services
+    worse than Blockstack though, as serverless functions on cloud
+      infrastructure see plaintext data
+    but also better usability + scaling, fault tolerance
+
+Downsides
+  possible performance problems and overheads
+    repeated loading and storing of state to/from cloud storage
+    repeated encryption/decryption of state for every function invocation
+    single function as limited resources (ex: up to 3 GB memory with AWS)
+    need to rewrite application from serverless functions, can be hard
+    still costs money (while alternative is free, with worse privacy)
