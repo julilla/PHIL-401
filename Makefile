@@ -10,7 +10,8 @@ HTML = index.html schedule.html projects.html details.html syllabus.html \
 			 notes/q12-mylar.html \
 			 notes/q13-multiversedb.html \
 			 notes/q14-gdpr-compliance.html \
-			 notes/q15-blockstack.html
+			 notes/q15-blockstack.html \
+			 notes/q17-federated-ml.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl
 
