@@ -1,0 +1,194 @@
+<h2>MTG 17 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 3:45 PM Anonymous wrote:
+> I think the responsibility of privacy protection still relies on the companies running the ML algorithms.
+> It's possible for some company to secretly violate user privacy by uploading user's identity information, by
+> modifying the FL runtime and App process. Are the companies assumed to be benevolent?
+
+Yes, benevolence is the assumption here. FL in a setting where the model itself can be malicious and try to
+attack you is a much harder problem. The runtime doesn't even need to upload your data directly; it could
+simply learn a model whose parameters or inference behavior reveals something about the training data on your
+device. The only solution to this appears to be auditing of the models, but that's impractical for most
+people.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 5:46 PM Anonymous wrote:
+> 1. Who defines the population names in the Federated Learning system and sets up the relevant logic? Can
+> anyone who follows their guidelines add a population name?
+
+The company operating the FL infrastructure (both server-side and on the device) sets up these things; in
+practice, that's Google for Android phones, Apple for iPhones, etc. In practice, that means that any engineer
+at these companies can in principle add a population name and run federated ML; the companies need to do
+internal vetting to ensure nothing untoward happens.
+
+Other companies could set up similar infrastructure if they got the necessary software installed on devices,
+and you'd likewise trust their employees.
+
+> 2. Has there been any follow-up work on bias in Federated Learning? It would be very interesting to see what
+> kinds of biases arise from the conditions they place on the phones that can participate (charging, idle,
+> connected to WiFi)
+
+Not that I know of, but intuitively it seems likely that there's a degree of implicit bias towards devices in
+affluent western countries with regular charging patterns. (The requirement of the device having at least 2 GB
+of RAM also excludes many cheaper and older devices, though that problem may go away over time.)
+
+> 3. It would have been nice to have power and resource consumption details -- they say at some point that it
+> is resource-heavy but no specifics are offered. Presumably this is why they have the conditions on the
+> phones that can participate but maybe there is possible follow up work in reducing these overheads so these
+> conditions can be relaxed.
+
+The specific power draw depends on the model, which is why they're vague. Note that their system just sends a
+subset of a Tensorflow model graph to the device; depending on how large this graph is, what operators it
+contains, what data they run over, and what hardware acceleration is available on the device the specific
+power draw can vary. Consequently, they take a reactive approach and stop running an FL task (or avoid
+assigning more) if a power budget on the device has been exceeded.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 6:22 PM Anonymous wrote:
+> 7.3 is very vague.  How do we know if the code was built from "auditable, peer-reviewed code"?  This is an
+> internal thing at Google, right?  One cannot make those guarantees outside of Google, right?
+
+Correct. I assume they refer to code stored in Google's main code repository -- in other words, the model
+deployment specifies a path in that repo where the code is to be found. Since code can only be merged into
+this repo if it has been peer-reviewed and received approval from some number of engineers with the right
+privileges, downloading the model code from the repo assures that someone other than the engineer deploying
+the federated ML task has seen what's going on.
+
+Outside of Google, no such guarantees could be made without additional process (e.g., models have to come from
+a GitHub repo with strict merge review policies).
+
+Malte  </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 8:29 PM Anonymous wrote:
+> Can the server side cheat by taking very biased samples? Let's say that the "selection" mechanism only
+> targets employees of an organization and makes a text prediction model of their emails. Is there any
+> guarantee that the selection will not be malicious?
+
+There is no such guarantee beyond auditing of the selection code. It sounds like that code is generic -- i.e.,
+all models use the same selection code based on reservoir sampling, rather than each model supplying its own
+selection logic. Consequently, there is some protection against rogue employees trying to skew the selection
+for nefarious purposes. If the company running the FL infrastructure is malicious, they can pull off such an
+attack, though.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 9:16 PM Anonymous wrote:
+> In the paper, the authors state the following "If enough devices report in time, the round will be
+> successfully completed and the server will update its global model, otherwise the round is abandoned."
+
+> why is this the case? In other words, why is there a need to set an "enough" threshold, why not just
+> aggregate those that report in time regardless of how many there were?
+
+Two reasons:
+
+ 1. If using the secure aggregation protocol, the server can only decrypt the aggregated result if a minimum
+ number of devices contributed a result in the commit phase (see https://dl.acm.org/citation.cfm?id=3133982
+ for the details).  2. Even without the secure aggregation protocol, the round may need aborting if only a
+ small number of devices respond, as their parameter updates may skew the model too much if the responding
+ devices are all subject to the same bias. With many devices, such bias is far less likely.
+
+Malte  </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 9:40 PM Anonymous wrote:
+> My understanding of the secure aggregation protocol is that if a device fails to report (stage 3 in a round)
+> their model update to one of the many Aggregators, that Aggregator’s entire aggregation will fail and it
+> will report nothing to the Master Aggregator. Of course, there are many Aggregators, and hopefully at least
+> the minimum will report to the Master Aggregator. If my understanding of the system is correct, isn’t this
+> terrible fault tolerance? So much data could be missed out on because single devices across Aggregators
+> could fall to report. If my understanding isn’t correct, how does the protocol accommodate device dropouts?
+
+That's not my understanding; specifically, §6 says that the secure aggregation protocol is designed such
+that progress is possible "so long as a sufficient number of the devices who started to [sic] protocol survive
+through the Finalization phase, the entire protocol succeeds".
+
+§4.4 discusses fault tolerance of the system independent of the secure aggregation protocol, and suggests that
+the approach to selector/aggregator failures is to continue as long as sufficiently many devices manage to
+submit responses, and to restart the around otherwise. A single device failure does not cause a round restart
+though.
+
+> How does the Master Aggregator decide when and how to make Aggregators, and how does a Selector define the
+> data passed to an Aggregator? If a Google employee has governance over this, can’t one define a sort of
+> singleton Aggregator to find out what a user’s report was? If there is a requirement for the number of
+> people in an Aggregator, can’t a malicious Google employee put themself in an Aggregator with a few of their
+> friends, calculate the sum of their reports, and derive a targeted user’s data as the result of subtracting
+> the Aggregator’s total from the calculated sum?
+
+My reading is that a Google employee indeed has governance over this, and could in principle do all the things
+you mention. However, it also sounds like much of this code is generic -- i.e., all models use the same code
+to scale the number of selectors/aggregators and assign devices to selectors, rather than each model supplying
+its own logic. Consequently, there is some protection against rogue employees trying to skew the selection for
+nefarious purposes by virtue of requiring approval for changes to that generic code. If the entire company
+running the FL infrastructure is malicious, they can certainly pull off such an attack, though. 
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Mon, Nov 4, 2019 at 10:07 PM Anonymous wrote:
+> The design follows the idea of synchronous training. And one of the reasons is said from secure
+> aggregation(in the "Introduction"). I am still a bit confused about why the secure aggregation would require
+> to do the training in the synchronous approach.
+
+Secure aggregation relies on a homomorphism in vector addition. At an intuitive level, you can think of this
+as the vectors having been noised with additional numbers that mask the true values, but which cancel out when
+the vectors are added. In other words, if we have v_A + noise and v_B + noise', the homomorphism guarantees
+that v_A + noise + v_B + noise' = v_A + v_B. This only works if noise and noise' are complements.
+That property is easy to ensure if v_A and v_B come from the same round, but difficult to ensure across
+rounds.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Nov 5, 2019 at 1:36 AM Anonymous wrote:
+> Q1: In some models like recurrent neural networks (RNNs) where a training timestep requires the result of a
+> previous training timestep, would it be possible that the data from other users may end up on someone else's
+> device as an input to the RNN node? Or is it that FL does not support such neural network architectures?
+
+I imagine that such NN architectures only work if the training timesteps combined are based on data from the
+same user (and thus on the same device).
+
+> Q2: The paper touts that by sending the model itself to and fro devices, so that the device can train the
+> model on the data that lives only on the device. Would it not be possible to reverse engineer the data from
+> the model that a device receives from the server? There are model inversion attacks which have been explored
+> (https://royalsocietypublishing.org/doi/full/10.1098/rsta.2018.0083). Does secure aggregation prevent this?
+
+That seems possible, yes. The approach here is to send a subset of the model's TensorFlow graph representation
+to the device, and this structure is not encrypted or otherwise obfuscated, so someone with a debugger and
+access to the device can likely draw conclusions about what models it is training. In other words, the devices
+are trusted (an assumption that is hard to avoid in an architecture where devices are outside of the control
+of the model engineer). Secure aggregation does not prevent this.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Nov 5, 2019 at 11:36 AM Anonymous wrote:
+> They briefly mention that they use an attestation protocol to weed out malicious devices. They also say
+> talking about non-compromised devices that are poisoning the data are outside the scope of the paper. That's
+> fair, but it seems like a workable problem. With ML you have to have some sort of validation set anyway, so
+> as long as you're validating devices are trusted you should be able to tell if your learning is working. It
+> doesn't really matter if some of your data is bad as long as you know if you are successfully learning.
+
+This is a good analysis. But how do you know that your model hasn't learned anything in addition to what
+you're validating? It might be that your validation set doesn't cover all cases, and someone injecting sybil
+devices has caused the model to make biased decisions in certain corner cases.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Tue, Nov 5, 2019 at 12:37 PM Anonymous wrote:
+> So it seems like Google would (or should) need to have user permission in order for user devices to
+> participate in such a distributed machine learning system. I would think that this permission would likely
+> be specified in an app's Privacy Policy/Terms of Use contracts, which few people read.  If someone *were* to
+> read the contract however, what wording/phrasing should we be looking for that  would indicate that we'd be
+> giving permission to allow this sort of activity to take place on our devices?
+
+I looked over the Google privacy policy (which also covers the Gboard virtual keyboard app) and could not find
+any explicit reference to federated learning on devices. However, it appears that Gboard pops up a dialog box
+when you first use it that says something to the effect of "Help us build a better keyboard" that asks you to
+opt into contributing your keystrokes to anonymized training
+(https://cdn.guidingtech.com/imager/media/assets/208507/Gboard-Android-help-build-a-better-keyboard_935adec67b324b146ff212ec4c69054f.png),
+and I suspect that this is also where you give consent to on-device federated ML. (Consent can be revoked via
+the Gboard settings.)
+
+Also note that Google could, in theory, only train on users in the U.S. -- that way, the consent requirements
+are much laxer, as they would not have to abide by the GDPR. If you travel to Europe and take your phone,
+Google could simply stop sending it federated ML tasks.
+
+Malte </pre></div>
