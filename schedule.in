@@ -261,18 +261,18 @@ LEC
 
 # 18
 LEC
-- Lec: [notes/s18-ryoan.pdf Secure Computation] ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec gmurtaza: [notes/s18-ryoan.pdf Secure Computation] ([http://csci2390-submit.cs.brown.edu/ Questions])
 - Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
 # 19
 LEC
-- Lec: Differential Privacy ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec mgeorge5: [notes/s19-pinq.pdf Differential Privacy] ([http://csci2390-submit.cs.brown.edu/ Questions])
 - Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
 - Prep dp: Read [readings/pinq.pdf PINQ] (2009)
 
 # 20
 LEC
-- Lec: Private Messaging ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec agaidis: Private Messaging ([http://csci2390-submit.cs.brown.edu/ Questions])
 - Prep vuvuzela: Read [readings/vuvuzela.pdf Vuvuzela] (2015)
 
 # 21
@@ -281,28 +281,28 @@ LEC
 
 # 22
 LEC
-- Lec: Keybase and KBFS
+- Lec yyang125: Keybase and KBFS
 - Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
 
 # 23
 LEC
-- Lec: Privacy Policies
+- Lec yren17: Privacy Policies
 - Prep pp1: Read [readings/polisis.pdf Polisis] (2018)
 #- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
 
 # 24
 LEC
-- Lec: Web tracking
+- Lec xwang31: Web tracking
 - Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/trackingexcavator.pdf history of web tracking] (2016)
 
 # 25
 LEC
-- Lec: Device Security
+- Lec ssalman1: Device Security
 - Prep: TBD
 
 # 26
 LEC
-- Lec: Location Security
+- Lec jrolfe: Location Security
 - Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 # 27
