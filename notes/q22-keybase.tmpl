@@ -1,0 +1,237 @@
+<h2>MTG 22 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 7:08 PM Anonymous wrote:
+> Does a username have to be unique? That is, to say, if usernames are unique, then what is the point of the
+> UID? Why is it needed?
+
+I assume UIDs exist in order to avoid having to deal with variable-length username strings in Keybase's
+internal data structures. They also allow potential changes to the username (though that's not supported at
+the moment AFAICT) and meet GDPR pseudonymization requirements.
+
+> In "PGP web of trust", it seems as if there is "trust transitivity".  Sometimes, I'm pressured into
+> friending people on FB.  Then, I'm immediately disappointed in something they post.  Following doesn't seem
+> like something to be taken light-heartedly.  If a friend pressures me to follow them, and I do (even if I
+> don't think much of their security habits), am I putting my other followers at risk?
+
+Yes, somewhat. If you carelessly follow people on Keybase without properly checking their proofs, you attest
+that things looked good at the point you followed this person. For example, if a new account "bob" associated
+with a Twitter proof for "@bob1337" followed me and I didn't check that @bob1337 is actually an account owned
+by the Bob I believe the Keybase user "bob" to correspond to, then I have falsely attested that they are
+indeed the same person. Other people who later follow them may see this as an endorsement of @bob1337, and
+also follow him. @bob1337 may then later start spreading conspiracy theories, impersonating well-respected
+real-world Bob.
+
+So: you don't put *your* other followers at risk, but you do put other Keybase users who may follow the same
+account at risk.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 7:21 PM Anonymous wrote:
+> Thinking about the scenario discussed in the previous question where my device is stolen, I think we
+> probably need full-disk encryption, will that suffice (I am inclining to yes)?
+
+Remember that KBFS stores very little data locally on the device (by design). So ideally once you revoke the
+device from your sigchain, the attacker should no longer be able to access your data on the servers. This is
+ensured not by cryptography, but by server-side access control that checks whether the connecting device is
+still in your sigchain. In addition, device revocation causes your per-user key (PUK) to be rotated, so that
+the key material (which *is* on the device) is of no use to the attacker even if they acquired future
+ciphertexts (old ciphertexts remain vulnerable).
+
+> Besides that, everything about Keybase looks satisfying but I am quite concerned about is the passphrase of
+> my keybase account. A passphrase is quite vulnerable, for example it is vulnerable to social engineering
+> attacks. It looks to me that all these approaches that sets up the user identities (for example by writing
+> the merkle tree root to bitcoin) is built upon that the users should be responsible for protecting their
+> passphrase, what concerns me more is that keybase only requires 8 characters for the passphrase at minimum.
+> Is this concern reasonable?
+
+To add another device to your account, Keybase requires more than just the passphrase. In particular, that new
+device's access needs to be bootstrapped via another device (in practice, this involves scanning a QR code off
+the already-authenticated device's screen). Consequently, the attacker needs to both guess your passphrase and
+acquire physical access to one of your Keybase devices.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 9:14 PM Anonymous wrote:
+> I have a concern about the privacy issue of Keybase. It seems that we are able to check what devices others
+> are using for KBFS, each transaction or proof others have made. Will it be a problem for leaking users'
+> private information?
+
+It could be, if users are unaware that this metadata is revealed. For sigchain events, Keybase makes this
+pretty clear.
+
+KBFS does not seem to reveal the device that edited files for me though (neither on the mobile client, nor on
+the desktop client, nor on the command line).
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 9:49 PM Anonymous wrote:
+> I am curious about the relationship between PGP and keybase~
+
+PGP predates Keybase by a long time, but is much harder to use. PGP assumes that its users are well-aware of
+the protocols and cryptographic assumptions behind different actions, and it delegates key management to the
+user. Keybase tries to make fewer assumptions about user knowledge and implements its own key management. 
+
+You can add your PGP public key to your Keybase account to link them together.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 10:20 PM Anonymous wrote:
+> I see that they've raise 10M from https://www.crunchbase.com/organization/keybase and have discussed their
+> plans https://keybase.io/blog/2015-07-15/keybase-raises-series-a. Their plans in 2015 were the following:
+> "In two simple steps: (1) we hope to earn a reputation for creating superior, simple crypto clients.
+
+> Then, (2) some people may turn to us for more advanced, hosted solutions. That could be anything from team
+> management (in the enterprise) to hosting of public, signed files."
+
+> Are things on track so that I don't have to worry about a Keybase EOL?
+
+I don't know, but they are hiring: https://keybase.io/jobs, so it looks like they're doing okay on funding!
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 10:58 PM Anonymous wrote:
+> How does well does this KBFS scale, in terms of size of data and size of trust graph built by all the people
+> following a specific user?
+
+The size of Keybase's trust graph is unrelated to the scalability of KBFS. KBFS folders are either public
+(accessible to everyone, with signed contents), private TLFs (accessible by the users listed in the TLF folder
+name, and encrypted under their keys), or team folders (accessible to all members of a team). Only those
+accounts directly related to a folder matter; their followers play no role in KBFS.
+
+Scalability in data size should be the same as for any distributed file system, with the added benefit that
+individual public, private, and team folders are completely independent in KBFS. This means they can be
+sharded onto different servers, which never need to communicate.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Nov 20, 2019 at 11:24 PM Anonymous wrote:
+> Keybase is pretty neat. Are there any similar competitors out there?
+
+Blockstack would be the most similar design that we've looked at in 2390. There are other companies that offer
+encrypted storage, but none that I'm aware of are trying to build the same kind of all-encompassing encrypted
+ecosystem as Keybase.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Nov 21, 2019 at 12:00 AM Anonymous wrote:
+> I am curious about Sybil attacks in the PGP web of trust. To me, this concept doesn't seem that secure
+> because I can pay Mechanical Turk to make a bunch of fake users in the system all vouching for one another
+> in a PGP web of evil. This can then lead to poor trust decisions as I might convince Bob at a conference
+> that I am trustworthy and now he thinks that my army of fake users are also trustworthy. Does the PGP web of
+> trust concept have a way of dealing with this?
+
+It does not; Bob will take your vouching for the sybils at face value. This is particularly problematic as
+there is no real cost to generating a PGP key, and no auxiliary identity information is available (i.e., if
+you tell Bob that these keys are real people you know, he can only take your word).
+
+Keybase raises the bar a bit here: for Bob to trust your sybils, he would actively have to follow them and
+check their proofs. So to convince him that they're legit, you'd probably want to make fake Twitter accounts,
+GitHub accounts, etc. for each, and also make these accounts look active and real. This takes time and
+resources, and also runs the risk of Twitter's and GitHub's bot detection algorithms finding and deleting your
+sybils (e.g., if you log into 1000 accounts from the same IP address).
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Nov 21, 2019 at 12:21 AM Anonymous wrote:
+> I'm a little unclear about device keys and per-user keys (PUKs).   If a user revokes a device key, would it
+> mean that the identities that were added with the device key are no longer trusted?
+
+That's correct. You would have to re-add these identities (e.g., your Twitter account) with another, unrevoked
+device.
+
+> If a device key is revoked, the per-user key is regenerated. Would files that were encrypted prior to the
+> change in the per-user key be re-encrypted?
+
+My understanding is that they don't get re-encrypted. This is both to save computational effort and because
+the attacker may already have got hold of the ciphertext anyway. Since the attacker has the device key for the
+revoked device, they can decrypt your old PUK (which is encrypted under the device key), and therefore any
+ciphertext that's encrypted either under device key or old PUK. It's impossible to protect old ciphertexts
+that the attacker already has when keys are compromised. KBFS restricts this attack surface by not storing a
+full copy of your KBFS data locally on your device, but streaming it from the server instead (unlike, e.g.,
+Dropbox).
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Nov 21, 2019 at 1:21 AM Anonymous wrote:
+> Is webscraping an effective/extendable mechanism for verifying identities client side? Facebook and I am
+> sure other companies disallow web scraping. I might be confused by what they mean when they say the "client
+> scrapes it" - 'it' being the url passed from the server.
+
+"Scraping" here just means "access via HTTP request". The volume of accesses (which only happen when you
+follow a new user) is likely sufficiently low for Twitter/FB to be unconcerned about this.
+
+> Do you by default sign a snapshot of an identity in subsequent interactions once you have signed it? How
+> does Keybase deal with identity theft - a twitter account gets hacked - the user has just one account and is
+> consequently forced to create a new twitter account -- would this require human review? If the client finds
+> another identity associated with Maria, perhaps this prohibits the user to skip human review and updates the
+> signed snapshot of the identity?
+
+Snapshots are only generated when you follow someone. The idea is that every person who validates another
+account on Keybase when following them will store a snapshot that encodes the status of their identity proofs
+at the time (i.e., a signed statement that "User malte's Twitter account was proven to be @ms705 on 2019-11-20
+at 17:48").  If my Twitter account gets compromised, new follower might detect strange behavior and decide not
+to trust my Keybase account either. To fix this, I can revoke my Twitter proof via Keybase (even without
+having access to the Twitter account) and instead prove a new Twitter account.
+
+> Are snapshots for an identity compared among users since the the greater number of identical snapshots
+>implies correctness.
+
+Snapshots help other users as follows: if you generate the same snapshot of user "malte"'s identities four
+weeks after someone else generated an identical snapshot, Keybase can tell that nothing has changed in the
+last month, which makes it less likely that "malte" is an imposter. (This assumes that the new follower does
+the human verification to see that the @ms705 Twitter account still appears to be under the control of the
+right person.) As user "malte" keeps gaining followers on Keybase, every new follower attest that the account
+is still the same as before and that a human inspected the proofs.
+
+> Where does the user's signature chain live?
+
+It's stored on Keybase's servers. This is okay because its integrity is rooted in the Bitcoin transactions
+that store hashes of the Merkle tree whose leaves are sigchain events for a given user.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Nov 21, 2019 at 10:38 AM Anonymous wrote:
+> 1. How exactly does the paper key work to retrieve keys if all your devices are lost? How can I get a paper
+> key?
+
+The paper key is a last-resort way of proving your identity when adding a new device. So if all of your
+devices are lost, you can still rescue your Keybase account (and maintain access to your data in KBFS, etc.)
+by adding a new device that you authenticate using the paper key.
+
+One way to get a paper key is to run "keybase paperkey" on the command line. Alternatively, the mobile and
+desktop apps have a "Add a device or paper key" button in the device list.
+
+> 2. How can having another device key help me decrypt files created by my lost device?
+
+Private KBFS files are encrypted under per-user-keys (PUKs) or team keys. The private half of the PUK or team
+key is encrypted under each of your device keys, so that another device can obtain the PUK and team key via
+its device key. Revoking a device will rotate your PUK and team keys, so future data will be encrypted under
+new ones (and all remaining devices need to receive new encrypted keys).
+
+> 2. I got an error that sigs.31 was null when I ran the command to check the link-key. However sigs.30 did
+> produce some value but that was not the value we were checking. I ran the node-json tool from a cslab system
+> and the hash-checking on my own Windows machine. Would that be the reason? Shouldn't it have produced the
+> same hash anyway?
+
+The hash is specific to the signature event, so if you ran the Python code for the latest event (the 31st),
+its hash will match only for sigs.31. For modified Python code that looks at the 30th signature (offset 30
+instead of -1), the hashes should match.
+
+> 3. If I had encrypted to the team instead would everyone have been able to read it? In general don't all
+> users of a team have access to team files? If I understand correctly this is how Keybase supports multiple
+> device access?
+
+Yes, all users in the team have access via a shared per-team key. However, this key is rotated every time a
+user leaves the team or revokes a device, as the private team key is stored on that user's devices.
+
+Malte  </pre></div>
