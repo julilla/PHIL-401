@@ -1,0 +1,82 @@
+<h2>MTG 23 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 2:33 PM Anonymous wrote:
+> I don't have a ton of knowledge about NLP. The techniques used in the paper don't seem super relevant to the course, but it might be worth giving context about how novel their implementation is.
+
+I don't think any of them are terribly novel; AIUI the paper's
+contributions are in applying the techniques, not inventing them.
+
+> Since this isn't an AI / NLP class, I'd like it if we could spend most of the class time talking about whether we think this is a good idea/ what could be done with it rather than a lecture on the paper details. For instance, I strongly believe that we'd be much better off holding companies accountable with technical designs rather than scrutinizing legally dubious documents with AI.
+
+That's the plan!
+
+Malte
+</pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 4:14 PM Anonymous wrote:
+> Does incorporating ML this much make sense? I'm not the target audience of this paper but I can't really understand what larger vision this system fits in or how this affects the Security community's perspective.
+
+The paper's claim appears to be that ML is required to achieve this
+type of analysis for the quasi-infinite set of real-world privacy
+policies we have today. If you assume that privacy policies will
+continue to be written in natural language, this seems like a
+reasonable approach.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 4:56 PM Anonymous wrote:
+> Under "Limitations", the authors mention an adversarial-constructed privacy policy.
+> If you release a legally unacceptable privacy policy, then you have exposed yourself to risk.
+> Can this happen (and be legally acceptable)?
+
+I suspect that if someone was actively trying to mislead Polisis, they could construct a legally reasonable and watertight policy that Polisis gets confused by.
+
+> Would you be able to provide an example?
+
+It's likely that Polisis and Pribot react to specific keywords, such as "erase", "delete", "remove" etc. (or "advertise"); it might be possible to write a policy that avoids using those words and still conveys the same meaning. If this happened at scale, it would become somewhat of an arms race, as the authors could presumably add new synonyms to their training set. But if just one company/site did it, it would likely go unnoticed.
+
+Malte
+</pre></div>
+
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 6:16 PM Anonymous wrote:
+> Are their methodologies for creating the Twitter dataset GDPR compliant? Would they have to first get consent from the users before using their tweets to contribute to their dataset of collected questions about company policies?
+
+The paper was published before the GDPR came into force. However, since they are storing data pertaining to particular Twitter users, they do become at the very least a data processor and likely a data controller (even though the tweets are publicly available!). I suspect the user could exercise their rights to access and erasure with regards to the data set the authors make available, although the authors could try invoking one of the scientific research provisions in the GDPR to claim an exemption.
+
+> What data does PriBot train on and how does Polisis guarantee that the dataset does not introduce any bias?
+
+Polisis and PriBot train on the same data. The only difference is that Pribot "probabilistically annotates" the user question with classifier labels that it thinks the question relates to. Any biases present in the dataset (the 130k policies used for the word embedding, and the law students' annotations) will be reflected in Polisis and Pribot.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 8:25 PM Anonymous wrote:
+> The authors mentioned that they test their model on the constructed "Twitter Dataset" which has 182 valid QA pairs and 49 invalid ones. Is this test dataset too small for a deep learning task given my impression that deep learning tasks often have very large datasets?
+
+They only use this dataset for testing, not for training. Training is
+on 130k privacy policies (for the word embedding), and on the 23k
+segements in 115 privacy policies annotated by law school students
+(for the classifier). You're right thought that even these values are
+small compared to other deep learning datasets; remember though that
+Polisis relies on supervised learning, so generating datasets is
+expensive.
+
+Malte
+</pre></div>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Nov 25, 2019 at 10:21 PM Anonymous wrote:
+> Im curious about how GDPR and privacy policies would coexist. For EU businesses, do they need to provide a privacy policy on their website or would GDPR be taken as the default? I guess I'm confused about the role of a privacy policy when GDPR is in effect.
+
+The GDPR is *not* a privacy policy! The GDPR is a regulation (~= a law) that mandates, amongst other things, that sites must have a privacy policy. That policy does need to be GDPR-compliant if the site serves customers in Europe.
+
+Malte
+</pre></div>
