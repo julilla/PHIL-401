@@ -15,6 +15,8 @@ HTML = index.html schedule.html projects.html details.html syllabus.html \
 			 notes/q17-federated-ml.html \
 			 notes/q20-vuvuzela.html \
 			 notes/q22-keybase.html \
+			 notes/q23-polisis.html \
+			 notes/q25-taintdroid.html \
 			 notes/m21-pconf.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl

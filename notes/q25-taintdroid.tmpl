@@ -1,0 +1,165 @@
+<h2>MTG 25 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 2:03 PM Anonymous wrote:
+> I'm still incredibly confused about why TD chooses to propagate the index taint tag to the object reference
+> and not the object value for an object array.  I understand that this is for speed.  They've made that
+> clear.  Unfortunately, this seems like a major source of vulnerability because many people who write Android
+> apps are *cough* not very concerned with security or are unaware of non-secure habits *cough* (getters,
+> setters, private, public, etc.).  Can't I still access the reference from the array, update/record a value,
+> that reference stays the same, and TD would never know?
+
+Even if you access an object's fields directly (i.e., no getter/setter), the iget-op rule in TaintDroid will
+associate the reference's taint with any data retrieved from the object.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 4:56 PM Anonymous wrote:
+> What are the hard problems in taint tracking/IFC?
+
+Overtainting and memory overhead.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 7:31 PM Anonymous wrote:
+> 1. The paper says implicit data flows could be addressed by static-code analysis but they also say that
+> source code for third party applications is typically not available. Even if we could use static analysis,
+> wouldn't this just lead to a race between app developers and TaintDroid style systems?
+
+Yes, that could happen, unless the static analysis is complete and has no corner cases. Apple vets iOS
+applications using static analysis, and there is some evidence that fewer of them leak private information.
+
+> 2. Would it be possible for an Android app to offer at least limited such functionality without having to
+> make changes to the native Android?
+
+If by "such functionality", you mean TaintDroid's tracking implemented as a non-privileged application, that
+seems difficult -- the application would not have access to other application's memory, execution state, or
+their interactions with sensors and the network.
+
+> 3.  I am slightly confused as to why the JNI methods that reference objects cannot be modified to propagate
+> taint, I thought taint could be associated with an object? Also it is unclear if they are currently defining
+> method profiles for these methods and how they do it.
+
+The problem is that TaintDroid can't rewrite the native code inside the JNI method to track the flow of
+taints. If a tainted argument (e.g., an integer or a reference to an object other than then one the JNI method
+is called on) is passed to a JNI method, TaintDroid cannot tell what data is derived from that argument
+because the native code is not instrumentable. 
+
+> 4. Why is propagating taint on a whole parcel instead of individual variables better -- I don't understand
+> how the unpacking into a string would change the taint.
+
+When serialized into a package, taints just become data. The (trusted) deserialization routine receives an
+untrusted target "schema" to deserialize the package into (similar to, e.g., how Protocol Buffers work). A
+malicious schema can force the deserializer to interpret the taint data not as taints, but as (say) characters
+in a string, thus forming an untainted value (albeit with partly garbage content). The package-level taint is
+processed by the deserialization routine, which the TaintDroid developers modify. It's not affected by the
+application-provided schema. (Note: in actual fact, the "serialization" and "deserialization" in Binder appear
+to just involve interpreting the memory bytes according to the schema written in the AIDL.)
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 8:40 PM Anonymous wrote:
+> In the paper, the authors mentioned "we run native code without instrumentation and patch the taint
+> propagation on return". What do they mean by "without instrumentation"?
+
+Without rewriting the native assembly code to track taints.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 11:04 PM Anonymous wrote:
+> Taint analysis seems very promising for protecting sensitive information, I am curious about what could be a
+> good countermeasure for protecting the resources of a mobile device. Maybe a mining script will be included
+> in some malicious binary, is there some effective way to find those? Especially when the mobile devices
+> usually don't have a task manager.
+
+Taint tracking or IFC won't help with this. But you could imagine the OS warning the user if an application is
+using a lot of battery power, sending a lot of data, etc.; newer Android devices already do this out of the
+box.
+
+Malte </pre></div>
+
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Dec 4, 2019 at 11:29 PM Anonymous wrote:
+> Can we touch on the Binder IPC mechanism and what “transparent” message passing means.
+
+I assume it means that the application developer does not need to know the details of how the message passing
+happens under the hood (e.g., serialization/deserialization or memory layout).
+
+> I didn’t quite understand why taint tags are interleaved between registers vs. appended for native methods.
+
+TaintDroid can't rewrite the native code to track the flow of taints, because that code is compiled assembly.
+If a tainted argument (e.g., an integer) is passed to a native method, TaintDroid cannot tell what data is
+derived from that argument because the native code is not instrumented to do the register-level tracking.
+
+> Where are taint tags stored? The paper mentions the VM interpreter’s internal data structures, what does
+> this mean? What are those data structures? My understanding of taint tag storage is a little fuzzy, would be
+> great to go over this.
+On the stack, taints are stored next to the values (Figure 3). For heap objects, my understanding is that they
+are stored in a lookup table indexed by the object reference (the "taint map" in Figure 2); it's not clear if
+this is an actual table or just a logical one and the physical taint is stored as part of the reference
+itself.
+> What are the steps for taint source hook placement?
+
+Manual editing of the Android source code by the TaintDroid developers.
+
+> I’m not sure I understand this: “for example, we do not consider the array length instruction to return a
+> tainted value even if the array is tainted. (why?) Note that the array length is sometimes used to aid
+> direction control flow propagation.” (how/why?)
+
+The length of an array does not reveal the sensitive data stored inside the array, and hence they don't taint
+it. However, you could imagine using the length as a side-channel to infer something about the sensitive data;
+TaintDroid does not address such "implicit" flows.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Dec 5, 2019 at 1:15 AM Anonymous wrote:
+> 1- I'm wondering if ideas similar to what is proposed in Resin or Jacquline could be used in this scenario
+> to achieve privacy using information flow control between the applications?
+
+Resin and Jacqueline require modifications to the application source code, but TaintDroid targets applications
+where no source code is available. With access to the source code, the tracking problem becomes easier -- for
+example, you can use control flow analysis (as the paper alludes).
+
+> 2- It is just a comment: if an app is allowed to use the camera, nowadays photos are labeled with location
+> info, and therefore, the app indirectly can access user's location. It is not clear if TaintDroid could
+> prevent such a thing that might happen in storage level as opposed to main memory level.
+
+It would work. TaintDroid would taint the EXIF information, then the entire image buffer once the EXIF info is
+integrated into it, and then the image file on phone storage.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Dec 5, 2019 at 12:11 AM Anonymous wrote:
+> Are there other papers that copy this idea. I'd love to see a plug in for a web browser client that does
+> something similar for javascript apis. Maybe you could boost a privacy badger style plug in by determining
+> what apis are used and how the data is being sent back. For instance you could tell if a canvas call is used
+> and what url the data is sent to. This could help determine how a 1st party site is tracking you.
+
+That seems like an interesting idea! A quick search for "javascript taint tracking" yields a bunch of papers,
+including this one: https://dl.acm.org/citation.cfm?id=1866339.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Dec 5, 2019 at 1:04 PM Anonymous wrote:
+> (1)How could the TaintDroid detect if the untrusted applications send the privacy-sensitive data to some
+> seemingly innocent destination, which then relay to another service that has privacy issue? 
+
+It cannot. TaintDroid can only tell if and where the information is sent from the mobile device.
+
+> (2)It looks that TaintDroid could track what data sink those privacy-sensitive data will go to. But how
+> TaintDroid could actually detect a suspicious usage of privacy-sensitive data?
+
+TaintDroid doesn't know if the data is used maliciously. Sometimes, however, it is evident from the context:
+e.g., if your location is sent to an ad provider that isn't listed in the privacy policy.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Thu, Dec 5, 2019 at 1:29 PM Anonymous wrote:
+> I am not too familiar with Apple's application vetting process, but it seems to improve the security and
+> privacy of users over Google's play-store. Do you know any statistics regarding the efficacy of Apple's
+> vetting process in detecting and rejecting applications that compromise privacy? I ask this because I am
+> curious about how much something like TaintDroid is even necessary for iOS.
+
+This paper suggests that it works quite well: https://sites.cs.ucsb.edu/~chris/research/doc/ndss11_pios.pdf
+(reference credit: James).
+
+Malte </pre></div>
