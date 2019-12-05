@@ -297,12 +297,12 @@ LEC
 
 # 25
 LEC
-- Lec ssalman1: Device Security ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Lec ssalman1: Device Security ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q25-taintdroid.html Answers])
 - Prep taintdroid: Read [readings/taintdroid.pdf TaintDroid] (2010)
 
 # 26
 LEC
-- Lec jrolfe: Location Security
+- Lec jrolfe: Location Security ([https://csci2390-submit.cs.brown.edu/ Questions])
 - Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 
 # 27
