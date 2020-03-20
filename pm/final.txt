@@ -1,0 +1,3 @@
+* change structure: cover hands-on topics (beacons, Keybase, Blockstack) early in the course
+* start projects earlier
+* less ramp-up material
