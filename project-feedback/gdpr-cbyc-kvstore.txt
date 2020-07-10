@@ -1,0 +1,8 @@
+I enjoyed reading your report! You did a great job rigorously investigating one aspect of a shard-based architecture for GDPR compliance, and I particularly appreciate the attention you paid to realistic data generation, sound benchmarking, and a high-quality writeup. You also motivated the choice of a social networking application very well, recognizing that its collaborative data generation constitutes a challenging case for a sharded architecture. After this proof-of-concept, the main challenges to me seem to lie in generalizing the architecture and abstracting the details away from an application developer.
+
+I gave a project an A overall.
+
+Questions:
+* How much of the sharding does the application developer have to be aware of? If the client code talks to Redis directly, the application developer needs to generate the correct keys, including shard identifiers. Could this be automated and abstracted away from the application developer?
+* I like the Owner/Viewer relationship classification. How does an application developer specify what category a relationship is in, though? I looked through the code and couldn't find anything obvious that specifies this. Especially if a the developer is not writing code directly against a key-value store but against a relational schema, it would be great if the nature of a relationship could be specified declaratively (though that goes beyond your project, of course).
+* What is the bottleneck in accessing the data of a user? In other words, why does it take a minute to retrieve a popular user's posts? (I would guess RPC overhead is significant as each post is retrieved separately, but it'd be good to know for sure.)

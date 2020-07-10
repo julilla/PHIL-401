@@ -1,0 +1,15 @@
+Thank you for the project report! I enjoyed reading about how service mesh features (specifically, mTLS, logging, and per-service proxies) help with GDPR compliance. To improve the project, you could dig deeper into where the performance overhead (or lack thereof) comes from, how per-user policies would be specified and generated, and how the (much harder to support) articles regarding data access and deletion would tie in with service meshes.
+
+I gave the project an A-.
+
+Questions:
+* What is your threat model? Presumably you trust the service mesh implementation and whatever code generates the per-user policies?
+* What is reference [4]? I would like to read it, but the bibliography is incomplete (for this and other references).
+* Some citations are broken [?]. Could you fix these?
+* How would the automated policy generation mentioned in §2.2.2 work? You say that the developer would not need to worry about specifying policies, but presumably they would have to specify *something* in order for policies to be generated.
+* I agree that per-service L7 proxies help with observability, but I'm not sure they trivially address all the articles mentioned. Presumably you would need to modify the proxy to record certain data persistently. What modifications would be needed?
+* What was your performance hypothesis for the experiments? You say that "surprisingly" there was no degradation with 2k rules in the proxy, suggesting that you expected some degradation. What was your ground for this expectation? (It's always good to state these things explicitly in an evaluation.)
+* Could the lack of performance degradation with 100% logging be due to the logs being flushed to disk in batches, rather than by calling fsync(2) as part of every request?
+
+Minor:
+* §4 and §5.0 duplicate information.

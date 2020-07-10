@@ -1,0 +1,14 @@
+Nice project, demo, and writeup! Thank you for your enthusiastic work. You did a great job fleshing out a complete, nuanced design. To improve the report and project, you could more clearly state and define your threat model, and address various edge cases with the blockchain-based design that could still cause problems (e.g., dropping the last entry in a block chain on record transfer).
+
+I gave the project an A overall.
+
+Questions:
+* What constraints and assumptions about the motivations and actions of the different actors involved (patients, physicians, hospital DBAs, hasher organization, etc.) do you make, and why do they make it necessary to use blockchains? I know some of the answers, but it would be great for the report to state these assumptions explicitly, and to tease apart where blockchain use is one of multiple options and where it is essential.
+* §2: some of the description of blockchains here is specific to Bitcoin (e.g., the number of leading zeros in hash-based PoW). I presume your design is compatible with other types of blockchains too (such as proof-of-stake)?
+* What trust assumptions do you make about hospital infrastructure? It seems like the hardware and software involved in processing the private key from a patient card (e.g., QR code scanner, keyboard, OS on physician PC) must not be tampered with in order to avoid theft of the patient private key.
+* In the fleshed-out design, who would operate the blockchain nodes and on which machines, and what threat models apply to those machines?
+* Do hospitals store records of a patient's record transfers? If Alice originally registered with hospital 1, the public blockchain will show that she is registered at H1, even though H1 may have transferred her records to H2. How does H1 know not to admit her until H2 has transferred the records back? If H2 transfers the records to H3, how does H3 know that these records indeed correspond to the Alice who signed up at H1 originally? In other words, how does H3 know that Alice's records were legitimately transferred from H1 to H2?
+
+Minor:
+* Abstract: "affect" -> effect
+* §1: "some where" -> somewhere

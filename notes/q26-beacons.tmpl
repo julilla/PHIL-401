@@ -1,0 +1,22 @@
+<h2>MTG 26 student questions</h2>
+
+<div class="responsebox"><pre class="responsepre">
+On Mon, Dec 9, 2019 at 2:17 PM <marilyn_george@brown.edu> wrote:
+> Mainly have one question, are there bluetooth beacons in Europe? I did not find any results for bluetooth in the enforcement tracker. Are they not covered under the GDPR? Could a bluetooth beacon implement data subject consent?
+
+I expect that most beacon providers will try to shift the responsibility for GDPR compliance (and thus for consent) onto the smartphone app, arguing that the beacon itself does not collect any data or even identify devices. This means that it's the responsibility of the app using a beacon SDK to comply.
+
+But the story may be a bit more murky in practice -- for example, I found this with a quick Google search (Proximi.io is a beacon SDK provider):
+https://proximi.io/proximi-io-friends-with-gdpr/
+
+Reading through this raises a bunch of potentially concerning issues:
+- The beacon SDK provider stores "location data collected for each Visitor ID [including] information about the device’s current and historical location", but remain vague about whether they consider that identifiable information about a data subject ("Proximi.io collects no personally identifiable information", but also "Note that in some legislations the totality of information collected under the Visitor ID is considered as personal information").
+- They don't engage with the fact that they are (at least) a data processor under the GDPR, and correspondingly have responsibilities.
+- They allow subject access and erasure requests from anyone in the organization an app that integrates their SDK, without having any means of checking whether this request actually originates from the relevant data subject.
+- They have questionable security practices: "If you need technical support that requires us accessing your account, you need to give share your password with the staff member for temporary access" (arguably not a GDPR issue).
+- The text under "HOW CAN I GIVE MORE CONTROL FOR THE END USER FOR MANAGING HOW THEIR DATA IS COLLECTED?" effectively says that their customers (the SDK users) *could* choose to implement all sorts of privacy protection mechanisms, but they wash their hands of whether that actually happens.
+
+This is just a random sample, of course, but the bottom line is that beacons raise some challenging GDPR issues, particularly if the SDK provider also stores data about individual devices.
+
+Malte
+</pre></div>

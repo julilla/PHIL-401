@@ -1,0 +1,16 @@
+Nice work! Static enforcement of good behavior on the developer's part is a strong guarantee, and you did a good job investigating what it might take to provide such a guarantee without ignoring the limitations of this approach.
+
+I gave the project an A.
+
+Questions:
+* If a site publishes its privacy policy, who stands to gain? Users have to trust that the server is running the SafeServer stack, unless there is some kind of attestation. The guarantee you can make is "if the server is running the correct SafeServer stack, then the public PP will be enforced" (with SafeServer, the Haskell compiler, and all other server-side code in the TCB).
+* As I understand it, policies in SafeServer are similar to IFC labels or tags. Specifically, a policy itself offers no functionality, just a taint. The developer is responsible for matching policies and endpoints, and it's not possible for the policy itself to effect computation on its contained data (e.g., anonymizing values). Correct?
+* Assuming the above is correct, would it be accurate to describe SafeServer as "a web server with IFC support", which can be used to enforce privacy policies? (As opposed to a toolkit that automatically enforces privacy policies with specific semantics, perhaps drawn from a few supported categories of policy.)
+* What happens if data with different policies is combined (e.g., data from different users)? This could be a sign of a privacy violation, but it could also be required as part of legitimate functionality. How would a SafeServer developer allow such benign cases?
+* What are examples of current ways to "[trick] SafeServer into returning unsafe data"? Would querying the directory size from the OS (e.g., using stat(2)) within a handler implementation fail to compile, or would it work?
+* Could something like SafeServer be built in Rust? Seems like it would be possible with the expressive power of the Rust typesystem; a web server framework similar to Servant also exists (https://rocket.rs).
+
+Minor:
+* Typo: "figure out away" -> "figure out a way"
+* Typo: "correctly build" -> "correctly built"
+* "bug free e.g. not written by the intern." -> should that be "i.e."?

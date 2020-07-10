@@ -1,0 +1,12 @@
+Thank you for the writeup! It's a nice insight that Mylar's APIs can be used to implement the GDPR's consent requirements, and to manage a user's consent grants. However, the project could be improved by generalizing the ideas beyond a single specific prototype application, by stating a clear threat model, by describing the encryption strategy and whether/how it differs from what Mylar already does by default, and by providing a library or an approach that makes it simple for application developers to achieve GDPR compliance without having to understand all the details of Mylar. The research contribution would lie in showing that a Mylar approach combined with new insights yields a simple, practical solution for GDPR consent, and demonstrating that this approach applies broadly to realistic applications.
+
+Overall, I gave the project a B.
+
+Questions:
+* Under what keys are the summaryItem elements actually encrypted? This wasn't clear to me on reading the report. Presumably they would have to be encrypted for every principal (i.e., advertiser) listed in the invitedID field who can view them?
+* How would your approach handle a compromised key? I.e., what would need reencrypting if a user's or advertiser's private key is leaked?
+* "When a new MockBlind user joins the network, all users have to update their wrapped keys and re-encrypt their posts with the newly updated wrapped keys." -- does this mean that reencryption of all data is needed every time a new user joins the system? Why is that the case?
+* What happens when a user changes their consent indication (i.e., when they click a button) to retract consent for an advertiser to access their data? This must involve some kind of operation on the server side, such as removing encrypted summaries, revoking a key, or something else.
+
+Minor:
+* Some of the citations are ill-formatted (extra "(n.d.)", incorrect initials, missing authors)

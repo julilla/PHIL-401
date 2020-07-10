@@ -1,0 +1,19 @@
+Thank you for your writeup!
+
+The project did a good job investigating how proxying beacon connections can improve user privacy, but could have done a better job at figuring out how to turn your insights into a generalizable solution; at stating what constraints are fundamental and which are merely implementation difficulties; and at stating a clear threat model and set of assumptions.
+
+I gave the project a B.
+
+Questions:
+* What is your threat model? The final text in §5 hints at it: the blackbox server and the beacon-using app are trusted, but it would have been good to be clear about this early on.
+* Figure 1 suggests that even without your framework, there is a beacon registration site involved. Is that always true? Could the beacon registration database just be stored on the app developer's servers (e.g., Starbucks has a DB of all its beacons). I agree that in practice there are often 3rd party SDKs or providers involved, but it's important to be precise which parts of the design are choices and which are technical necessities.
+* Are there real-world beacon registration sites? If so, what are they?
+* §3: I'm confused by the example. Does the server not learn that someone is in front of the yoghurt counter? I would think it's fine for the server to learn that *someone* is there, but not *who* is there?
+* What would be needed to turn your implementation into a general library or framework for privacy-preserving beacon use? I understand that you manually modified the application code to talk to your black box server through sockets, but a more general solution would make this part of a beacon SDK, so that it works across applications.
+
+Minor:
+* Typo: "need to do is deploying the beacon" -> deploy
+* Typo: "official cite" -> site
+* Typo: "untraceble" -> untraceable
+* Typo: "can still responds" -> can still respond
+* Typo: "packt" -> packet

@@ -1,0 +1,21 @@
+Nice work! I'm pleased that you were able to incorporate the results from Toledo et al. [13] in your project, even though you only discovered them relatively late. I'm also pleased that you ran a number of empirical performance experiments!
+
+I believe the project has the greatest room for improvement in demonstrating that the comparison between PIR and Tor actually makes sense for a specific threat model. Your writeup lacks a clearly stated threat model and adversary you assume, and it compares techniques that make qualitatively quite different guarantees, so it's important to be clear about the threat model you assume and why both techniques make sense for it (e.g., in the dark pool use case). There is also room for improvement in how you empiricially compared the techniques: in an experiment, you want to hold constant and comparable all factors apart from one variable. This is not the case currently: the PIR and Tor setups use different database sizes, and vary either DB size or hop count, on top of making qualitatively different guarantees. It's hard to draw firm conclusions from such different setups. Finally, there are some unstated assumptions (e.g., how likely a user is to access a DB element).
+
+I gave the project an A-.
+
+Questions:
+* What is your adversary model / threat model? Is it the same for both settings? It seems like there are some adversaries that PIR can defend against, but Tor cannot (e.g., an adversary with a global network view, who can see the paths of all messages).
+* I'm confused about the difference between PIR-IT and CPIR. You say that PIR-IT is impractical is because of its non-collusion assumption (suggesting CPIR lacks this assumption), but then say "In the computational variant of PIR, hardness assumptions are used to reduce the overall computation cost of the server", which suggests that PIR-IT has a *higher* computational cost. If CPIR did not need the non-collusion assumption, and thus provided stronger security, shouldn't it be more expensive?
+* Your argument for why the strong (epsilon, sigma) privacy definition is unsuitable for your use case is not completely clear. In §3, you say: "However, in the case where we are not attempting to achieve anonymous communication, but rather avoid the adversary learning the request for a specific user". How are these different? In anonymous communication, an adversary is either trying to learn a user's message (i.e., request) contents, or they are trying to learn who is talking to whom (meta-data privacy). Both seem like threats you need to defend against: if you know that Goldman Sachs is asking to buy GOOG, their privacy is gone; if you know that Goldmand Sachs is talking to the dark pool and see an order for GOOG, you have the same problem.
+* I don't follow the math at the end of §3. Why is the result \frac{k}{k^n}? This seems to assume that all users select database entries with uniform probability (i.e., each entry has a 1/k likelihood of being chosen by each user). Is that an assumption you're making?
+* What conclusions do you draw from your empirical results? You measured different metrics for PIR (latency as a function of DB size) and Tor (latency and throughput as a function of hop count, but with a much larger 64k database size and different element sizes). Could you, e.g., conclude that for a fixed DB size of 1024 elements, Tor achieves the same median latency as PIR around eight hops? Is latency in Tor independent of DB size?
+* How much does an increased Tor hop count improve privacy?
+* §7.2 mentions "our proofs". Where are they, and what did you prove? Could you send me a copy?
+
+Minor:
+* Typo: "the cryptosystem utilizes by SealPIR" -> utilized
+* Expand FHE abbreviation before using it
+* Typo: "[math]. For a security parameter q." -> "[math] for ..."
+* Typo: "which is then expanded and handler server-side" -> handled
+* Typo: "implememtation" -> implementation
