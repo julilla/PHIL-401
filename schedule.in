@@ -123,36 +123,35 @@ they are not a replacement for attending course meetings.</p>
 
 == Holidays ==
 
-Oct 14, 2019
+Oct 12, 2020
 - Holiday: Indigenous Peoples' Day
 #TUELEC = .
 
-Nov 27, 2019 - Dec 1, 2019
+Nov 3, 2020
+- Holiday: Election Day
+
+Nov 5, 2020
+- Holiday: No class, hack on projects
+
+Nov 25, 2020 - Nov 29, 2020
 - Holiday: Thanksgiving Recess
 
 == Special ==
 
-Sep 4, 2019
+Sep 9, 2020
 - Special: First day of classes
 
-#Oct 1, 2019
+#Oct 1, 2020
 #- Special: ADD DATE
 
-#Oct 18, 2019
+#Oct 18, 2020
 #- Special: <b class="deadline">DROP DATE</b>
 
-# SOSP
-Oct 29, 2019
-- Holiday: No class, hack on projects
-
-Dec 12, 2019
+Dec 4, 2020
 - Special: Last day of classes
 
-#May 23, 2019
-#- Special: <b>Final exam:</b> Emphasis on lectures 11-22 and labs 3-4
-#- Text: <b>Reference:</b> [quiz.html Past quizzes, solutions]
-#- Text: <b>Materials:</b> Open laptop, no Internet
-#- Text: <b>Time and Location:</b> 9am-11am, 10-250
+Dec 7, 2020 - Dec 11, 2020
+- Text: Remote exam period
 
 
 ##################################################################
@@ -164,150 +163,98 @@ LEC = (Tue or Thr) and not Holidays
 # Skip opening convocation
 #Thr
 
-# 01
 LEC
 - Lec ms: [notes/m01-intro.txt Introduction]
 
-# 02
 LEC
-- Lec ms: Datacenter Infrastructure ([https://docs.google.com/forms/d/e/1FAIpQLScuoKi6hp6dQNn0g9_fq6jlfG--rFb3P2rSqD5h0Uf59xUKZQ/viewform Questions], [notes/q02-datacenter.html Answers])
-- Prep wsc: Read [https://www.morganclaypool.com/doi/pdf/10.2200/S00874ED3V01Y201809CAC046 Datacenter Stack] (§2.2-2.6; p18-40)
-- Prep tao: Read [readings/tao.pdf TAO] (2013)
+- Lec: Web tracking ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and TBD (TBD)
 
-# 03
 LEC
-- Lec ms: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
+- Lec: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
-# 04
 LEC
-- Lec ms: Security Architecture ([https://forms.gle/jNQGeFHBYavhx61Q9 Questions])
-- Prep googlesec: Read [https://cloud.google.com/security/infrastructure/design/ Google Security Architecture] (2017)
-#- Prep azuresec: Read [https://docs.microsoft.com/en-us/azure/security/fundamentals/infrastructure Azure infrastructure security] ()
-#- Prep googlegdpr: Read [https://cloud.google.com/security/gdpr/resource-center/pdf/googlecloud_gdpr_whitepaper_618.pdf Google GDPR Whitepaper] (2018)
-#- Prep azuregdpr: Read [https://docs.microsoft.com/en-us/microsoft-365/compliance/gdpr-dsr-azure Azure GDPR subject requests]
+- Lec: Cookies ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Prep cookies: Read TBD (TBD)
 
-# 05
+LEC
+- Lec: [notes/s23-polisis.pdf Privacy Policies] ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q23-polisis.html Answers])
+- Prep pp1: Read [readings/polisis.pdf Polisis] (2018)
+#- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
+
 LEC
 - Lec all: [assign/gdpr-reports.html GDPR Presentations]
 
-# 06
 LEC
-- Lec ilkhechi: [notes/s05-zanzibar.pdf Access Control] ([https://forms.gle/YdMWSCFmDLmV5ntB9 Questions], [notes/q05-zanzibar.html Answers])
-- Prep zanzibar: Read [readings/zanzibar.pdf Zanzibar] (2019)
-# ???
-#- Prep macaroons: Read [readings/macaroons.pdf Macaroons] (2015)
+- Lec: [notes/s15-blockstack.pdf Decentralized Applications] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q15-blockstack.html Answers])
+- Prep blockstack: Read [readings/blockstack-v1.1.pdf Blockstack] (2017)
 
-# 07
 LEC
-- Lec asharma7: [notes/s06-dstar.pdf Information Flow Control] ([https://forms.gle/rVR8Nj7hgL55X3ro7 Questions])
+- Lec: [notes/s06-dstar.pdf Information Flow Control] ([https://forms.gle/rVR8Nj7hgL55X3ro7 Questions])
 - Prep histar: Read [readings/dstar.pdf DStar] (2008)
 
-# 08
 LEC
-- Lec zfeng9: [notes/s07-resin.pdf Applied IFC (1)] ([https://forms.gle/TMCgYy6omd56YtoE6 Questions], [notes/q07-resin.html Answers])
+- Lec: [notes/s07-resin.pdf Applied IFC (1)] ([https://forms.gle/TMCgYy6omd56YtoE6 Questions], [notes/q07-resin.html Answers])
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
-# 09
 LEC
-- Lec awheele9: [notes/s08-jacqueline.pdf Applied IFC (2)] ([https://forms.gle/gX9zvPvEWqYupjD38 Questions], [notes/q08-jacqueline.html Answers])
+- Lec: [notes/s08-jacqueline.pdf Applied IFC (2)] ([https://forms.gle/gX9zvPvEWqYupjD38 Questions], [notes/q08-jacqueline.html Answers])
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 
-# 10
 LEC
-- Lec ja43: [notes/s10-riverbed.pdf Policy Enforcement] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q10-riverbed.html Answers])
+- Lec: [notes/s10-riverbed.pdf Policy Enforcement] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q10-riverbed.html Answers])
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
-# 11
 LEC
-- Lec cluckett: [notes/s11-cryptdb.pdf Encrypted Databases] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q11-cryptdb.html Answers])
+- Lec: [notes/s11-cryptdb.pdf Encrypted Databases] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q11-cryptdb.html Answers])
 - Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
 
-# 12
 LEC
-- Lec tjiansin: [notes/s12-mylar.pdf Web Services over Encrypted Data] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q12-mylar.html Answers])
+- Lec: [notes/s12-mylar.pdf Web Services over Encrypted Data] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q12-mylar.html Answers])
 - Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
 
-# 13
 LEC
-- Lec wyou: [notes/s13-multiversedb.pdf Multiverse Databases] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q13-multiversedb.html Answers])
-- Prep multiversedb: Read [readings/multiversedb.pdf Multiverse Databases] (2019)
+- Lec: Project Conference (I)
 
-# 14
 LEC
-- Lec ilim5: [notes/s14-gdpr-compliance.pdf GDPR Compliance] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q14-gdpr-compliance.html Answers])
+- Lec: [notes/s14-gdpr-compliance.pdf GDPR Compliance] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q14-gdpr-compliance.html Answers])
 - Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems] (2019)
 - Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
-# 15
-LEC
-- Lec zlu24: [notes/s15-blockstack.pdf Decentralized Applications] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q15-blockstack.html Answers])
-- Prep blockstack: Read [readings/blockstack-v1.1.pdf Blockstack] (2017)
+#LEC
+#- Lec ms: [notes/m16-diy-hosting.txt DIY hosting] ([http://csci2390-submit.cs.brown.edu/ Questions])
+#- Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
 
-# (16) -- SOSP
 LEC
-
-# 16
-LEC
-- Lec ms: [notes/m16-diy-hosting.txt DIY hosting] ([http://csci2390-submit.cs.brown.edu/ Questions])
-- Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
-
-# 17
-LEC
-- Lec lzhu7: [notes/s17-federated-learning.pdf Federated Machine Learning] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q17-federated-ml.html Answers])
+- Lec: [notes/s17-federated-learning.pdf Federated Machine Learning] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q17-federated-ml.html Answers])
 - Prep federated: Read [https://arxiv.org/pdf/1902.01046.pdf Federated Learning] (2019)
 #- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
-# 18
 LEC
-- Lec gmurtaza: [notes/s18-ryoan.pdf Secure Computation] ([http://csci2390-submit.cs.brown.edu/ Questions])
-- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
-
-# 19
-LEC
-- Lec mgeorge5: [notes/s19-pinq.pdf Differential Privacy] ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: [notes/s19-pinq.pdf Differential Privacy] ([http://csci2390-submit.cs.brown.edu/ Questions])
 - Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
 - Prep dp: Read [readings/pinq.pdf PINQ] (2009)
 
-# 20
 LEC
-- Lec agaidis: [notes/s20-vuvuzela.pdf Private Messaging] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q20-vuvuzela.html Answers])
-- Prep vuvuzela: Read [readings/vuvuzela.pdf Vuvuzela] (2015)
+- Lec: [notes/s18-ryoan.pdf Secure Computation] ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
-# 21
 LEC
-- Lec: [notes/m21-pconf.html Project conference]
+- Lec: Project Conference (II)
 
-# 22
 LEC
-- Lec yyang125: [notes/s22-keybase.pdf Keybase and KBFS] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q22-keybase.html Answers])
+- Lec: [notes/s22-keybase.pdf Keybase and KBFS] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q22-keybase.html Answers])
 - Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
 
-# 23
 LEC
-- Lec yren17: [notes/s23-polisis.pdf Privacy Policies] ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q23-polisis.html Answers])
-- Prep pp1: Read [readings/polisis.pdf Polisis] (2018)
-#- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
+- Lec: Location Security ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Prep ctracing: Read TBD
+#- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
+#- Prep: Watch [https://www.youtube.com/watch?v=L44m7otNI7o Beacon overview] (optional)
 
-# 24
-LEC
-- Lec xwang31: [notes/s24-tracking.pdf Web tracking] ([https://csci2390-submit.cs.brown.edu/ Questions])
-- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/tracking-excavator.pdf history of web tracking] (2016)
-
-# 25
-LEC
-- Lec ssalman1: Device Security ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q25-taintdroid.html Answers])
-- Prep taintdroid: Read [readings/taintdroid.pdf TaintDroid] (2010)
-
-# 26
-LEC
-- Lec jrolfe: Location Security ([https://csci2390-submit.cs.brown.edu/ Questions])
-- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
-- Prep: Watch [https://www.youtube.com/watch?v=L44m7otNI7o Beacon overview] (optional)
-
-# 27
 LEC
 - Lec all: [assign/reports.html Project presentations]
 - Due: Final project presentation
@@ -316,58 +263,30 @@ LEC
 
 == Labs ==
 
-#Wed
-#- Assign: [labs/lab1.html Lab 1: Web application]
-Thr
+Sep 10, 2020
+- Assign: [assign/gdpr.html Take control of your data!]
 
-Thr
+Sep 16, 2020
+- Due: [https://docs.google.com/spreadsheets/d/1FW2zS3A7wJb_gKgrTRY9nGJLklFCANqNjs7zEcd7bWI/edit#gid=0 Sign up] to present papers
+
+Sep 18, 2020
+- Due: [assign/your-data.html Take control of your data!]
 - Assign: [assign/gdpr.html GDPR case study]
 
-Fri
-
-Wed
-- Due: GDPR case study
-
-Fri
-- Due: [https://docs.google.com/spreadsheets/d/1IpiZYm3tchZ_mQBQ76rv3s1G-qMdYlim8LG9G8NM2Do/edit?usp=sharing Sign up] to present papers
-
-#Tue
-#- Assign: Assignment 2 (TBD)
-
-Fri
-
-#Wed
-#- Due: Assignment 2 (TBD)
-
-Thr
+Sep 25, 2020
+- Due: [assign/gdpr.html GDPR case study]
 - Assign: [projects.html Project proposal]
 
-Thr
-- Due: Project proposal
-#- Due: Lab 2 parts 2+3
+Oct 2, 2020
+- Due: [projects.html Project proposal]
 
-Tue
+Oct 5, 2020
 - Assign: [projects.html Final project]
 
-Fri
+Oct 30, 2020
+- Due: [projects.html Mid-project report]
 
-#Mon
-
-Fri
-
-Fri
-
-Fri
-
-Fri
-
-Fri
-
-Fri
-
-Fri
-
-Mon
+Dec 2, 2020
 - Due: [assign/final-report.html Final project writeup and code]
 
 ##################################################################
