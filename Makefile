@@ -1,5 +1,12 @@
-HTML = index.html schedule.html projects.html details.html syllabus.html \
-			 assign/index.html assign/gdpr.html assign/gdpr-reports.html \
+HTML = index.html \
+			 schedule.html \
+			 projects.html \
+			 details.html \
+			 syllabus.html \
+			 assign/index.html \
+			 assign/gdpr.html \
+			 assign/gdpr-reports-2019.html \
+			 assign/your-data.html \
 			 assign/final-report.html \
 			 assign/reports.html \
 			 notes/q02-datacenter.html \
