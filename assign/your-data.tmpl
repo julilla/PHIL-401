@@ -13,7 +13,7 @@ to their users.</p>
 </ol>
 </p>
 
-<p>Please read the detailed instructions below, as they are designed to help make the assignment easier for you.</p>
+<p>Please read the detailed instructions below, as they are designed to help make the assignment easier for you. As you work through the tasks, you will encounter six questions; please take notes as you go along, as you'll write up your answers in the end.</p>
 
 <h4>Step 1: Investigate ways to get your data</h4>
 
@@ -30,63 +30,56 @@ three things:
 <ol>
  <li>whether the service makes your data available for access and download;
  <li>what data is available; and
- <li>
+ <li>how easy it is to get access.
 </ol>
 </p>
+
+<p>For some large services, you can find instructions online (e.g., <a href="https://www.facebook.com/help/1701730696756992">Facebook</a>, <a href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive">Twitter</a>, <a href="https://help.instagram.com/181231772500920?helpref">Instagram</a>, <a href="https://support.spotify.com/us/article/data-rights-and-privacy-settings/">Spotify</a>), while others may require you to make a request (e.g., <a href="https://policy.pinterest.com/en-gb/privacy-policy#section-your-options">Pinterest</a>, <a href="https://help.netflix.com/en/node/100624">Netflix</a>). For other services, a web search for <em>&quot;&lt;service name&gt; download data&quot;</em> often helps find instructions. Since web services have to provide this information under the GDPR, it can also help to look for GDPR-related instructions (e.g., search for <em>&quot;&lt;service name&gt; GDPR data request&quot;</em>).</p>
+
+<p>In addition, there are sometimes other places where you can view data about yourself. Twitter, for example, gives you the option to request a list of advertisers who have &quot;uploaded&quot;
+your contact details as part of an &quot;audience&quot; (go to &quot;Settings&quot;, &quot;Account&quot;, &quot;Your Twitter Data&quot;, &quot;Interests and ads data&quot;, &quot;Tailored audiences&quot;).</p>
+
+<p>It may also be very interesting to look into smaller sites and services, which are often less well-placed to provide this information. Some may require you to make a manual request (e.g., by email, or postal letter); you're welcome to do so if you'd like, but there is no expectation that you jump through huge hoops for this assignment. If you rely on the GDPR for your request, remember that strictly speaking only users in the EU are able to exercise rights under the GDPR; if you happen to be in a EU country, feel free to do so, but if you are in the US, services do not have to comply with your request under the GDPR.</p>
+
+<p>Make sure to also keep notes on which services <b>do not</b> provide a way to access your data!</p>
 
 <h4>Step 2: Get the information</h4>
 
-<p>Now investigate the case, and take detailed notes on these questions (and other important aspects of the case you come across):</p>
+<p>Now download or request your data. It may take a little while to get it; some services make you wait for anything from minutes to hours or days until they supply you with a file to download.</p>
 
-<ol>
-  <li><em>Who</em> was found guilting of violating the GDPR, and <em>who</em> ordered them fined?
-  <li><em>Why</em> was a fine imposed? Which <em>articles</em> of the GDPR were violated, and by whom?
-  <li><em>What</em> personal data was exposed/mishandled, and in what way?
-  <li>Who are the <em>data subjects</em>, the <em>data controller</em>, and the <em>data processor</em> in this case? Which of the data controller or data processor was fined?
-  <li>What went wrong on a <em>technical</em> level? (The reports often lack details; you may need to make some assumptions about how the infrastructure involved was structured, and what problems occurred that could have resulted in the violation reported.)
-  <li>How could this violation have been <em>prevented</em>? Pay particular attention to <em>technology</em> (e.g., encrypted storage, least-privilege access, storage structure, etc.) that could have prevented the problem, but also to human factors (e.g., better procedures, more oversight, clear guidelines) that could have prevented it.
-  <li>Who caused <em>action</em> to be taken? Did someone complain, or did a regulator take action on their own?
-  <li><em>How rapidly</em> did the regulator act? How much time elapsed between the violation and the fine being imposed?
-  <li><em>How large</em> a fine did the regulator impose?
-  <li>How is the incident or violation <em>explained</em> to lay persons reading about it? How is it explained for a technical audience?
-  <li>What did the violator themselves do to acknowledge the violation, if anything? (Look for press releases from the company concerned, for example.)
-  <li>Was this case purely internal to an EU country, or does it have global significance? Were non-EU citizens affected by the violation? Is the company in question headquartered in the EU, does it have an EU subsidiary, or does it have no relation to the EU other than offering products or services to people in the EU?
-  <li>Has the case concluded? If so, does the final fine paid differ from the fine originally imposed? If not, what is currently happening (appeal, negotiations to reduce the fine, etc.)?
-</ol>
+<div class="alert alert-primary"><b>Question 1:</b> <em>Think about why services take a while to return your data. What technical reasons could there be? What non-technical, policy reasons could there be?</em></div>
 
-<p>Not all cases are equally well documented, and finding answers to some of these questions can be challenging or may, in some cases, be impossible. However, I expect you to make a good effort. Using web search engines will get you some of the way, but remember that not all of the web is indexed by search engines. In particular, company press releases, court papers, and data protection agency enforcement action notices are not always easily discoverable through a search engine, and it may be a good idea to dig on their websites directly. For example, many large corporations have a separate press portal that contains press releases and legal notices.</p>
-
-<p><b>Make note of your sources!</b> You will want to cite important ones when you write up your report.</p>
-
-<p>If primary information related to your case is in a language other than English, automated web translation services such as Google Translate often work reasonably well.</p>
+<p>Look over the results, and choose one or two services as examples to answer the following
+questions.</p>
 
 <h4>Step 3: Analyze what you got</h4>
 
-<p>Now write a short report that summarizes your findings. The report should consist of about two pages of text, excluding figures, references and bibliography. Please use the <a href="https://www.usenix.org/conference/osdi18/requirements-authors">OSDI 2018 submission template</a>.</p>
+<p>Take a good look at the data you received. It may come in a variety of formats, such as a ZIP archive containing JSON files, or a big text dump.</p>
 
-<p>Your report should answer the questions listed above for which you could find answers, but in addition it should also contain <em>your judgement</em> on the case. This may involve answering questions like these:
-<ul>
-  <li>Do you think the fine imposed is appropriate? Is it too low, too high, or just right? Relate the amount to the number of people affected by the violation. It may help you to consider what &quot;price&quot; the fine (implicitly) puts on the personal data concerned.
-  <li>Did the GDPR enforcement process work well in this case? What could have been handled better?
-  <li>Do you believe violations similar to the one sanctioned here to be commonplace? Will the case cause other companies or entities to change their practices?
-  <li>What should we as researchers and system designers aim to do in order to prevent similar problems in the future? Are there technical solutions that already exist? If not, what would we need to invent in order to make it impossible (or at least very unlikely) for the problem concerned to reoccur?
-</ul>
-</p>
+<div class="alert alert-primary"><b>Question 2:</b> <em>How is the data organized? Is it easy to understand what it contains, and would it be possible to process this information in an automated way (e.g., to visualize to non-technical users what information the service keeps about them).</em></div>
 
-<p>Please treat the report as a piece of academic writing. This means that you must cite sources for your claims, and that copying and pasting information from sources without citation would constitute plagiarism (so don't do it). You will want to structure the report like you would structure a paper: a quick high-level abstract or introduction, followed by a structured discussion of the details, and finally a discussion of the implications. An example structure of section titles might look as follows:
-<ul>
-  <li><b>Abstract/Introduction:</b> overview of the case.
-  <li><b>Background:</b> problem setting (data subjects/controller/processor), infrastructure used, business involved, responsible data protection agency.
-  <li><b>GDPR violation:</b>
-  <ul>
-    <li><b>What happened?</b> Describe the violation, how it was reported, and what action was taken.
-    <li><b>Who/what is responsible?</b> Discuss why the violation occurred, including the technical and human factors responsible.
-    <li><b>What could have prevented this?</b> Discuss what measures the violator could have taken (or taken differently) to avoid the problems.
-  </ul>
-  <li><b>Discussion:</b> your judgement about the handling, importance, and significance of the case.
-</ul>
-</p>
+<p>Now, look into the content itself. You'll probably find many things you expect, such as posts you made, pictures you uploaded, etc.; but there may also be other information that you did not directly provide (e.g., information related to advertising). This data tells you something about how the service is using your data, and what information they track about you. (The service's privacy policy is also a good source for this information, but may provide it only in rather vague terms. You can use <a href="https://pribot.org/polisis">Polisis</a> to get a summary of services' privacy policies.)</p>
 
-<p>Submit your report by email to <a href="https://cs.brown.edu/people/malte">Malte</a> by <b>11pm</b> (Eastern time) on <b>Wednesday, September 25, 2019</b>.
+<div class="alert alert-primary"><b>Question 3:</b> <em>What were you surprised by? Was there data you did not expect to see? Did you find information that you didn't even remember this service having? Did the data include any information about <b>other</b> users? Were you concerned about anything you found?</em></div>
 
-<p>We will publish the finished reports on the course website. If there are any problems with making your report publicly available, please contact Malte to discuss.</p>
+<p>Finally, reflect on how you use the service, what it does, and what types of information the service needs to work. Often, this includes information that you did not directly provide: for example, the business model of many web services is targeted advertising, but in order to allow advertisers to target you, the service must classify your interests into a set of categories available to advertisers (e.g., demographic, interests, etc.).</p>
+
+<div class="alert alert-primary"><b>Question 4:</b> <em>To a best guess, is this data <b>complete</b>? In other words, are there actions you took or information you provided to the site that you expect to have yielded personal data stored or processed that the service did not return to you?</em></div>
+
+<p>There are certain categories of data &ndash; such as fully anonymous data that cannot be linked to an individual even with the aid of additional datasets, or information covered by any of the exemption cases in laws like the GDPR &ndash; that services are allowed to keep private. If there it something missing, reflect on whether you think that information would be covered by these.</p>
+
+<h4>Step 4: Reflect, and write up your experience</h4>
+
+<p>Finally, reflect on your experience retrieving and analyzing your data.</p>
+
+<div class="alert alert-primary"><b>Question 5:</b> <em>Was it easy to get your data, and to understand the contents? Could you imagine less technical users (e.g., older family members) making use of this facility, and would they benefit? Did your opinion of the web service change at all in response to what you found?</em></div>
+
+<p>While it is good to have convenient web services, the accumulation of sensitive data on computers that you do not control can also expose you to risks. Let's think about what could happen.</p>
+
+<div class="alert alert-primary"><b>Question 6:</b> <em>What <b>dangers</b> are inherent in this data? What could an adversary (e.g., a hacker who compromises the web service, or someone who impersonates you to request the data) do with the information included?</em></div>
+
+<hr />
+
+<p><b>Now write up your answers to the questions in a short document (1-2 pages; a paragraph for each question suffices).</b> You're welcome to use whatever text format and editor suits you, but please submit a PDF, Markdown file, or plain text document.</p>
+
+<div class="alert alert-success"><b>Task:</b> Submit your answers by email to <a href="https://cs.brown.edu/people/malte">Malte</a> by <b>11pm</b> (Eastern time) on <b>Wednesday, September 18, 2020</b>.</div>
