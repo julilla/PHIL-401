@@ -222,7 +222,7 @@ LEC
 
 LEC
 - Lec: GDPR Compliance ([notes/q14-gdpr-compliance.html FAQ])
-- Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems] (2019)
+- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020)
 - Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
 #LEC
@@ -254,9 +254,7 @@ LEC
 
 LEC
 - Lec: Location Security
-- Prep ctracing: Read TBD
-#- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
-#- Prep: Watch [https://www.youtube.com/watch?v=L44m7otNI7o Beacon overview] (optional)
+- Prep ctracing: Read [https://arxiv.org/pdf/2005.12273.pdf DP3T] (2020)
 
 LEC
 - Lec all: Project presentations
