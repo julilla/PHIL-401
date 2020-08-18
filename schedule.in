@@ -104,7 +104,7 @@ send email to <a href="https://cs.brown.edu/people/malte">Malte</a>.</p>
 <p>While the notes published here may help you remember the material discussed,
 they are not a replacement for attending course meetings.</p>
 
-<div class="alert alert-danger"><b>Not updated for 2020 yet!</b></div>
+<div class="alert alert-danger">Below is a <b>tentative</b> 2020 schedule, which is still changing.</div>
 
 <div class="table-responsive">
 <table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
@@ -164,41 +164,41 @@ LEC = (Tue or Thr) and not Holidays
 #Thr
 
 LEC
-- Lec ms: [notes/m01-intro.txt Introduction]
+- Lec ms: Introduction
 
 LEC
-- Lec: Web tracking ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Web tracking
 - Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and TBD (TBD)
 
 LEC
-- Lec: Privacy Legislation ([https://forms.gle/w1KfgEL9B4cifcpLA Questions], [notes/q03-gdpr.html Answers])
+- Lec: Privacy Legislation
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
 LEC
-- Lec: Cookies ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Cookies
 - Prep cookies: Read TBD (TBD)
 
 LEC
-- Lec all: [assign/gdpr-reports.html GDPR Presentations]
+- Lec all: GDPR Presentations
 
 LEC
-- Lec: [notes/s15-blockstack.pdf Decentralized Applications] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q15-blockstack.html Answers])
+- Lec: Decentralized Applications ([notes/q15-blockstack.html FAQ])
 - Prep blockstack: Read [readings/blockstack-v1.1.pdf Blockstack] (2017)
 
 LEC
-- Lec: [notes/s06-dstar.pdf Information Flow Control] ([https://forms.gle/rVR8Nj7hgL55X3ro7 Questions])
+- Lec: Information Flow Control
 - Prep histar: Read [readings/dstar.pdf DStar] (2008)
 
 LEC
-- Lec: [notes/s07-resin.pdf Applied IFC (1)] ([https://forms.gle/TMCgYy6omd56YtoE6 Questions], [notes/q07-resin.html Answers])
+- Lec: Applied IFC (1) ([notes/q07-resin.html FAQ])
 - Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 LEC
-- Lec: [notes/s08-jacqueline.pdf Applied IFC (2)] ([https://forms.gle/gX9zvPvEWqYupjD38 Questions], [notes/q08-jacqueline.html Answers])
+- Lec: Applied IFC (2) ([notes/q08-jacqueline.html FAQ])
 - Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 
 LEC
-- Lec: Normative Perspectives ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Normative Perspectives
 - Text: Guest session with [http://www.julianetter.de Julia Netter]
 - Prep: TBD
 #- Lec: [notes/s23-polisis.pdf Privacy Policies] ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q23-polisis.html Answers])
@@ -206,22 +206,22 @@ LEC
 #- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
 
 LEC
-- Lec: [notes/s10-riverbed.pdf Policy Enforcement] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q10-riverbed.html Answers])
+- Lec: Policy Enforcement ([notes/q10-riverbed.html FAQ])
 - Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 LEC
-- Lec: [notes/s11-cryptdb.pdf Encrypted Databases] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q11-cryptdb.html Answers])
+- Lec: Encrypted Databases ([notes/q11-cryptdb.html FAQ])
 - Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
 
 LEC
-- Lec: [notes/s12-mylar.pdf Web Services over Encrypted Data] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q12-mylar.html Answers])
+- Lec: Web Services over Encrypted Data ([notes/q12-mylar.html FAQ])
 - Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
 
 LEC
 - Lec: Project Conference (I)
 
 LEC
-- Lec: [notes/s14-gdpr-compliance.pdf GDPR Compliance] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q14-gdpr-compliance.html Answers])
+- Lec: GDPR Compliance ([notes/q14-gdpr-compliance.html FAQ])
 - Prep ut: Read [readings/gdpr-storage-sys.pdf Impact on Storage Systems] (2019)
 - Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
@@ -230,36 +230,36 @@ LEC
 #- Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
 
 LEC
-- Lec: [notes/s17-federated-learning.pdf Federated Machine Learning] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q17-federated-ml.html Answers])
+- Lec: Federated Machine Learning ([notes/q17-federated-ml.html FAQ])
 - Prep federated: Read [https://arxiv.org/pdf/1902.01046.pdf Federated Learning] (2019)
 #- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
 LEC
-- Lec: [notes/s19-pinq.pdf Differential Privacy] ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Differential Privacy
 - Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
 - Prep dp: Read [readings/pinq.pdf PINQ] (2009)
 
 LEC
-- Lec: [notes/s18-ryoan.pdf Secure Computation] ([http://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Secure Computation
 - Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
 LEC
 - Lec: Project Conference (II)
 
 LEC
-- Lec: [notes/s22-keybase.pdf Keybase and KBFS] ([http://csci2390-submit.cs.brown.edu/ Questions], [notes/q22-keybase.html Answers])
+- Lec: Keybase and KBFS ([notes/q22-keybase.html FAQ])
 - Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
 
 LEC
-- Lec: Location Security ([https://csci2390-submit.cs.brown.edu/ Questions])
+- Lec: Location Security
 - Prep ctracing: Read TBD
 #- Prep beacons: Read [https://www.nytimes.com/interactive/2019/06/14/opinion/bluetooth-wireless-tracking-privacy.html Bluetooth Beacons] (2019)
 #- Prep: Watch [https://www.youtube.com/watch?v=L44m7otNI7o Beacon overview] (optional)
 
 LEC
-- Lec all: [assign/reports.html Project presentations]
+- Lec all: Project presentations
 - Due: Final project presentation
 
 ##################################################################
@@ -286,7 +286,7 @@ Oct 2, 2020
 Oct 5, 2020
 - Assign: [projects.html Final project]
 
-Oct 30, 2020
+Nov 6, 2020
 - Due: [projects.html Mid-project report]
 
 Dec 2, 2020
