@@ -175,6 +175,11 @@ LEC
 - Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
 LEC
+- Lec: GDPR Compliance ([notes/q14-gdpr-compliance.html FAQ])
+- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020)
+#- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
+
+LEC
 - Lec: Cookies
 - Prep cookies: Read TBD (TBD)
 
@@ -219,11 +224,6 @@ LEC
 
 LEC
 - Lec: Project Conference (I)
-
-LEC
-- Lec: GDPR Compliance ([notes/q14-gdpr-compliance.html FAQ])
-- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020)
-- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
 #LEC
 #- Lec ms: [notes/m16-diy-hosting.txt DIY hosting] ([http://csci2390-submit.cs.brown.edu/ Questions])
