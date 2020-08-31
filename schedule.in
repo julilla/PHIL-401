@@ -167,8 +167,8 @@ LEC
 - Lec ms: Introduction
 
 LEC
-- Lec: Web tracking
-- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/web-tracking.pdf Roesner et al.] (2012)
+- Lec: Targeted Advertising
+- Prep ads: Read [readings/targeted-advertising-twitter.pdf Wei et al.] (2020)
 
 LEC
 - Lec: Privacy Legislation
@@ -180,8 +180,8 @@ LEC
 #- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
 LEC
-- Lec: Targeted Advertising
-- Prep cookies: Read [readings/targeted-advertising-twitter.pdf Wei et al.] (2020)
+- Lec: Web tracking
+- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/web-tracking.pdf Roesner et al.] (2012)
 
 LEC
 - Lec all: GDPR Presentations
