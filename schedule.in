@@ -240,18 +240,18 @@ LEC
 - Prep dp: Read [readings/pinq.pdf PINQ] (2009)
 
 LEC
-- Lec: Secure Computation
-- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
+- Lec: Private Machine Learning
+- Prep sage: Read [readings/sage.pdf Sage] (2019)
+#- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
+#- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
+#- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
 LEC
 - Lec: Project Conference (II)
 
 LEC
-- Lec: Federated Machine Learning ([notes/q17-federated-ml.html FAQ])
-- Prep federated: Read [https://arxiv.org/pdf/1902.01046.pdf Federated Learning] (2019)
-#- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
-#- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
-#- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
+- Lec: Secure Computation
+- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
 LEC
 - Lec: Location Security
