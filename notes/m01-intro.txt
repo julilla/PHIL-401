@@ -1,4 +1,4 @@
-CSCI 2390 2019 Meeting 1: Introduction
+CSCI 2390 2020 Meeting 1: Introduction
 
 CSCI 2390: Privacy-Conscious Computer Systems
 
@@ -13,6 +13,102 @@ we directly control ourselves. This has increased the potential for data
 to be leaked, stolen, or misused, either intentionally or unintentionally.
 As a result, legislatures are setting new rules, and scrutiny of big web
 and IT companies has increased.
+
+What will we do?
+  Read, present, and discuss research papers.
+  Try our practical systems.
+  Complete a research project of your own.
+
+Course structure
+  https://cs.brown.edu/courses/csci2390/2020
+  today: overview and discussion about privacy
+  further meetings will be paper discussions (not lectures)
+    either about a research paper, or a piece of software/project
+  from meeting 4 onwards, you will present papers
+    presentation (~30 min)
+      highlight key ideas and lessons
+      track down hard details (may want to read further related work)
+      raise questions for discussion
+      if possible, try out the program or system
+      don't worry, I'll help
+    each discussion (50 min) has leaders
+      sign up via form linked from the schedule page for a paper to lead
+      everyone should read and think about every paper
+        NOT just turn up and wait for the discussion leads to explain!
+        prepare to ask and answer questions!
+      critique/support the work
+        on a technical level (correctness, methods, performance?)
+        on a pragmatic level (deployable, practical, flexile?)
+  assignment: paper questions
+    set questions about the paper
+    space to ask *your* questions
+    submit answers by 11pm on the day before class
+  two larger assignments
+    1. request your personal data from web services and analyze it
+    2. a GDPR case study & presentation
+    due on Fri Sept 18 and Sept 25
+  project
+    pick a research idea, inspired by the course or related
+    design, build and evaluate solution, check if the idea is good
+    proposal (due Oct 2)
+    project conferences
+    report, final short presentation
+    groups of 2-3 students encouraged, but can work on your own too
+
+Paper reading
+  research papers dense and can be tough reads
+  allow at least 1-2 hours per paper
+    you'll get better/quicker at this over time
+  technique
+    first pass, 5-10 minutes: get general idea
+      read title, abstract, intro, perhaps conclusions
+    second pass, 1 hour+: understand the details
+      what is the problem?
+      what is the solution/approach proposed?
+      how does it compare with previous work?
+      how well does it work?
+    now, make a judgement
+      do you like the paper?
+      do you think its technique works for the application(s) it targets?
+      do you think the system/technique is realistic for practical use?
+      what issues do you see with the design described?
+      what takeaways/ideas are important to remember?
+    if you are the presenter/lead for a paper, you will want to answer
+    the above questions ("second pass") in your presentation, and ensure
+    the judgement questions get discussed
+  for more, see for example "How to read a paper" by S. Keshav
+    http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
+  for more on what makes a good paper, see "How (and How Not) to Write a Good
+    Systems Paper" by Levin and Redell
+    https://www.usenix.org/conference/osdi12/guidelines-authors
+
+---
+
+Constitutional podcast episode
+  https://www.washingtonpost.com/podcasts/constitutional/episode--privacy/
+  what is privacy?
+    "right to be left alone"
+    protection from state, other individuals, corporations
+  notion has evolved over time
+    ex: American revolution in part about protection of property
+      from search and seizure without warrant
+      4th amendment to U.S. constitution explicit about this
+      => protection from state
+    ex: tabloid press around 1900
+      protection of individual from distress due to gossip
+      Brandeis tort laws
+      recent: Hulk Hogan vs. Gawker media
+      => protection from media/other individuals
+    ex: Olmstead vs. U.S.
+      wiretapping, new technology, how does 4th amendment apply?
+      => protection from state abusing new tech
+    ex: Carpenter vs. U.S.
+      new tech vs. third party doctrine
+      giving information to 3rd party => loss of expectation of privacy
+      very problematic with today's technology!
+      => protection from goverment, but also 3rd parties
+  Q: what does privacy mean on the internet today?
+
 
 Problem setting: a typical web application
   [user browsers, internet, web servers w/ app logic, DB]
@@ -61,7 +157,7 @@ What can we do about this?
       cryptocurrencies, blockchains, P2P
     idea: trust no one, all data resides on users' devices
     practicality unclear, but we'll look at this
-  option 4: lobby for change
+  option 4: lobby for change and invent it
     companies want to avoid embarassing scandals
       but little incentive to change their business model
     legislators increasingly realize there's a problem
@@ -106,69 +202,6 @@ What are our goals?
     may apply existing research ideas in new ways
     may help better inform users about choices and their implications
 
-Course structure
-  https://cs.brown.edu/courses/csci2390/
-  today and Tue next week: overview lectures
-  further meetings will be paper discussions (not lectures)
-    either about a research paper, or a piece of software/project
-  from meeting 5 onwards, you will present papers
-    each discussion has a leader
-      highlight key ideas and lessons
-      track down hard details (may want to read further related work)
-      raise questions for discussion
-      if possible, try out the program or system
-      don't worry, I'll help
-    sign up via form linked from the schedule page for a paper to lead
-    everyone should read and think about every paper
-      NOT just turn up and wait for the discussion lead to explain!
-      prepare to ask and answer questions
-      critique/support the work
-        on a technical level (correctness, methods, performance?)
-        on a pragmatic level (deployable, practical, flexile?)
-  paper questions
-    set questions about paper
-    space to ask *your* questions
-    submit answers by 11pm on the day before class
-  two assignments
-    first is a GDPR case study & presentation
-    second will be a programming exercise (TBD)
-    due on Weds Sept 18 and Oct 2
-  projects
-    pick a research idea, inspired by the course or related
-    design, build and evaluate solution, check if the idea is good
-    proposal (due Oct 10)
-    project conferences
-    report, final short presentation
-    groups of 2-3 students okay and encouraged, but can work on your own too
-
-Paper reading
-  research papers dense and can be tough reads
-  allow at least 1-2 hours per paper
-    you'll get better/quicker at this over time
-  technique
-    first pass, 5-10 minutes: get general idea
-      read title, abstract, intro, perhaps conclusions
-    second pass, 1 hour+: understand the details
-      what is the problem?
-      what is the solution/approach proposed?
-      how does it compare with previous work?
-      how well does it work?
-    now, make a judgement
-      do you like the paper?
-      do you think its technique works for the application(s) it targets?
-      do you think the system/technique is realistic for practical use?
-      what issues do you see with the design described?
-      what takeaways/ideas are important to remember?
-    if you are the presenter/lead for a paper, you will want to answer
-    the above questions ("second pass") in your presentation, and ensure
-    the judgement questions get discussed
-  for more, see for example "How to read a paper" by S. Keshav
-    http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
-  for more on what makes a good paper, see "How (and How Not) to Write a Good
-    Systems Paper" by Levin and Redell
-    https://www.usenix.org/conference/osdi12/guidelines-authors
-
-
 Some questions we'll look at:
 
 * Where should a user's data be stored? On the user's own computer? In a
@@ -210,7 +243,5 @@ Some questions we'll look at:
   systems we build? How disruptive would such a change be?
 
 For next Tuesday:
-  read datacenter stack and TAO papers
-    largest amount of reading (30+ pages) in course, but Google paper should be
-    quick
+  read paper on targeted advertising on Twitter
   submit & answer questions online
