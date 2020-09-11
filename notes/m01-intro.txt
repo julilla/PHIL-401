@@ -19,6 +19,8 @@ What will we do?
   Try our practical systems.
   Complete a research project of your own.
 
+INTRODUCTIONS
+
 Course structure
   https://cs.brown.edu/courses/csci2390/2020
   today: overview and discussion about privacy
@@ -109,138 +111,6 @@ Constitutional podcast episode
       => protection from goverment, but also 3rd parties
   Q: what does privacy mean on the internet today?
 
-
-Problem setting: a typical web application
-  [user browsers, internet, web servers w/ app logic, DB]
-  users' data in DB, held on servers not under user control
-    social media posts
-    pictures
-    emails
-    e-commerce orders
-    telemetry data about how user interacts with web site
-    ...
-  very successful model!
-    always available
-    no need to run servers
-    no need to back up data
-    application can combine multiple users' data
-  running servers + DB costs money
-    users pay? turns out people like "free" services better
-    often: company monetizes user data
-  problem: lack of control
-    web service sets rules for who may access data
-    web service controls how data stored and secured
-    web service may snoop, sell information
-    web service employees may snoop for personal reasons
-    web service may snoop on behalf of the government
-  any control over data that exists is through web UI or API defined by company
-    can be more restrictive than users desire
-      ex: FB privacy settings
-    can have bugs that expose private data!
-      ex: FB graph search
-  reality is even more complex than this picture
-    not just DB, but multiple storage systems
-    machine learning models trained over data
-    logging, backups, A/B testing, internal data analysis
-
-What can we do about this?
-  option 1: give up
-    accept that we're entering a Faustian bargain for free services
-    could have drastic consequences in the future
-      makes us vulnerable to identity theft, embarrassment, repression
-      gives companies enormous, unprecedented power
-  option 2: stop using web services
-    unlikely to be realistic
-    use often externally mandated (ex: by employer, university, etc.)
-  option 3: go rogue, organize the grassroots
-    replace all services with decentralized alternatives
-      cryptocurrencies, blockchains, P2P
-    idea: trust no one, all data resides on users' devices
-    practicality unclear, but we'll look at this
-  option 4: lobby for change and invent it
-    companies want to avoid embarassing scandals
-      but little incentive to change their business model
-    legislators increasingly realize there's a problem
-      but laws are slow to change, and intentionally vague
-      technology moves much more rapidly
-    our role as engineers and researchers: provide solutions that can help
-      privacy not a chief concern in system design today
-      traditionally we didn't care about how systems we built are used
-        ex: general purpose relational database
-
-What are our goals?
-  improve user privacy
-    vague, and can mean many things
-  candidate 1: make users anonymous, strong protections, tinfoil hats
-    certainly reasonable in some settings, ex: dissidents communicating
-  candidate 2: increase control over what companies do with our data
-    less ambitious, but more compatible with current user experience
-    aim to avoid preventable data exposure and unwanted data use
-  concerns
-    maintain current successful web site architecture?
-      easy to program for developers
-      good performance, reliability
-      users generally happy
-      can provide useful services by combining users' data
-        ex: crowdsourced recommendations
-      successful revenue model exists (advertising)
-    overheads imposed on web site operators
-      extra development cost
-      extra hosting cost (backend performance, space)
-      extra complexity
-      restrictions in what backend can do
-      costs of monitoring compliance
-    overheads imposed on users
-      need to understand implications of privacy choices
-      already unwilling to read privacy policies...
-      for some solutions, need to be much more active participants in service
-  make technology recommendations
-    industry and government need them
-    but need to be realistic about chances of adoption
-  invent new technology
-    may come in the form of different system designs
-    may apply existing research ideas in new ways
-    may help better inform users about choices and their implications
-
-Some questions we'll look at:
-
-* Where should a user's data be stored? On the user's own computer? In a
-  datacenter run by a company like Google, Amazon, Facebook, or Microsoft? In
-  commercial cloud storage services such as Amazon S3? In cooperative,
-  decentralized peer-to-peer storage?
-
-* What does current legislation require from the software systems that store
-  and process our data? Are the current systems adequate?
-
-* How do we translate abstract legislative requirements (e.g., the rights
-  granted to users by the EU's GDPR) into technological solutions?
-
-* What is the role of encrypted storage and data transmission? Can it help us
-  preserve our privacy, given that many services we use need to process our data
-  in various ways? Who should hold the keys?
-
-* What are the options for access control? Centralized ACLs, cryptography, or
-  other techniques? How can we maintain ACLs with confidence that backend
-  processing actually respects them?
-
-* Can we define ACLs attached to the notion of a "purpose" of data processing?
-  How do users consent to one use of their data, but object to another?
-
-* Can we expect decentralized applications, such as those proposed in the
-  context of smart contracts and blockchains, to be better than current web
-  application stack from a privacy perspective?
-
-* What are the right trust models for services that hold and process user data?
-  How paranoid should we be?
-
-* To what extent are the business models (e.g., targeted advertising) of current
-  "free" web services incompatible with the desire for data privacy, and are the
-  technologies that preserve both privacy and profitability?
-
-* What performance overheads are acceptable for better privacy protection?
-
-* Can we deeply embed user data privacy as a design concern in the computer
-  systems we build? How disruptive would such a change be?
 
 For next Tuesday:
   read paper on targeted advertising on Twitter
