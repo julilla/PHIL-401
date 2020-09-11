@@ -97,14 +97,12 @@ table.calendar thead tr {
 </style>
 
 <p>We will update the notes as the course progresses; please assume that the
-material and schedule for future meetings may change..
+material and schedule for future meetings may change.
 If you are particularly interested in some topic not covered here,
 send email to <a href="https://cs.brown.edu/people/malte">Malte</a>.</p>
 
 <p>While the notes published here may help you remember the material discussed,
 they are not a replacement for attending course meetings.</p>
-
-<div class="alert alert-danger">Below is a <b>tentative</b> 2020 schedule, which is still changing.</div>
 
 <div class="table-responsive">
 <table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
