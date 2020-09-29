@@ -6,6 +6,7 @@ HTML = index.html \
 			 assign/index.html \
 			 assign/gdpr.html \
 			 assign/gdpr-reports-2019.html \
+			 assign/gdpr-reports-2020.html \
 			 assign/your-data.html \
 			 assign/final-report.html \
 			 assign/reports.html \
