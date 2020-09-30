@@ -13,13 +13,13 @@ HTML = index.html \
 			 notes/q02-datacenter.html \
 			 notes/q03-gdpr.html \
 			 notes/q05-zanzibar.html \
+			 notes/q07-gdpr-compliance.html \
 			 notes/q07-resin.html \
 			 notes/q08-jacqueline.html \
 			 notes/q10-riverbed.html \
 			 notes/q11-cryptdb.html \
 			 notes/q12-mylar.html \
 			 notes/q13-multiversedb.html \
-			 notes/q14-gdpr-compliance.html \
 			 notes/q15-blockstack.html \
 			 notes/q17-federated-ml.html \
 			 notes/q20-vuvuzela.html \
