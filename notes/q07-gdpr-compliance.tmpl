@@ -1,28 +1,182 @@
 <h2>MTG 7 student questions</h2>
 
-<div class="responsebox"><pre class="responsepre"> On Mon, Oct 21, 2019 at 5:20 PM Anonymous wrote:
-> I am not too familiar with what model serving infrastructure is.
+<div class="responsebox"><pre class="responsepre"> On Sep 30, 2020, at 10:59 PM, Anonymous wrote:
+> What is the relationship between data auditing and reporting a breech, such that they are
+> categorized together?
 
-In short: systems for deploying a pre-trained model and running inference (e.g., image classification, text
-prediction, etc.) through that model.
+Auditing is a technique, and a data breach is an event. You need auditing after a breach in order to
+find out what data got compromised; if you don't have the technology set up to audit what happened,
+you will not be able to comply with the requirements of the GDPR for what data controllers and
+processors need to do after a data breach (e.g., notify affected data subjects). Auditing in
+technology terms often involves fine-grained logging of events on a system, so that you can find out
+what happened after the fact.
 
-> Is there current work being done/ how far are we in coming to a consensus on a common data description
-> standard for user shard schemas?
+Malte </pre></div>
 
-No such consensus exists! Right now, companies provide the data in a format of their choosing.
+<div class="responsebox"><pre class="responsepre"> On Sep 30, 2020, at 10:56 PM, Anonymous wrote:
 
-> What is pervasive multiversioning with regards to supporting stronger consistency?
+> Despite the fact that the paper does manage to cover most GDPR articles for data storage, what
+> would be some better ways to address these regulations without significantly sacrificing
+> performance?
 
-This refers to multiversion concurrency control (MVCC), where multiple versions of a record might exist. For
-example, the count of votes for story A might have been 100 at version 6, but 101 at version 7, and 99 at
-version 10. Each new version corresponds to an update. If the system allows looking up old versions, it can
-compute consistent results even if parts of the system (here, the dataflow) have already advanced to a new
-version.
+It does appear that this particular interpretation is not necessarily done from an optimization
+or efficiency perspective, but rather a mere compliance perspective (which the paper notes several
+times is antithetical to performance, cost, and reliability).
 
-> Not super familiar with “standing queries” and how they are used in practice.
+Finding ways to achieve compliance (strict or less strict) without burdening developers and while
+preserving good performance is an important active research topic. For some ideas, see e.g., the
+following papers:
+ * https://arxiv.org/abs/2008.04936
+ * https://cs.brown.edu/people/malte/pub/papers/2019-poly-gdpr.pdf
+ * https://www.researchgate.net/profile/Michael_Brodie/publication/336822029_SchengenDB_A_Data_Protection_Database_Proposal/links/5dfa8b0d299bf10bc3643efe/SchengenDB-A-Data-Protection-Database-Proposal.pdf
 
-This is terminology from stream processing; it refers to incrementally-maintained materialized views, i.e.,
-long-term results for a query that are incrementally updated as the underlying data changes.
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 9:22 PM Anonymous wrote:
+> Some of the GDPR compliance retrofitting the authors did was to the client as opposed to the
+> database itself.  Is the client considered to be part of the database? Is it safe to put logic
+> there and consider the system compliant?
+
+I believe they did this because they wanted to minimize the changes to the database system. In the
+case of Redis, adding features like metadata indexing would have required major changes to the
+system, so they instead (for expediency) implemented these features in the client.
+
+If the database and the client are run by the same company and all accesses go through the client
+library, it seems reasonable to implement some features in the client library. (In fact, such "fat
+clients" are quite common in large web companies like Facebook.) It becomes trickier when there
+are ways to circumvent the client library, or when the database operator doesn't trust the clients
+or cannot force them to use a particular client library.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 8:23 PM Anonymous wrote:
+> In many cases, the controller and processor are the same entity, with potentially other processors
+> downstream. I am unsure if having an entity with both opertions belonging to controller and
+> processor (as the categorieses in 3.3) would have meaningful impact on the makeup of these
+> benchmarks and the design of the GDPR DBMSs. Two specific questions I have are:
+> 1. Does a controller+processor entity end up possessing additional capability because of the
+>composition not already listed in the operations in 3.3 and in the benchmark?
+
+My take is that the controller role in the legal text of the GDPR isn't so much a technical role as
+one consisting of responsibility and direction, and of defining rules by writing program code. The
+controller can delegate most or all of the actual actions (including getting consent, serving data,
+etc.) to data processors, but remains responsible for defining the rules.
+
+In this sense, I find the paper's attempt to define particular workflows for users, controllers, and
+processors somewhat artificial; in the real world there may well be processors who complete
+operations beyond those listed, and controllers that run operations not listed in the paper.
+
+In practice, many controllers are also processors, so the composition is common. But within the
+taxonomy of the paper, I have no reason to expect that composing the roles would add extra
+operations.
+
+> 2. Does a controller+processor entity exhibit different operation profile in the real world
+> compared to a separate controller and processor? If so, does that mean that the GDPR benchmarks
+> workloads in the paper need to be extended or modified (different weights or distributions or maybe
+> an entire new workload for the composed controller+processor)?
+
+Perhaps. Consider a startup that builds its entire infrastructure on AWS services: they may not
+perform or operate any actual data processing, but merely write code and glue these service APIs
+together. Even when receiving a GDPR request, they might use the processor's services to satisfy
+it. On the other hand, many companies do their own in-house processing (including, perhaps, on
+employee laptops). So the set of operations listed in the paper might happen at the controller or
+at the processor, or there may be different operations than those listed in the paper. My take is
+that they largely defined these in order to have a workload for their benchmark; whether that
+workload is generalizable or representative is open for debate.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Oct 1, 2020, at 2:04 AM, Anonymous wrote:
+> Why did they choose SystemC? I understand Postgres and Redis as common choices, but I have never
+> heard of this resource.
+
+While Postgres is somewhat of a reference architecture for databases, it's also known to be a
+relatively slow DB compared to commercial offerings like Oracle, IBM DB2, or Microsoft SQL Server.
+We don't know which DBMS SystemC is, but I would guess it's one of these three. It is likely that
+the authors added it to compare to an "industry-strength" DBMS in addition to PostgreSQL to show
+that their results generalize.
+
+> What would a comparable performance on a graph database look like, where metadata storage is a
+> first-class operation and an expectation of the platform?
+
+I don't know what the performance on a graph database would be; my guess is that it depends on how
+well you can map your metadata and data schemas to a graph. Facebook clearly does this (cf.
+TAO/DELF), but it may not be natural for other applications. Running GDPRBench on a graph DB and
+tuning its performance would be a fun CSCI 2390 class project!
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 9:51 PM Anonymous wrote:
+> The way that they are implementing the GDPR regulation by deletion seems reasonable to me,
+> although tedious. Are there other methods being used by other companies? How are they dealing with
+> it?
+
+Instantaneous deletion as described in the paper is unlikely to work for practical settings, since
+companies in reality typically have offline backups (e.g., in Google's case, they actually have
+magnetic tapes stored in a secure site, and erasing the data from those takes time). It's also not
+required by the GDPR, since it allows up to a month for the data controller to respond to a request.
+In that sense, the paper targets a stricter compliance than is required by the regulation, and
+(likely) pays a performance penalty for it.
+
+Another practical approach we've seen is Facebook's DELF, which schedules an asynchronous deletion
+(i.e., it's not instantaneous) within the "maximum allowable retention period". Many other companies
+likely action these requests manually, so the deletion may happen when a human gets around to
+running a script.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 9:15 PM Anonymous wrote:
+> I am wondering if the benchmark designed in this paper can be generalized to evaluate all kinds of
+> database systems.
+
+For the purpose of evaluating the impact of GDPR compliance, I believe so; at least it is the
+authors' goal that the benchmark be generalizable in this way.  For other purposes, the benchmark is
+likely not very useful (although YCSB, the benchmark it was derived from, is widely-used for a
+variety of purposes).
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 9:01 PM Anonymous wrote:
+> 1. Is it sufficient to assume that the database is in a steady state? What would change if we
+> didn't assume so?
+
+"Steady state" here means that over the course of the experiment, the total size of the database
+neither increases nor decreases even as individual users apply writes and deletes. This makes it
+easier to run a controlled experiment, but whether it is realistic is a good question. Most real
+websites databases tend to grow over time; the paper's argument that GDPR-mandated expiry dates
+change this is somewhat debatable, since the expiry date only plays a role when the data no longer
+needs to be processed for the purpose it was originally collected for. On Facebook or Twitter, old
+posts remain accessible indefinitely (at least for now); hence, their data volume would seem to grow
+continuously.
+
+> 2. Is there similar information about other DBMSs?
+
+Not to my knowledge! This paper was the first paper on GDPR compliance in the systems literature.
+
+> 3. Why does PostgreSQL not support TTL?
+
+I suspect because nobody needed the feature before; it's also tricky to implement efficiently, since
+the database needs to either set timers for individual records' expiry times or needs to
+continuously scan the whole DB contents for expired records.
+
+Malte </pre></div>
+
+<div class="responsebox"><pre class="responsepre"> On Wed, Sep 30, 2020 at 2:51 PM Anonymous wrote:
+> The paper mentions that they expect rights violations/compliance complaints to follow a zipf
+> distribution, which I interpreted as meaning that complaints will not be evenly distributed across
+> companies but rather their will be a subset of companies responsible for the majority of
+> complaints. However, I was wonder what they used to come to this conclusion? It seems as though it
+> could be correct based on our GDPR case studies (for example, Google was disproportionately
+> represented), which raises another question: how effective is GDPR if the same companies keep
+> violating its regulations instead of learning from their mistakes?
+
+The Zipf distribution is a highly skewed distribution, often associated with skewed popularity of
+online content. My read of the part you reference is that they assume that for each company, a small
+fraction of its users will be responsible for most of the complaints it receives. In particular, the
+paper references the "Google RTBF experience" in §4.2.2, which it earlier describes by saying that
+"the requests showed a heavy skew towards a small number of users (top 0.25% users generated 20.8%
+delisting)". In other words, there are some privacy-conscious or obnoxious users who generate many
+requests; most users probably generate none.
 
 Malte </pre></div>
 
