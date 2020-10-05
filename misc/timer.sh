@@ -10,7 +10,7 @@ while true; do
     sleep 1
     I=$(expr $I - 1)
   done
-  mplayer buzz.wav 1>/dev/null 2>/dev/null
+  afplay buzz.wav 1>/dev/null 2>/dev/null
   echo "QUESTIONS"
   I=${QTIME}
   while [[ $I -gt 0 ]]; do
@@ -18,7 +18,7 @@ while true; do
     sleep 1
     I=$(expr $I - 1)
   done
-  mplayer buzz.wav 1>/dev/null 2>/dev/null
+  afplay buzz.wav 1>/dev/null 2>/dev/null
   echo
   echo "press return to start next presentation"
   read
