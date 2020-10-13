@@ -10,14 +10,11 @@ HTML = index.html \
 			 assign/your-data.html \
 			 assign/final-report.html \
 			 assign/reports.html \
-			 notes/q02-datacenter.html \
 			 notes/q03-gdpr.html \
-			 notes/q05-zanzibar.html \
 			 notes/q07-gdpr-compliance.html \
-			 notes/q07-resin.html \
 			 notes/q08-blockstack.html \
-			 notes/q08-jacqueline.html \
-			 notes/q10-riverbed.html \
+			 notes/q09-resin.html \
+			 notes/q10-jacqueline.html \
 			 notes/q11-cryptdb.html \
 			 notes/q12-mylar.html \
 			 notes/q13-multiversedb.html \
