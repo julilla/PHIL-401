@@ -208,15 +208,12 @@ LEC
 
 LEC
 - Lec jcgn: Normative Perspectives
-- Text: Guest session with [http://www.julianetter.de Julia Netter]
+- Text: Guest session with [http://www.julianetter.de Julia Netter] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8ac145f-6cbd-4452-9f89-ac55014c9ad9 🎥]
 - Prep: Read [readings/normative-perspectives.pdf Véliz] (2019) [http://csci2390-submit.cs.brown.edu/questions/11 ❓]
-#- Lec: [notes/s23-polisis.pdf Privacy Policies] ([https://csci2390-submit.cs.brown.edu/ Questions], [notes/q23-polisis.html Answers])
-#- Prep pp1: Read [readings/polisis.pdf Polisis] (2018)
-#- Prep https://www.cs.cornell.edu/fbs/publications/UBP.avanance.pdf
 
 LEC
-- Lec asriva11: Policy Enforcement ([notes/q10-riverbed.html FAQ])
-- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
+- Lec asriva11: Policy Enforcement ([notes/q12-riverbed.html FAQ])
+- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019 [http://csci2390-submit.cs.brown.edu/questions/12 ❓]
 
 LEC
 - Lec amahaja5: Encrypted Databases ([notes/q11-cryptdb.html FAQ])
@@ -287,6 +284,9 @@ Oct 2, 2020
 
 Oct 5, 2020
 - Assign: [projects.html Final project]
+
+Oct 16, 2020
+- Assign: [http://csci2390-submit.cs.brown.edu/questions/99 Mid-term survey]
 
 Nov 6, 2020
 - Due: [projects.html Mid-project report]

@@ -11,10 +11,11 @@ HTML = index.html \
 			 assign/final-report.html \
 			 assign/reports.html \
 			 notes/q03-gdpr.html \
-			 notes/q07-gdpr-compliance.html \
+			 notes/q07-gdprbench.html \
 			 notes/q08-blockstack.html \
 			 notes/q09-resin.html \
 			 notes/q10-jacqueline.html \
+			 notes/q12-riverbed.html \
 			 notes/q11-cryptdb.html \
 			 notes/q12-mylar.html \
 			 notes/q13-multiversedb.html \
