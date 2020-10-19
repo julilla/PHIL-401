@@ -16,7 +16,7 @@ HTML = index.html \
 			 notes/q09-resin.html \
 			 notes/q10-jacqueline.html \
 			 notes/q12-riverbed.html \
-			 notes/q11-cryptdb.html \
+			 notes/q13-cryptdb.html \
 			 notes/q12-mylar.html \
 			 notes/q13-multiversedb.html \
 			 notes/q17-federated-ml.html \
