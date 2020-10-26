@@ -24,7 +24,7 @@ HTML = index.html \
 			 notes/q22-keybase.html \
 			 notes/q23-polisis.html \
 			 notes/q25-taintdroid.html \
-			 notes/m21-pconf.html
+			 notes/m15-pconf1.html
 AUX_CSS = css/main.css
 AUX_TMPL = navbar.tmpl top.tmpl
 
