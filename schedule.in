@@ -232,8 +232,8 @@ LEC
 #- Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
 
 LEC
-- Lec yxue11: Keybase and KBFS ([notes/q22-keybase.html FAQ])
-- Prep keybase: Read [https://keybase.io/docs/server_security/following Following], [https://keybase.io/docs/server_security/merkle_root_in_bitcoin_blockchain Keybase and Bitcoin], [https://keybase.io/docs/kbfs/understanding_kbfs KBFS]
+- Lec yxue11: Keybase ([notes/q22-keybase.html FAQ])
+- Prep keybase: Read [https://book.keybase.io/docs/server Keybase Server], [https://book.keybase.io/docs/server/stellar Keybase and Stellar]
 
 LEC
 - Lec cnelso13, zyu37: Differential Privacy
