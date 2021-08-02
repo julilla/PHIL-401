@@ -121,34 +121,34 @@ they are not a replacement for attending course meetings.</p>
 
 == Holidays ==
 
-Oct 12, 2020
+Oct 11, 2021
 - Holiday: Indigenous Peoples' Day
 #TUELEC = .
 
-Nov 3, 2020
-- Holiday: [https://www.vote.org/ Election Day]
-
-Nov 5, 2020
+Oct 26, 2021
 - Holiday: No class, hack on projects
 
-Nov 25, 2020 - Nov 29, 2020
+Oct 28, 2021
+- Holiday: No class, hack on projects
+
+Nov 24, 2021 - Nov 28, 2021
 - Holiday: Thanksgiving Recess
 
 == Special ==
 
-Sep 9, 2020
+Sep 8, 2021
 - Special: First day of classes
 
-#Oct 1, 2020
+#Oct 1, 2021
 #- Special: ADD DATE
 
-#Oct 18, 2020
+#Oct 18, 2021
 #- Special: <b class="deadline">DROP DATE</b>
 
-Dec 4, 2020
+Dec 12, 2021
 - Special: Last day of classes
 
-Dec 7, 2020 - Dec 11, 2020
+Dec 13, 2021 - Dec 21, 2021
 - Text: Remote exam period
 
 
@@ -162,11 +162,11 @@ LEC = (Tue or Thr) and not Holidays
 #Thr
 
 LEC
-- Lec ms: [notes/m01-intro.txt Introduction] <b>([https://brown.zoom.us/j/91005659965 ONLINE]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=39fc430e-d528-413a-b6a0-ac3201534811 🎥]</b>
+- Lec ms: Introduction
 - Prep con: Listen to [https://www.washingtonpost.com/podcasts/constitutional/episode--privacy/ Constitutional Podcast: Privacy] (2018)
 
 LEC
-- Lec ms: Targeted Advertising <b>(<a href="https://brown.zoom.us/j/91005659965">ONLINE</a>) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c4c7827d-ec5c-4a10-8d4e-ac370153cd98 🎥]</b>
+- Lec ms: Targeted Advertising
 - Prep ads: Read [readings/targeted-advertising-twitter.pdf Wei et al.] (2020) [http://csci2390-submit.cs.brown.edu/questions/2 ❓]
 
 LEC
@@ -266,33 +266,33 @@ LEC
 
 == Labs ==
 
-Sep 10, 2020
+Sep 9, 2021
 - Assign: [assign/your-data.html Take control of your data!]
 
-Sep 16, 2020
+Sep 17, 2021
 - Due: [https://docs.google.com/spreadsheets/d/1FW2zS3A7wJb_gKgrTRY9nGJLklFCANqNjs7zEcd7bWI/edit#gid=0 Sign up] to present papers
 
-Sep 18, 2020
+Sep 17, 2021
 - Due: [assign/your-data.html Take control of your data!]
 - Assign: [assign/gdpr.html GDPR case study]
 
-Sep 25, 2020
+Sep 24, 2021
 - Due: [assign/gdpr.html GDPR case study]
 - Assign: [projects.html Project proposal]
 
-Oct 2, 2020
+Oct 1, 2021
 - Due: [projects.html Project proposal]
 
-Oct 5, 2020
+Oct 5, 2021
 - Assign: [projects.html Final project]
 
-Oct 16, 2020
+Oct 15, 2021
 - Assign: [http://csci2390-submit.cs.brown.edu/questions/99 Mid-term survey]
 
-Nov 6, 2020
+Nov 5, 2021
 - Due: [projects.html Mid-project report]
 
-Dec 9, 2020
+Dec 17, 2021
 - Due: [assign/final-report.html Final project writeup and code]
 
 ##################################################################
