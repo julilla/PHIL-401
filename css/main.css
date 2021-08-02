@@ -5,13 +5,13 @@
 }
 
 .navbar-dark .navbar-brand {
-  background-color: #98a4ae; /*#ed1c24;*/
+  background-color: #ffc72c; /*#ed1c24;*/
   color: black;
   padding: 0.5rem;
 }
 
 .navbar-dark .active {
-  background-color: #ed1c24; /*#88949e; #3e2619;*/
+  background-color: #98a4ae; /*#88949e; #3e2619;*/
 }
 
 .navbar-dark .nav-item {
@@ -20,7 +20,8 @@
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
-  background-color: #98a4ae; /*#ed1c24;*/
+  background-color: #ffc72c; /*#ed1c24;*/
+  color: black;
 }
 
 .navbar-dark .navbar-nav > li > a {
@@ -38,20 +39,19 @@
 
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link:focus {
-  color: #ffc72c;
+  color: white;
 }
 
 .navbar-right {
   /*background-color: #ed1c24;*/
-  color: black;
-  background-color: #ffc72c; /*#4e3629; #98A4AE;*/
+  background-color: #ed1c24; /*#4e3629; #98A4AE;*/
   padding: 0.7rem;
 }
 
 .navbar-dark .navbar-right > li > a,
 .navbar-dark .navbar-right > li > a:hover,
 .navbar-dark .navbar-right > li > a:focus {
-  color: black;
+  color: white;
   /*color: white;*/
 }
 
