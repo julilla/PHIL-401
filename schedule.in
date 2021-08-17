@@ -126,7 +126,7 @@ Oct 11, 2021
 #TUELEC = .
 
 Oct 26, 2021
-- Holiday: No class, hack on projects
+- Holiday: No class, [assign/dp.html do Differential Privacy Exercise]
 
 Oct 28, 2021
 - Holiday: No class, hack on projects
@@ -171,95 +171,101 @@ LEC
 
 LEC
 - Lec ms: Privacy Legislation ([notes/q03-gdpr.html FAQ])
-- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83) [http://csci2390-submit.cs.brown.edu/questions/3 ❓]
-
-
-LEC
-- Lec sboger: [notes/s04-web-tracking.pdf Web tracking] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=af76700b-4d7a-4b5c-a96e-ac3e0150325a 🎥]
-- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/web-tracking.pdf Roesner et al.] (2012) [http://csci2390-submit.cs.brown.edu/questions/4 ❓]
+- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
 
 LEC
-- Lec jweissko: [notes/s05-delf.pdf Datacenter Infrastructure and Data Deletion] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5616f437-14b4-46d6-a1b3-ac4001518a77 🎥]
-- Prep delf: Read [readings/delf.pdf DELF] (2020) [http://csci2390-submit.cs.brown.edu/questions/5 ❓]
-
-LEC
-- Lec all: [assign/gdpr-reports-2020.html GDPR Presentations] [http://csci2390-submit.cs.brown.edu/questions/6 ❓]
-
-LEC
-- Lec sthoma41: [notes/s07-gdprbench.pdf GDPR Compliance] ([notes/q07-gdprbench.html FAQ])
-- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020) [http://csci2390-submit.cs.brown.edu/questions/7 ❓]
+- Lec: GDPR Compliance ([notes/q07-gdprbench.html FAQ])
+- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020)
 #- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
 
 LEC
-- Lec hchoi26: [notes/s08-blockstack.pdf Decentralized Applications] ([notes/q08-blockstack.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c977b57b-d4aa-452c-ae2a-ac4c0163a998 🎥]
-- Prep blockstack: Read [readings/blockstack-v1.1.pdf Blockstack] (2017) [http://csci2390-submit.cs.brown.edu/questions/8 ❓]
+- Lec: Datacenter Infrastructure and Data Deletion
+- Prep delf: Read [readings/delf.pdf DELF] (2020)
+
+LEC
+- Lec all: [assign/gdpr-reports-2020.html GDPR Presentations]
+
+LEC
+- Lec: Web tracking
+- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/web-tracking.pdf Roesner et al.] (2012)
+
+LEC
+- Lec: Decentralized Applications
+- Prep solid: Read [readings/solid.pdf Solid] (2017)
 
 #LEC
 #- Lec: Information Flow Control
 #- Prep histar: Read [readings/dstar.pdf DStar] (2008)
 
 LEC
-- Lec kdakalba: [notes/s09-resin.pdf Information Flow Control (1)] ([notes/q09-resin.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=82b6fa51-4ea8-4bd8-95c2-ac4e015996c9 🎥]
-- Prep resin: Read [readings/resin.pdf Resin] (2009) [http://csci2390-submit.cs.brown.edu/questions/9 ❓]
+- Lec: Information Flow Control (1) ([notes/q09-resin.html FAQ])
+- Prep resin: Read [readings/resin.pdf Resin] (2009)
 
 LEC
-- Lec mmcgrat3, wkuenne: [notes/s11-jacqueline.pdf Information Flow Control (2)] ([notes/q10-jacqueline.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=54de975e-d61f-4566-8603-ac530156cbb4 🎥]
-- Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016) [http://csci2390-submit.cs.brown.edu/questions/10 ❓]
+- Lec: Information Flow Control (2) ([notes/q10-jacqueline.html FAQ])
+- Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
 
 LEC
-- Lec jcgn: Normative Perspectives
-- Text: Guest session with [http://www.julianetter.de Julia Netter] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8ac145f-6cbd-4452-9f89-ac55014c9ad9 🎥]
-- Prep: Read [readings/normative-perspectives.pdf Véliz] (2019) [http://csci2390-submit.cs.brown.edu/questions/11 ❓]
+- Lec: Secure Computation
+- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
 
 LEC
-- Lec asriva11: [notes/s12-riverbed.pdf Policy Enforcement] ([notes/q12-riverbed.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=65aff923-f6fa-493e-9ded-ac5a01573d45 🎥]
-- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019) [http://csci2390-submit.cs.brown.edu/questions/12 ❓]
-
-LEC
-- Lec amahaja5: [notes/s13-cryptdb.pdf Encrypted Databases] ([notes/q13-cryptdb.html FAQ], [https://github.com/AkshatM/cryptdb-demo Demo]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d018905b-d784-400d-a4c8-ac5c0150f296 🎥]
-- Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011) [http://csci2390-submit.cs.brown.edu/questions/13 ❓]
-
-LEC
-- Lec ragerup: [notes/s14-mylar.pdf Web Services over Encrypted Data] ([notes/q14-mylar.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cf29b8cf-820a-4bd3-a9dd-ac61016a674c 🎥]
-- Prep mylar: Read [readings/mylar.pdf Mylar] (2014) [http://csci2390-submit.cs.brown.edu/questions/14 ❓]
-
-
-LEC
-- Lec: [notes/m15-pconf1.html Project Conference (I)] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b1c06cf8-52b9-4c75-bab1-ac6301511136 🎥]
+- Lec: [notes/m15-pconf1.html Project Conference (1)]
 
 #LEC
-#- Lec ms: [notes/m16-diy-hosting.txt DIY hosting] ([http://csci2390-submit.cs.brown.edu/ Questions])
-#- Prep diyhost: Read [readings/diy-hosting.pdf DIY Hosting] (2018)
+#- Lec jcgn: Normative Perspectives
+#- Text: Guest session with [http://www.julianetter.de Julia Netter] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8ac145f-6cbd-4452-9f89-ac55014c9ad9 🎥]
+#- Prep: Read [readings/normative-perspectives.pdf Véliz] (2019) [http://csci2390-submit.cs.brown.edu/questions/11 ❓]
 
 LEC
-- Lec yxue11: [notes/s16-keybase.pdf Keybase] ([notes/q22-keybase.html FAQ]) [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e236f52d-2321-47b1-be00-ac6f0168da45 🎥]
-- Prep keybase: Read [https://book.keybase.io/docs/server Keybase Server], [https://book.keybase.io/docs/server/stellar Keybase and Stellar] [http://csci2390-submit.cs.brown.edu/questions/16 ❓]
-
-LEC
-- Lec cnelso13, zyu37: [notes/s17-differential-privacy.pdf Differential Privacy] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e0c3b298-293f-446f-a0a8-ac71016183f6 🎥]
+- Lec: Differential Privacy
 - Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
-- Prep dp: Read [readings/pinq.pdf PINQ] (2009) [http://csci2390-submit.cs.brown.edu/questions/17 ❓]
+- Prep dp: Read [readings/pinq.pdf PINQ] (2009)
 
 LEC
-- Lec rzuo: [notes/s18-sage.pdf Private Machine Learning] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=aeab43bd-57df-47de-a43f-ac7601609478 🎥]
-- Prep sage: Read [readings/sage.pdf Sage] (2019) [http://csci2390-submit.cs.brown.edu/questions/18 ❓]
+- Lec: Private Data Analytics
+- Prep sage: Read [readings/orchard.pdf Orchard] (2020)
+
+LEC
+- Lec: Private Machine Learning
+- Prep sage: Read [readings/sage.pdf Sage] (2019)
 #- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
 #- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
 #- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
 
 LEC
-- Lec: [notes/m19-pconf2.html Project Conference (II)] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b8ab31ca-26b4-4b8f-a97a-ac78016c63c9 🎥]
+- Lec: Policy Enforcement (1) ([notes/q12-riverbed.html FAQ])
+- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
 
 LEC
-- Lec zlai4, yxin9: [notes/m20-ryoan.pdf Secure Computation] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=23319760-4f52-4d49-92c5-ac7d015fad3e 🎥]
-- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016) [http://csci2390-submit.cs.brown.edu/questions/20 ❓]
+- Lec: Policy Enforcement (2)
+- Prep zeph: Read [readings/zeph.pdf Zeph] (2020)
 
 LEC
-- Lec ndo3: Location Security [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f55f1b6d-7e3b-4ad9-a6b8-ac8401656e34 🎥]
-- Prep ctracing: Read [https://arxiv.org/pdf/2005.12273.pdf DP3T] (2020), focus on §2.1, §2.2, §5 (skip/skim hybrid design) [http://csci2390-submit.cs.brown.edu/questions/21 ❓]
+- Lec: [notes/m19-pconf2.html Project Conference (2)]
 
 LEC
-- Lec all: [assign/reports.html Project presentations] [https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e70b34ff-d58a-4080-8a9c-ac8601712fe2 🎥]
+- Lec: Encrypted Databases ([notes/q13-cryptdb.html FAQ])
+- Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
+
+LEC
+- Lec: Web Services over Encrypted Data ([notes/q14-mylar.html FAQ])
+- Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
+
+LEC
+- Lec: Private Search (1)
+- Prep coeus: Read [readings/coeus.pdf Coeus] (2021)
+
+LEC
+- Lec: Private Search (2)
+- Prep dory: Read [readings/dory.pdf Dory] (2021)
+
+LEC
+- Lec: Keybase ([notes/q22-keybase.html FAQ])
+- Prep keybase: Read [https://book.keybase.io/docs/server Keybase Server], [https://book.keybase.io/docs/server/stellar Keybase and Stellar]
+
+LEC
+- Lec all: [assign/reports.html Project presentations]
 - Due: Final project presentation
 
 ##################################################################
@@ -288,6 +294,9 @@ Oct 5, 2021
 
 Oct 15, 2021
 - Assign: [http://csci2390-submit.cs.brown.edu/questions/99 Mid-term survey]
+
+Oct 29, 2021
+- Due: [assign/dp.html Differential Privacy Exercise]
 
 Nov 5, 2021
 - Due: [projects.html Mid-project report]
