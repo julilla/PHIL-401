@@ -96,21 +96,18 @@ table.calendar thead tr {
 }
 </style>
 
-<p>We will update the notes as the course progresses; please assume that the
+<p>Please assume that the
 material and schedule for future meetings may change.
 If you are particularly interested in some topic not covered here,
-send email to <a href="https://cs.brown.edu/people/malte">Malte</a>.</p>
-
-<p>While the notes published here may help you remember the material discussed,
-they are not a replacement for attending course meetings.</p>
+send an email to <a href="https://julianetter.de">Julia</a>.</p>
 
 <div class="table-responsive">
 <table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
  <thead>
   <tr>
-   <td width="16%">Monday</td><td width="26%">Tuesday</td>
-   <td width="16%">Wednesday</td><td width="26%">Thursday</td>
-   <td width="16%">Friday</td>
+   <td width="24%">Monday</td><td width="14%">Tuesday</td>
+   <td width="24%">Wednesday</td><td width="14%">Thursday</td>
+   <td width="24%">Friday</td>
   </tr>
  </thead>
 }}
@@ -124,12 +121,6 @@ they are not a replacement for attending course meetings.</p>
 Oct 11, 2021
 - Holiday: Indigenous Peoples' Day
 #TUELEC = .
-
-Oct 26, 2021
-- Holiday: No class, [assign/dp.html do Differential Privacy Exercise]
-
-Oct 28, 2021
-- Holiday: No class, hack on projects
 
 Nov 24, 2021 - Nov 28, 2021
 - Holiday: Thanksgiving Recess
@@ -156,61 +147,97 @@ Dec 13, 2021 - Dec 21, 2021
 
 == Lectures ==
 
-LEC = (Tue or Thr) and not Holidays
+LEC = (Mon or Wed or Fri) and not Holidays
 
 # Skip opening convocation
 #Thr
 
 LEC
-- Lec ms: Introduction
-- Prep con: Listen to [https://www.washingtonpost.com/podcasts/constitutional/episode--privacy/ Constitutional Podcast: Privacy] (2018)
+- Lec: Introduction
+- Prep: Have a go at [https://www.moralmachine.net the MIT Moral Machine]
+- Prep: Read [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing Angwin, Larson, Mattu, Kirchner, <i>Investigation into Machine Bias</i>]
 
 LEC
-- Lec ms: Targeted Advertising
-- Prep ads: Read [readings/targeted-advertising-twitter.pdf Wei et al.] (2020) [http://csci2390-submit.cs.brown.edu/questions/2 ❓]
+- Lec: Discussion and flexible time
 
 LEC
-- Lec ms: Privacy Legislation ([notes/q03-gdpr.html FAQ])
-- Prep gdpr: Read [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679 GDPR] (Articles 3-6(f), 7, 12-22, 25-34, 77-80, 82-83)
+- Lec: <b>Algorithms and AI: fairness and bias</b>
+- Prep: Read Susskind, <i>Future Politics</i>, chapters 14, 15, 16
 
 LEC
-- Lec: GDPR Compliance ([notes/q07-gdprbench.html FAQ])
-- Prep ut: Read [readings/gdprbench.pdf GDPRBench] (2020)
-#- Prep poly: Read [readings/compliance-by-construction.pdf Compliance by Construction] (2019)
+- Lec: <b>Algorithms and AI: fairness and bias</b>
+- Prep: Read Friedman and Nissenbaum, <i>Bias in Computer Systems</i>
 
 LEC
-- Lec: Datacenter Infrastructure and Data Deletion
-- Prep delf: Read [readings/delf.pdf DELF] (2020)
+- Lec: Discussion and flexible time
 
 LEC
-- Lec all: [assign/gdpr-reports-2020.html GDPR Presentations]
+- Lec: <b>Algorithms and AI: responsibility</b>
+- Prep: Read Nissenbaum, <i>Accountability in a computerized society</i>
+- Prep: Read Dennett, <i>When HAL Kills, Who’s to Blame?</i>
+
 
 LEC
-- Lec: Web tracking
-- Prep trackers: Read [https://www.nytimes.com/interactive/2019/08/23/opinion/data-internet-privacy-tracking.html?smtyp=cur&smid=tw-nytimes NYT experiment] (2019) and [readings/web-tracking.pdf Roesner et al.] (2012)
+- Lec: <b>Algorithms and AI: responsibility</b>
+- Prep: Floridi and Sanders <i>On the morality of artificial agents</i>
+- Prep: Searle, <i>Minds, Brains and Programs</i>
 
 LEC
-- Lec: Decentralized Applications
-- Prep solid: Read [readings/solid.pdf Solid] (2017)
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>Algorithms and AI: trolley problems and other hard choices</b>
+- Prep: Berlin, <i>The Pursuit of the Ideal</i>
+- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
+
+LEC
+- Lec: <b>Algorithms and AI: trolley problems and other hard choices </b>
+- Prep: Himmelreich, <i>Never Mind the Trolley: The Ethics of Autonomous Vehicles in Mundane Situations</i>
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>Algorithms and AI: war</b>
+- Prep: Sparrow, <i>Killer Robots</i>
+
+LEC
+- Lec <b>Algorithms and AI: war</b>
+- Prep: Kimbrell, <i>Cold Evil: Technology And Modern Ethics</i>
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>The new digital public sphere: privacy and surveillance</b>
+- Prep: Jarvis Thomson, <i>The Right to Privacy</i>
+- Prep: Véliz, <i>In the privacy of our streets</i>
+
+LEC
+- Lec: <b>The new digital public sphere: privacy and surveillance</b>
+- Prep: Nagel, <i>Concealment and Exposure</i>
+- Prep: Véliz, <i>In the privacy of our streets</i>
 
 #LEC
-#- Lec: Information Flow Control
-#- Prep histar: Read [readings/dstar.pdf DStar] (2008)
+#- Lec: Discussion and flexible time
+
 
 LEC
-- Lec: Information Flow Control (1) ([notes/q09-resin.html FAQ])
-- Prep resin: Read [readings/resin.pdf Resin] (2009)
+- Lec: <b>The new digital public sphere: shaping the stream of information</b>
+- Prep: Klonik, </i>The New Governors: The People, Rules, and Processes Governing Online Speech</i>
 
 LEC
-- Lec: Information Flow Control (2) ([notes/q10-jacqueline.html FAQ])
-- Prep jacqueline: Read [readings/jacqueline.pdf Jacqueline] (2016)
+- Lec: <b>The new digital public sphere: shaping the stream of information</b>
+- Prep: Taddeo, </i>Information Warfare: A Philosophical Perspective</i>
 
 LEC
-- Lec: Secure Computation
-- Prep ryoan: Read [readings/ryoan.pdf Ryoan] (2016)
+- Lec: Discussion and flexible time
+
 
 LEC
-- Lec: [notes/m15-pconf1.html Project Conference (1)]
+- Lec: <b>The new digital public sphere: freedom of expression</b>
+- Prep: Mill, </i>On Liberty</i>
+- Prep: Balkin, </i>Digital Speech and Democratic Culture: A Theory of Freedom of Expression for the Information Society</i>
 
 #LEC
 #- Lec jcgn: Normative Perspectives
@@ -218,91 +245,91 @@ LEC
 #- Prep: Read [readings/normative-perspectives.pdf Véliz] (2019) [http://csci2390-submit.cs.brown.edu/questions/11 ❓]
 
 LEC
-- Lec: Differential Privacy
-- Prep: Watch [https://www.youtube.com/watch?v=pT19VwBAqKA DP explainer]
-- Prep dp: Read [readings/pinq.pdf PINQ] (2009)
+- Lec: <b>The new digital public sphere: freedom of expression</b>
+- Prep: Lessig, </i>Code: And Other Laws of Cyberspace, Version 2.0, </i> chapter 12
 
 LEC
-- Lec: Private Data Analytics
-- Prep sage: Read [readings/orchard.pdf Orchard] (2020)
+- Lec: Discussion and flexible time
 
 LEC
-- Lec: Private Machine Learning
-- Prep sage: Read [readings/sage.pdf Sage] (2019)
-#- Prep federated: Read [https://arxiv.org/pdf/1610.05492.pdf Federated Learning] (2016)
-#- http://www.cs.cornell.edu/~shmat/shmat_ccs15.pdf
-#- https://people.eecs.berkeley.edu/~raluca/helen_ieeesp.pdf
+- Lec: <b>The new digital public sphere: democracy and participation</b>
+- Prep: Danaher, </i>The Threat of Algocracy: Reality, Resistance and Accommodation </i> 
 
 LEC
-- Lec: Policy Enforcement (1) ([notes/q12-riverbed.html FAQ])
-- Prep riverbed: Read [readings/riverbed.pdf Riverbed] (2019)
+- Lec: <b>The new digital public sphere: democracy and participation</b>
+- Prep: Cohen and Fung, </i>Democracy and the Digital Public Sphere </i> 
+
 
 LEC
-- Lec: Policy Enforcement (2)
-- Prep zeph: Read [readings/zeph.pdf Zeph] (2020)
+- Lec: Discussion and flexible time
 
 LEC
-- Lec: [notes/m19-pconf2.html Project Conference (2)]
+- Lec: <b>Automation and the future of work</b>
+- Prep: Elster, </i>Is there (or should there be) a right to work? </i> 
+- Prep: Keynes, </i>Economic Possibilities for our Grandchildren </i> 
 
 LEC
-- Lec: Encrypted Databases ([notes/q13-cryptdb.html FAQ])
-- Prep cryptdb: Read [readings/cryptdb.pdf CryptDB] (2011)
+- Lec: <b>Automation and the future of work</b>
+- Prep: Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
 
 LEC
-- Lec: Web Services over Encrypted Data ([notes/q14-mylar.html FAQ])
-- Prep mylar: Read [readings/mylar.pdf Mylar] (2014)
+- Lec: Discussion and flexible time
 
 LEC
-- Lec: Private Search (1)
-- Prep coeus: Read [readings/coeus.pdf Coeus] (2021)
+- Lec: <b>Coding and hacking</b>
+- Prep: Thoreau, </i>On the Duty of Civil Disobedience</i> 
+- Prep: Rawls, </i>A Theory of Justice,</i>  pp. 363-391
 
 LEC
-- Lec: Private Search (2)
-- Prep dory: Read [readings/dory.pdf Dory] (2021)
+- Lec: <b>Coding and hacking</b>
+- Prep: Himma, </i>Hacking as Politically Motivated Digital Civil Disobedience: Is Hacktivisim Morally Justified?</i> 
+- Prep: Coleman, </i>Coding Freedom: The Ethics and Aesthetics of Hacking, </i> chapter 4 
 
 LEC
-- Lec: Keybase ([notes/q22-keybase.html FAQ])
-- Prep keybase: Read [https://book.keybase.io/docs/server Keybase Server], [https://book.keybase.io/docs/server/stellar Keybase and Stellar]
+- Lec: Discussion and flexible time
 
 LEC
-- Lec all: [assign/reports.html Project presentations]
-- Due: Final project presentation
+- Lec: <b>The (digital) good life: authenticity, simulation, and enhancement</b>
+- Prep: Nozick, </i>The Examined Life,</i> chapter 10 
+
+LEC
+- Lec: <b>The (digital) good life: authenticity, simulation, and enhancement</b>
+- Prep: Bloomfield, </i>Social Media, Self-Deception, and Self-Respect</i>
+
+LEC
+- Lec: <b>The (digital) good life: character</b>
+- Prep: Vallor, </i>Moral Deskilling and Upskilling in a New Machine Age: Reflections on the Ambiguous Future of Character</i>
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: project conference and class wrap-up
+
+LEC
+
 
 ##################################################################
-
 == Labs ==
 
-Sep 9, 2021
-- Assign: [assign/your-data.html Take control of your data!]
-
-Sep 17, 2021
-- Due: [https://docs.google.com/spreadsheets/d/1FW2zS3A7wJb_gKgrTRY9nGJLklFCANqNjs7zEcd7bWI/edit#gid=0 Sign up] to present papers
-
-Sep 17, 2021
-- Due: [assign/your-data.html Take control of your data!]
-- Assign: [assign/gdpr.html GDPR case study]
-
-Sep 24, 2021
-- Due: [assign/gdpr.html GDPR case study]
-- Assign: [projects.html Project proposal]
+Sep 20, 2021
+- Assign: Short paper #1
 
 Oct 1, 2021
-- Due: [projects.html Project proposal]
+- Due: Short paper #1
 
-Oct 5, 2021
-- Assign: [projects.html Final project]
+Nov 1, 2021
+- Assign: Short paper #2
 
-Oct 15, 2021
-- Assign: [http://csci2390-submit.cs.brown.edu/questions/99 Mid-term survey]
+Nov 12, 2021
+- Due: Short paper #2
 
-Oct 29, 2021
-- Due: [assign/dp.html Differential Privacy Exercise]
+Nov 19, 2021
+- Assign: Final project
 
-Nov 5, 2021
-- Due: [projects.html Mid-project report]
+Dec 10, 2021
+- Due: Final project
 
-Dec 17, 2021
-- Due: [assign/final-report.html Final project writeup and code]
 
 ##################################################################
 

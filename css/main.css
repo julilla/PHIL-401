@@ -1,17 +1,17 @@
 .navbar-dark {
-  background-color: #3e2619; /*98a4ae; #4e3629;*/
+  background-color:  #222629; /*98a4ae; #4e3629;*/
   font-size: 1em;
   padding: 0;
 }
 
 .navbar-dark .navbar-brand {
-  background-color: #ffc72c; /*#ed1c24;*/
+  background-color: #86C232; /*#61892F; /*#ed1c24;*/
   color: black;
   padding: 0.5rem;
 }
 
 .navbar-dark .active {
-  background-color: #98a4ae; /*#88949e; #3e2619;*/
+  background-color: #474B4F; /*#88949e; #3e2619;*/
 }
 
 .navbar-dark .nav-item {
@@ -20,7 +20,7 @@
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
-  background-color: #ffc72c; /*#ed1c24;*/
+  background-color: #86C232; /*#ed1c24;*/
   color: black;
 }
 
@@ -44,7 +44,7 @@
 
 .navbar-right {
   /*background-color: #ed1c24;*/
-  background-color: #ed1c24; /*#4e3629; #98A4AE;*/
+  background-color: #86C232; /*#4e3629; #98A4AE;*/
   padding: 0.7rem;
 }
 
