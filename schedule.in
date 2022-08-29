@@ -165,12 +165,12 @@ LEC
 LEC
 - Lec: <b>Algorithms and AI: fairness and bias</b>
 - Prep: Read Susskind, <i>Future Politics</i>, chapters 14, 15, 16
-- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 LEC
 - Lec: <b>Algorithms and AI: fairness and bias</b>
 - Prep: Read Friedman and Nissenbaum, <i>Bias in Computer Systems</i>
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
 
 LEC
 - Lec: Discussion and flexible time
@@ -179,14 +179,14 @@ LEC
 - Lec: <b>Algorithms and AI: responsibility</b>
 - Prep: Read Nissenbaum, <i>Accountability in a computerized society</i>
 - Prep: Read Dennett, <i>When HAL Kills, Who’s to Blame?</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>Algorithms and AI: responsibility</b>
 - Prep: Floridi and Sanders <i>On the morality of artificial agents</i>
 - Prep: Searle, <i>Minds, Brains and Programs</i>
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -196,13 +196,13 @@ LEC
 - Lec: <b>Algorithms and AI: trolley problems and other hard choices</b>
 - Prep: Berlin, <i>The Pursuit of the Ideal</i>
 - Prep: Jarvis Thomson, <i>The Trolley Problem</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>Algorithms and AI: trolley problems and other hard choices </b>
 - Prep: Himmelreich, <i>Never Mind the Trolley: The Ethics of Autonomous Vehicles in Mundane Situations</i>
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -212,14 +212,14 @@ LEC
 - Lec: <b>Algorithms and AI: war</b>
 - Prep: Sparrow, <i>Killer Robots</i>
 - Prep: Sharkey, <i>Killing Made Easy: From Joysticks to Politics</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec <b>Algorithms and AI: war</b>
 - Prep: [https://centerforneweconomics.org/publications/cold-evil-technology-and-modern-ethics/ Kimbrell, <i>Cold Evil: Technology And Modern Ethics, sections I-IV</i>]
 - Prep: Sparrow, <i>Lokhorst and van den Hoven, Responsibility for Military Robots</i>
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -229,27 +229,27 @@ LEC
 - Lec: <b>The new digital public sphere: privacy and surveillance</b>
 - Prep: Jarvis Thomson, <i>The Right to Privacy</i>
 - Prep: Véliz, <i>In the privacy of our streets</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
 - Lec: <b>The new digital public sphere: privacy and surveillance</b>
 - Prep: Nagel, <i>Concealment and Exposure</i>
 - Prep: Tunick, <i>Privacy and Punishment</i>
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Thu, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Thu, 9pm)</span>
 
 
 LEC
 - Lec: Discussion and flexible time
 - Prep: Klonik, </i>The New Governors: The People, Rules, and Processes Governing Online Speech</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>The new digital public sphere: shaping the stream of information</b>
 - Prep: [https://brown.primo.exlibrisgroup.com/permalink/01BU_INST/8j6vgc/alma991019252679706966 Waldron, </i>The Harm in Hate Speech, chapter 5</i>]
 
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -264,7 +264,7 @@ LEC
 - Lec: <b>The new digital public sphere: freedom of expression</b>
 - Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043265644606966 Mill, </i>On Liberty, chapter II: Of the Liberty of Thought and Discussion</i>]
 - Prep: <i>recommended, not required:</i> Balkin, </i>Digital Speech and Democratic Culture: A Theory of Freedom of Expression for the Information Society</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 #LEC
 #- Lec jcgn: Normative Perspectives
@@ -274,7 +274,7 @@ LEC
 LEC
 - Lec: <b>The new digital public sphere: freedom of expression</b>
 - Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/528fgv/cdi_askewsholts_vlebooks_9780786721962 Lessig, </i>Code: And Other Laws of Cyberspace, Version 2.0, </i> chapter 12]
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -283,14 +283,14 @@ LEC
 LEC
 - Lec: <b>The new digital public sphere: democracy and participation</b>
 - Prep: Nguyen, </i>Echo Chambers and Epistemic Bubbles </i> 
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>The new digital public sphere: democracy and participation</b>
 - Prep: Danaher, </i>The Threat of Algocracy: Reality, Resistance and Accommodation </i> 
 #- Prep: Cohen and Fung, </i>Democracy and the Digital Public Sphere </i> 
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -300,13 +300,13 @@ LEC
 - Lec: <b>Automation and the future of work</b>
 - Prep: Elster, </i>Is there (or should there be) a right to work? </i> 
 - Prep: Keynes, </i>Economic Possibilities for our Grandchildren </i> 
-- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>Automation and the future of work</b>
 - Prep: Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -316,14 +316,14 @@ LEC
 - Lec: <b>Coding and hacking</b>
 - Prep: Thoreau, </i>On the Duty of Civil Disobedience</i> 
 - Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043199800906966 Rawls, </i>A Theory of Justice,</i>  pp. 363-391]
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>Coding and hacking</b>
 - Prep: Himma, </i>Hacking as Politically Motivated Digital Civil Disobedience: Is Hacktivism Morally Justified?</i> 
 - Prep: Coleman, </i>Coding Freedom: The Ethics and Aesthetics of Hacking, </i> chapter 4 
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
 LEC
@@ -332,7 +332,7 @@ LEC
 LEC
 - Lec: <b>The (digital) good life: authenticity, simulation, and enhancement</b>
 - Prep: Nozick, </i>The Examined Life,</i> chapter 10 
-- Prep: [https://rintintin.colorado.edu/~vancecd/phil3160/Nozick1.pdf Nozick, read the excerpt on the Experience Machine from </i>Anarchy, State, Utopia</i>]
+#- Prep: [https://rintintin.colorado.edu/~vancecd/phil3160/Nozick1.pdf Nozick, read the excerpt on the Experience Machine from </i>Anarchy, State, Utopia</i>]
 
 
 - Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
@@ -343,18 +343,18 @@ LEC
 - Prep: Bloomfield, </i>Social Media, Self-Deception, and Self-Respect</i>
 - Prep: Vallor, </i>Flourishing on facebook: virtue friendship & new social media</i>
 
-- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Sun, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Sun, 9pm)</span>
 
 
 LEC
 - Lec: <b>The (digital) good life: character</b>
 - Prep: Vallor, </i>Moral Deskilling and Upskilling in a New Machine Age: Reflections on the Ambiguous Future of Character</i>
-- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Tue, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Tue, 9pm)</span>
 
 
 LEC
 - Lec: Discussion and flexible time
-- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Thu, 9pm)</span>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Thu, 9pm)</span>
 
 
 LEC
