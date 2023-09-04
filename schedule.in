@@ -154,7 +154,7 @@ LEC = (Mon or Wed or Fri) and not Holidays
 
 LEC
 - Lec: Introduction
-- Prep: Read [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing Angwin, Larson, Mattu, Kirchner, <i>Investigation into Machine Bias</i>]
+#- Prep: Read [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing Angwin, Larson, Mattu, Kirchner, <i>Investigation into Machine Bias</i>]
 
 LEC
 - Prep: Have a go at [https://www.moralmachine.net the Moral Machine]
@@ -344,7 +344,10 @@ LEC
 - Lec: <b>Automation and the future of work</b>
 - Prep: Keynes, <i>Economic Possibilities for our Grandchildren </i> 
 - Prep: Elster, <i>Is there (or should there be) a right to work? </i> 
-- Prep: <i>recommended, not required:</i> Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
+
+LEC
+- Lec: <b>Automation and the future of work</b>
+- Prep: </i> Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
 
 
 LEC
