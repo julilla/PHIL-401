@@ -155,7 +155,7 @@ LEC = (Mon or Wed or Fri) and not Holidays
 #week 1#
 LEC
 - Lec: Introduction
-#- Prep: Fill in [https://docs.google.com/forms/d/e/1FAIpQLSej6U-ltoz5bhfo3TkA5dI-XHjsjpI3SH5l0K-6QO72FCPOBg/viewform?usp=publish-editor the course survey</i>]
+- Prep: Fill in [https://docs.google.com/forms/d/e/1FAIpQLSej6U-ltoz5bhfo3TkA5dI-XHjsjpI3SH5l0K-6QO72FCPOBg/viewform?usp=publish-editor the course survey</i>]
 
 LEC
 #- Prep: Have a go at [https://www.moralmachine.net the Moral Machine]
@@ -386,6 +386,8 @@ LEC
 #Oct 18, 2026
 #- Assign: Short paper #2
 
+Sep 23, 2026
+- Due: [https://docs.google.com/forms/d/e/1FAIpQLSej6U-ltoz5bhfo3TkA5dI-XHjsjpI3SH5l0K-6QO72FCPOBg/viewform?usp=publish-editor Survey]
 
 Sep 25, 2026
 - Due: Essay #1 
