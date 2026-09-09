@@ -136,8 +136,8 @@ Sep 9, 2026
 #Oct 18, 2026
 #- Special: <b class="deadline">DROP DATE</b>
 
-Dec 11, 2026
-- Special: Last day of classes
+#Dec 11, 2026
+#- Special: Last day of classes
 
 #Dec 12, 2026 - Dec 21, 2026
 #- Text:  Exam period
@@ -366,9 +366,9 @@ LEC
 #- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
 #- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
-LEC
-- Lec: <b>The new digital public sphere: content moderation and freedom of expression</b>
-- Prep: Klonik, </i>The New Governors: The People, Rules, and Processes Governing Online Speech</i>
+#LEC
+#- Lec: <b>The new digital public sphere: content moderation and freedom of expression</b>
+#- Prep: Klonik, </i>The New Governors: The People, Rules, and Processes Governing Online Speech</i>
 #- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
 
 
