@@ -152,6 +152,7 @@ LEC = (Mon or Wed or Fri) and not Holidays
 # Skip opening convocation
 #Thr
 
+#week 1#
 LEC
 - Lec: Introduction
 #- Prep: Read [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing Angwin, Larson, Mattu, Kirchner, <i>Investigation into Machine Bias</i>]
@@ -160,19 +161,37 @@ LEC
 #- Prep: Have a go at [https://www.moralmachine.net the Moral Machine]
 - Lec: Discussion 
 
+#week 2#
 LEC
-- Lec: <b>Algorithms and AI: justice and bias</b>
+- Lec: <b>Algorithms and AI: justice </b>
 - Prep: Read Susskind, <i>Future Politics</i>, chapters 14, 15, 16
 #- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 LEC
-- Lec: <b>Algorithms and AI: justice and bias</b>
+- Lec: <b>Algorithms and AI: justice </b>
 - Prep:  Friedman and Nissenbaum, <i>Bias in Computer Systems</i>
 #- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
 
 LEC
 - Lec: Discussion and writing workshop
 
+#week 3#
+
+LEC
+- Lec: <b>Algorithms and AI: autonomy </b>
+- Prep: Himmelreich, <i>Never Mind the Trolley: The Ethics of Autonomous Vehicles in Mundane Situations</i>
+- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
+
+- Lec: <b>Algorithms and AI: autonomy </b>
+#- Prep: Sparrow, <i>Killer Robots</i>
+- Prep: Sharkey, <i>Killing Made Easy: From Joysticks to Politics</i>
+- Prep: [https://centerforneweconomics.org/publications/cold-evil-technology-and-modern-ethics/ Kimbrell, <i>Cold Evil: Technology And Modern Ethics, sections I-IV</i>]
+- Prep: Lokhorst and van den Hoven, <i>Responsibility for Military Robots</i>
+
+LEC
+- Lec: Discussion 
+
+#week 4#
 LEC
 - Lec: <b>Algorithms and AI: responsibility</b>
 - Prep: Nissenbaum, <i>Accountability in a computerized society</i>
@@ -190,45 +209,27 @@ LEC
 LEC
 - Lec: Discussion 
 
-LEC
-- Lec: <b>Algorithms and AI: autonomous decision making</b>
-- Prep: Berlin, <i>The Pursuit of the Ideal (read, no annotation assignment)</i>
-- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
-#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
-
+#week 5#
 LEC
-- Lec: <b>Algorithms and AI: autonomous decision making </b>
-- Prep: Himmelreich, <i>Never Mind the Trolley: The Ethics of Autonomous Vehicles in Mundane Situations</i>
-#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+- Lec: <b>Algorithms and AI: knowledge and skills</b>
+- Prep: TBD
 
 
 LEC
-- Lec: Discussion 
+- Lec: <b>Algorithms and AI: knowledge and skills</b>
+- Prep: Crawford, <i>The World Beyond Your Head</i>
 
-LEC
-- Lec: <b>Algorithms and AI: autonomous decision making</b>
-#- Prep: Sparrow, <i>Killer Robots</i>
-- Prep: Sharkey, <i>Killing Made Easy: From Joysticks to Politics</i>
-- Prep: [https://centerforneweconomics.org/publications/cold-evil-technology-and-modern-ethics/ Kimbrell, <i>Cold Evil: Technology And Modern Ethics, sections I-IV</i>]
-- Prep: Lokhorst and van den Hoven, <i>Responsibility for Military Robots</i>
-
-
-
-LEC
-- Lec: <b>Algorithms and AI: accountability and explicability</b>
-- Prep: [https://www.nytimes.com/2017/11/21/magazine/can-ai-be-taught-to-explain-itself.html Kuang, <i>Can AI Be Taught to Explain Itself?</i>]
-- Prep: Danaher, <i>The Threat of Algocracy: Reality, Resistance and Accommodation </i> 
-- Prep: Robbins, <i>A Misdirected principle with a Catch: Explicability for AI</i> 
 
 LEC
 - Special: Midterm Quiz #1
 
-
+#week 6#
 LEC
 - Lec: <b>The new digital public sphere: privacy and surveillance</b>
-- Prep: Jarvis Thomson, <i>The Right to Privacy</i>
+#- Prep: Jarvis Thomson, <i>The Right to Privacy</i>
 - Prep: Véliz, <i>In the privacy of our streets</i>
+- Prep: Véliz, <i>The Ethics of Privacy,</i> TBD
 #- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Tue, 9pm)</span>
 
 
@@ -238,7 +239,7 @@ LEC
 - Prep: Susser, <i>Information Privacy and Social Self-Authorship</i>
 #- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Thu, 9pm)</span>
 
-
+#week 7#
 LEC
 - Lec: Discussion and flexible time 
 #- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
@@ -252,6 +253,7 @@ LEC
 LEC
 - Lec: Writing workshop 
 
+#week 8#
 
 LEC
 - Lec: <b>The new digital public sphere: content moderation and freedom of expression</b>
@@ -265,11 +267,10 @@ LEC
 
 
 
-
-
 LEC
 - Lec: Discussion and flexible time
 
+#week 9#
 LEC
 - Lec: <b>The new digital public sphere: (mis-/dis-)information</b>
 - Prep: Nguyen, </i>Echo Chambers and Epistemic Bubbles </i> 
@@ -286,30 +287,20 @@ LEC
 LEC
 - Special: Midterm Quiz #2
 
-#LEC
-#- Lec: <b>Coding and hacking</b>
-#- Prep: Thoreau, </i>On the Duty of Civil Disobedience</i> 
-#- Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043199800906966 Rawls, </i>A Theory of Justice,</i>  pp. 363-391]
-#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
-
-
-#LEC
-#- Lec: <b>Coding and hacking</b>
-#- Prep: Himma, </i>Hacking as Politically Motivated Digital Civil Disobedience: Is Hacktivism Morally Justified?</i> 
-#- Prep: Coleman, </i>Coding Freedom: The Ethics and Aesthetics of Hacking, </i> chapter 4 
-#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
-
+#week 10#
 LEC
 - Lec: <b>The digital good life: attention </b>
 - Prep:  [https://bruknow.library.brown.edu/permalink/01BU_INST/528fgv/cdi_cambridge_corebooks_9781108453004_HT_fnmp_1 Williams, <i>Stand Out of Our Light: Freedom and Resistance in the Attention Economy</i> ]
 
-LEC
-- Lec: Writing workshop #3
 
 LEC
 - Lec: <b>The digital good life: attention </b>
+- Prep: TBD
 
+LEC
+- Lec: Discussion and flexible time
 
+#week 11#
 LEC
 - Lec: <b>The (digital) good life: authenticity</b>
 - Prep: Nozick, </i>The Examined Life,</i> chapter 10 
@@ -325,6 +316,8 @@ LEC
 LEC
 - Lec: Discussion and flexible time
 
+
+#week 12 -- Thanksgiving week#
 LEC
 - Lec: <b>The (digital) good life: relationships</b>
 - Prep: Bloomfield, </i>Social Media, Self-Deception, and Self-Respect</i>
@@ -332,20 +325,7 @@ LEC
 
 #- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Sun, 9pm)</span>
 
-LEC
-- Lec: <b>The (digital) good life: self-quantification</b>
-- Prep: no assigned reading</i>
-
-#LEC
-#- Lec: <b>The (digital) good life: character</b>
-#- Prep: Vallor, </i>Moral Deskilling and Upskilling in a New Machine Age: Reflections on the Ambiguous Future of Character</i>
-#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Tue, 9pm)</span>
-
-LEC
-- Lec: Discussion and flexible time
-
-LEC
-- Lec: Writing workshop #4
+#week 13#
 
 LEC
 - Lec: <b>The (digital) good life: automation and the future of work</b>
@@ -356,6 +336,18 @@ LEC
 - Lec: <b>The (digital) good life: automation and the future of work</b>
 - Prep: </i> Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
 
+LEC
+- Lec: Discussion and flexible time
+
+#week 14#
+
+LEC
+- Lec: <b>The (digital) good life: self-quantification</b>
+- Prep: TBD</i>
+
+LEC
+- Lec: <b>The (digital) good life: self-quantification</b>
+- Prep: TBD</i>
 
 LEC
 - Lec: Class wrap-up
@@ -363,6 +355,30 @@ LEC
 
 
 
+# old topics #
+#LEC
+#- Lec: <b>Coding and hacking</b>
+#- Prep: Thoreau, </i>On the Duty of Civil Disobedience</i> 
+#- Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043199800906966 Rawls, </i>A Theory of Justice,</i>  pp. 363-391]
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+
+
+#LEC
+#- Lec: <b>Coding and hacking</b>
+#- Prep: Himma, </i>Hacking as Politically Motivated Digital Civil Disobedience: Is Hacktivism Morally Justified?</i> 
+#- Prep: Coleman, </i>Coding Freedom: The Ethics and Aesthetics of Hacking, </i> chapter 4 
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+
+#LEC
+#- Lec: <b>The (digital) good life: character</b>
+#- Prep: Vallor, </i>Moral Deskilling and Upskilling in a New Machine Age: Reflections on the Ambiguous Future of Character</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Tue, 9pm)</span>
+
+#LEC
+#- Lec: <b>Algorithms and AI: autonomous decision making</b>
+#- Prep: Berlin, <i>The Pursuit of the Ideal (read, no annotation assignment)</i>
+#- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
 
 
